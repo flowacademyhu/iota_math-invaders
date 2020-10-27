@@ -1,10 +1,10 @@
-const fillMap = (array) => {
-  for (let i = 0; i < array.length; i++) {
-    for (let j = 0; j < array[i].length; j++) {
+const fillMap = () => {
+  for (let i = 0; i < map.length; i++) {
+    for (let j = 0; j < map[i].length; j++) {
       if (player.x === j && player.y === i) {
-        array[i][j] = 'P';
+        map[i][j] = 'P';
       } else {
-        array[i][j] === '';
+        map[i][j] === '';
       }
     }
   }
