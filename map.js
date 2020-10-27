@@ -9,9 +9,14 @@ const generateMap = (height, width) => {
 
 const map = generateMap(30, 45);
 const bullets = []; // x, y
-const numbers = []; // x, y, num
+let numbers = []; // x, y, num
 const player = [ {x: map.length-1, y: Math.floor(map[0].length/2), score: 0, life: 3}];
 
+const gamerator = (arr) => {
+    for (let i = 0; i<5; i++) {
+    arr[i] = Math.floor(Math.random() * (100 - 0) +0);
+    }
+    return arr;
+};
 
-
-//console.log(player);
+console.log(gamerator(numbers));
