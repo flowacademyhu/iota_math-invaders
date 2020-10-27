@@ -7,8 +7,9 @@ const generateMap = (height, width) => {
 };
 
 const map = generateMap(5, 10);
-const bullets = []; // x, y
-const numbers = []; // x, y, num
+const bullets = [{ x: 5, y: 6 }, { x: 3, y: 4 }]; // x, y
+const numbers = [{ x: 1, y: 2, num: 5 }, { x: 3, y: 4, num: 6 }]; // x, y, num
+
 const player = { x: map.length - 1, y: Math.floor(map[0].length / 2), score: 0, life: 3 };
 
 const fillMap = () => {
@@ -39,5 +40,17 @@ const playerMove = (isRight) => {
   } else {
     player.y--;
   }
-}
-;
+};
+
+const hit = (x, y) => {
+  for (let i = 0; i < numbers.length; i++) {
+    if (numbers[i].x === x && numbers[i].y === y) {
+      numbers.splice(i, 1);
+    }
+  }
+  for (let i = 0; i < bullets.length; i++) {
+    if (bullets[i].x === x && bullets[i].y === y) {
+      bullets.splice(i, 1);
+    }
+  }
+};
