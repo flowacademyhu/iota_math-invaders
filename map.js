@@ -9,7 +9,7 @@ const generateMap = (height, width) => {
 const map = generateMap(30, 45);
 const bullets = []; // x, y
 const numbers = []; // x, y, num
-const player = [{ x: map.length - 1, y: Math.floor(map[0].length / 2), score: 0, life: 3 }];
+const player = { x: map.length - 1, y: Math.floor(map[0].length / 2), score: 0, life: 3 };
 
 const bulletsMove = () => {
     for (let i = 0; i < bullets.length; i++) {
