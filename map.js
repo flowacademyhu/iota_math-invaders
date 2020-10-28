@@ -35,19 +35,27 @@ const fillMap = () => {
       }
     }
   }
+  console.log(bullets);
+  console.log(player);
 };
 
 const printMap = () => {
-  console.log(table.table(map));
+  for(let i = 0; i < map.length; i++){
+    for (let j=0; j< map[i].length; j++){
+      process.stdout.write(map[i][j] + ' ');
+    }
+    console.log();
+  }
 };
 
 const playerMove = (isRight) => {
-  if (isRight) {
+  if (isRight && player.y < map[0].length-1) {
     player.y++;
-  } else {
+  } else if (isRight === false && player.y > 0){
     player.y--;
   }
 };
+
 
 const hit = (x, y) => {
   for (let i = 0; i < numbers.length; i++) {
@@ -101,6 +109,12 @@ const bulletsMove = () => {
     };
 };
 
+const shoot = () => {
+  //let object = {x:0, y:0};
+  //object.x = 20;
+  //object.y = 10;
+  bullets.push({x: player.x -1, y: player.y});
+}
 
 module.exports = {
   generateMap,
@@ -110,5 +124,6 @@ module.exports = {
   hit,
   gamerator,
   numbersMove,
-  bulletsMove
+  bulletsMove,
+  shoot
 };
