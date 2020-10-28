@@ -93,3 +93,13 @@ const bulletsMove = () => {
         bullets[i].x--;
     };
 };
+
+module.export = {
+  generateMap,
+  fillMap,
+  playerMove,
+  hit,
+  gamerator,
+  numbersMove,
+  bulletsMove
+}
