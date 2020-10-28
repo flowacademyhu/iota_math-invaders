@@ -6,11 +6,11 @@ const generateMap = (height, width) => {
   return arr;
 };
 
-const map = generateMap(5, 10);
-const bullets = [{ x: 5, y: 6 }, { x: 3, y: 4 }]; // x, y
-const numbers = [{ x: 1, y: 2, num: 5 }, { x: 3, y: 4, num: 6 }]; // x, y, num
+const map = generateMap(30, 45);
+const bullets = []; // x, y
+const numbers = []; // x, y, num
 
-const player = { x: map.length - 1, y: Math.floor(map[0].length / 2), score: 0, life: 3 };
+const player = {};
 
 const fillMap = () => {
   for (let i = 0; i < map.length; i++) {
