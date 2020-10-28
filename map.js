@@ -14,14 +14,10 @@ const player = [ {x: map.length-1, y: Math.floor(map[0].length/2), score: 0, lif
 
 const gamerator = (arr) => {
     for (let i = 0; i<5; i++) {
-        let random = Math.floor(Math.random() * (100 - 0) +0);
-        for (let j=0; j<arr.length; j++) {
-            if (random === arr[j]) {
-                break;
-            }
-            arr[i] = random;
-        }
-    }  
+        let random = Math.floor(Math.random() * (7 - 0) +0);   
+        if (arr.includes(random) === false ) arr[i] = random;
+        else i--;
+    }
     return arr;
 };
 
