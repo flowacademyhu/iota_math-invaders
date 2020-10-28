@@ -1,3 +1,5 @@
+const table = require('table');
+
 const generateMap = (height, width) => {
     const arr = new Array(height);
     for (let i = 0; i < height; i++) {
@@ -15,6 +17,7 @@ let exercise;
 const fillMap = () => {
   for (let i = 0; i < map.length; i++) {
     for (let j = 0; j < map[i].length; j++) {
+      map[i][j] = ' ';
       if (player.x === i && player.y === j) {
         map[i][j] = 'P';
       }
@@ -25,13 +28,17 @@ const fillMap = () => {
         }
       }
 
-      for (let k = 0; k < bullets.length; k++) {
+      for (let k = 0; k < numbers.length; k++) {
         if (i === numbers[k].x && j === numbers[k].y) {
-          map[i][j] = 'N';
+          map[i][j] = numbers[k].num;
         }
       }
     }
   }
+};
+
+const printMap = () => {
+  console.log(table.table(map));
 };
 
 const playerMove = (isRight) => {
@@ -94,12 +101,14 @@ const bulletsMove = () => {
     };
 };
 
-module.export = {
+
+module.exports = {
   generateMap,
   fillMap,
+  printMap,
   playerMove,
   hit,
   gamerator,
   numbersMove,
   bulletsMove
-}
+};
