@@ -12,7 +12,46 @@ const map = generateMap(30, 45);
 const bullets = []; // x, y
 const numbers = []; // x, y, num
 const player = { x: map.length - 1, y: Math.floor(map[0].length / 2), score: 0, life: 3 };
-let exercise = 'Lődd ki a páros számokat!';
+let actualExercise;
+let exercises = ['Lődd ki a páros számokat!', 'Lődd ki a páratlan számokat!'];
+let rand = Math.floor(Math.random() * exercises.length);
+
+
+
+const isGood = (n) => {
+  switch (rand) {
+    case 0:
+      if (n % 2 === 0) {
+        return true;
+      }
+      else return false;
+      break;
+    case 1:
+      if (n % 2 !== 0) {
+        return true;
+      }
+      else return false;
+      break;
+  }
+}
+
+const task = () => {
+  actualExercise = exercises[rand];
+  let counter = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    if (isGood(numbers[i])) counter++;
+  }
+  return counter;
+};
+
+const isFinish = () => {
+  let c = task();
+  if (player.score === c) {
+    return true;
+  }
+  return false;
+}
+
 
 const fillMap = () => {
   for (let i = 0; i < map.length; i++) {
@@ -39,6 +78,9 @@ const fillMap = () => {
 
 const printMap = () => {
   console.clear();
+  console.log(actualExercise);
+  console.log(rand);
+  console.log(player);
   for (let i = 0; i < map.length; i++) {
     for (let j = 0; j < map[i].length; j++) {
       process.stdout.write(map[i][j] + ' ');
@@ -58,13 +100,13 @@ const playerMove = (isRight) => {
 const isHit = () => {
   for (let i = 0; i < numbers.length; i++) {
     for (let j = 0; j < bullets.length; j++) {
-      if (bullets[j].x === numbers[i].x && bullets[j].y === numbers[i].y && numbers[i].num % 2 === 0) {
+      if (bullets[j].x === numbers[i].x && bullets[j].y === numbers[i].y && isGood(numbers[i].num)) {
         hit(numbers[i].x, numbers[i].y);
         player.score++;
       }
       else if (bullets[j].x === numbers[i].x && bullets[j].y === numbers[i].y) {
         player.life--;
-        bullets.splice(j,1);
+        bullets.splice(j, 1);
       }
     }
   };
@@ -102,8 +144,6 @@ const gamerator = () => {
   }
 };
 
-const task = () => {
-}
 
 const numbersMove = () => {
   for (let i = 0; i < numbers.length; i++) {
@@ -144,5 +184,8 @@ module.exports = {
   numbersMove,
   bulletsMove,
   shoot,
-  isHit
+  isHit,
+  task,
+  isGood,
+  isFinish
 };

@@ -1,7 +1,8 @@
-const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, isHit} = require('./map');
+const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, isHit, task, isGood, isFinish} = require('./map');
 
 const main = () => {
     gamerator();
+    task();
     fillMap();
     printMap();
 
@@ -13,8 +14,10 @@ const main = () => {
         }
         bulletsMove();
         isHit();
+        if (isFinish()) process.exit;
         fillMap();
         printMap();
+        
     }, 65);
 
     // setInterval(() => {
