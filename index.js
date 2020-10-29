@@ -1,7 +1,8 @@
-const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, isHit} = require('./map');
+const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, isHit, grid} = require('./map');
 
 const main = () => {
     gamerator();
+    grid
     fillMap();
     printMap();
 

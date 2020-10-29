@@ -1,4 +1,4 @@
-const table = require('table');
+const { table, singleLine } = require('table');
 
 const generateMap = (height, width) => {
   const arr = new Array(height);
@@ -13,6 +13,15 @@ const bullets = []; // x, y
 const numbers = []; // x, y, num
 const player = { x: map.length - 1, y: Math.floor(map[0].length / 2), score: 0, life: 3 };
 let exercise = 'Lődd ki a páros számokat!';
+
+const grid = () => {
+  const inGrid = numbers;
+  const config = {singleLine: true};
+  console.clear();
+  const text = table(inGrid, config);
+  //console.log('score:', score);
+  console.log(text);
+};
 
 const fillMap = () => {
   for (let i = 0; i < map.length; i++) {
@@ -64,7 +73,7 @@ const isHit = () => {
       }
       else if (bullets[j].x === numbers[i].x && bullets[j].y === numbers[i].y) {
         player.life--;
-        bullets.splice(j,1);
+        bullets.splice(j, 1);
       }
     }
   };
@@ -144,5 +153,6 @@ module.exports = {
   numbersMove,
   bulletsMove,
   shoot,
-  isHit
+  isHit,
+  grid
 };
