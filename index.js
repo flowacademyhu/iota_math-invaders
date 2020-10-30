@@ -1,6 +1,7 @@
 const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, isHit, task, isGood, isFinish } = require('./map');
 const { getName, printScoreboard } = require('./scoreboard');
 
+
 const main = () => {
     getName();
     gamerator();
@@ -8,6 +9,8 @@ const main = () => {
     fillMap();
     printMap();
 
+    while (isFinish == false && player.life > 0){
+        
     let i = 0;
     setInterval(() => {
         i++;
@@ -16,11 +19,18 @@ const main = () => {
         }
         bulletsMove();
         isHit();
-        if (isFinish()) process.exit;
+        // if (isFinish()) {
+        //     fillMap();
+        //     printMap();
+        //     console.clear();
+        //     printScoreboard();
+        //     process.exit();
+        //}
         fillMap();
         printMap();
 
     }, 65);
+    if ()
 
     // setInterval(() => {
     //     bulletsMove();

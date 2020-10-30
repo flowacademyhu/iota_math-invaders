@@ -16,6 +16,7 @@ let actualExercise;
 let exercises = ['Lődd ki a páros számokat!', 'Lődd ki a páratlan számokat!'];
 let rand = Math.floor(Math.random() * exercises.length);
 
+
 const isGood = (n) => {
   switch (rand) {
     case 0:
@@ -37,14 +38,14 @@ const task = () => {
   actualExercise = exercises[rand];
   let counter = 0;
   for (let i = 0; i < numbers.length; i++) {
-    if (isGood(numbers[i])) counter++;
+    if (isGood(numbers[i].num)) counter++;
   }
   return counter;
 };
 
 const isFinish = () => {
   let c = task();
-  if (player.score === c) {
+  if (c === 0 || player.life === 0) {
     return true;
   }
   return false;
@@ -72,12 +73,30 @@ const fillMap = () => {
   }
 };
 
+
 const printMap = () => {
   const config = { singleLine: true };
-  console.clear();
-  const text = table(map, config);
-  console.log(text);
-};
+        console.clear();
+        console.log(actualExercise);
+        console.log(player);
+        const text = table(map, config);
+        console.log(text);
+    };
+
+// const printMap = () => {
+//   console.clear();
+//   console.log(actualExercise);
+//   console.log(rand);
+//   console.log(player); 
+//   console.log(task());
+//   console.log(isFinish());
+//   for (let i = 0; i < map.length; i++) {
+//     for (let j = 0; j < map[i].length; j++) {
+//       process.stdout.write(map[i][j] + ' ');
+//     }
+//     console.log();
+//   }
+// };
 
 
 const playerMove = (isRight) => {
