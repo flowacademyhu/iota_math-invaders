@@ -1,6 +1,8 @@
 const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, isHit} = require('./map');
+const { getName, printScoreboard } = require('./scoreboard');
 
 const main = () => {
+    getName();
     gamerator();
     fillMap();
     printMap();
@@ -46,9 +48,8 @@ const main = () => {
         //fillMap();
         //printMap();
     });
-
-
-}
+    printScoreboard();
+};
 
 main();
 
