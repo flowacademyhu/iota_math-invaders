@@ -35,6 +35,7 @@ const main = () => {
     stdin.on('data', (key) => { // Callback függvény
         if (key === 'q') {
             process.exit();
+            printScoreboard();
         }
         if (key === "\033[C") {
             playerMove(true);

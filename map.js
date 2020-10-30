@@ -1,4 +1,4 @@
-const table = require('table');
+const {table, getBorderCharacters} = require('table');
 
 const generateMap = (height, width) => {
   const arr = new Array(height);
@@ -73,17 +73,12 @@ const fillMap = () => {
 };
 
 const printMap = () => {
+  const config = { singleLine: true };
   console.clear();
-  console.log(actualExercise);
-  console.log(rand);
-  console.log(player);
-  for (let i = 0; i < map.length; i++) {
-    for (let j = 0; j < map[i].length; j++) {
-      process.stdout.write(map[i][j] + ' ');
-    }
-    console.log();
-  }
+  const text = table(map, config);
+  console.log(text);
 };
+
 
 const playerMove = (isRight) => {
   if (isRight && player.y < map[0].length - 1) {
@@ -130,14 +125,14 @@ const hit = (x, y) => {
 const gamerator = () => {
   const arr = [];
   for (let i = 0; i < 15; i++) {
-    let object = { x: 0, y: 0, num: 0 };
-    let random = Math.floor(Math.random() * (100 - 0) + 0);
+    const object = { x: 0, y: 0, num: 0 };
+    const random = Math.floor(Math.random() * (100 - 0) + 0);
     if (arr.includes(random) === false) {
       arr[i] = random;
       object.num = random;
-      if (i < 5) object.x = 0;
+      if (i % 2 === 0) object.x = 0;
       else object.x = 1;
-      object.y = i * 3;
+      object.y = i;
       numbers.push(object);
     }
     else i--;
