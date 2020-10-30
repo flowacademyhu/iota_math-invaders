@@ -1,4 +1,4 @@
-const table = require('table');
+const {table, getBorderCharacters} = require('table');
 
 const generateMap = (height, width) => {
   const arr = new Array(height);
@@ -15,6 +15,7 @@ const player = { name: '', x: map.length - 1, y: Math.floor(map[0].length / 2), 
 let actualExercise;
 let exercises = ['Lődd ki a páros számokat!', 'Lődd ki a páratlan számokat!'];
 let rand = Math.floor(Math.random() * exercises.length);
+
 
 const isGood = (n) => {
   switch (rand) {
@@ -37,14 +38,14 @@ const task = () => {
   actualExercise = exercises[rand];
   let counter = 0;
   for (let i = 0; i < numbers.length; i++) {
-    if (isGood(numbers[i])) counter++;
+    if (isGood(numbers[i].num)) counter++;
   }
   return counter;
 };
 
 const isFinish = () => {
   let c = task();
-  if (player.score === c) {
+  if (c === 0 || player.life === 0) {
     return true;
   }
   return false;
@@ -72,18 +73,30 @@ const fillMap = () => {
   }
 };
 
+
 const printMap = () => {
-  console.clear();
-  console.log(actualExercise);
-  console.log(rand);
-  console.log(player); 
-  for (let i = 0; i < map.length; i++) {
-    for (let j = 0; j < map[i].length; j++) {
-      process.stdout.write(map[i][j] + ' ');
-    }
-    console.log();
-  }
-};
+  const config = { singleLine: true };
+        console.clear();
+        console.log(actualExercise);
+        console.log(player);
+        const text = table(map, config);
+        console.log(text);
+    };
+
+// const printMap = () => {
+//   console.clear();
+//   console.log(actualExercise);
+//   console.log(rand);
+//   console.log(player); 
+//   console.log(task());
+//   console.log(isFinish());
+//   for (let i = 0; i < map.length; i++) {
+//     for (let j = 0; j < map[i].length; j++) {
+//       process.stdout.write(map[i][j] + ' ');
+//     }
+//     console.log();
+//   }
+// };
 
 const playerMove = (isRight) => {
   if (isRight && player.y < map[0].length - 1) {
@@ -135,7 +148,7 @@ const gamerator = () => {
     if (arr.includes(random) === false) {
       arr[i] = random;
       object.num = random;
-      if (i < 5) object.x = 0;
+      if (i % 2 === 0) object.x = 0;
       else object.x = 1;
       object.y = i * 3;
       numbers.push(object);
