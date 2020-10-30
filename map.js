@@ -80,7 +80,7 @@ const printMap = () => {
   console.clear();
   console.log(actualExercise);
   console.log(rand);
-  console.log(player);
+  console.log(player); 
   for (let i = 0; i < map.length; i++) {
     for (let j = 0; j < map[i].length; j++) {
       process.stdout.write(map[i][j] + ' ');
