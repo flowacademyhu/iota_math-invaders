@@ -11,12 +11,10 @@ const generateMap = (height, width) => {
 const map = generateMap(30, 45);
 const bullets = []; // x, y
 const numbers = []; // x, y, num
-const player = { x: map.length - 1, y: Math.floor(map[0].length / 2), score: 0, life: 3 };
+const player = { name: '', x: map.length - 1, y: Math.floor(map[0].length / 2), score: 0, life: 3 };
 let actualExercise;
 let exercises = ['Lődd ki a páros számokat!', 'Lődd ki a páratlan számokat!'];
 let rand = Math.floor(Math.random() * exercises.length);
-
-
 
 const isGood = (n) => {
   switch (rand) {
@@ -60,13 +58,11 @@ const fillMap = () => {
       if (player.x === i && player.y === j) {
         map[i][j] = 'P';
       }
-
       for (let k = 0; k < bullets.length; k++) {
         if (i === bullets[k].x && j === bullets[k].y) {
           map[i][j] = 'B';
         }
       }
-
       for (let k = 0; k < numbers.length; k++) {
         if (i === numbers[k].x && j === numbers[k].y) {
           map[i][j] = numbers[k].num;
@@ -121,10 +117,14 @@ const hit = (x, y) => {
 
   }
   for (let i = 0; i < bullets.length; i++) {
-    if (bullets[i].x === x && bullets[i].y === y) {
-      bullets.splice(i, 1);
-    }
-  }
+    for (let j = 0; j < numbers.length; j++) {
+      if (numbers[j].x === bullets[i].x && numbers[j].y === bullets[i].y) {
+        numbers.splice(j, 1);
+        bullets.splice(i, 1);
+        console.log(numbers[j].x, bullets[i].x, numbers[j].y, bullets[i].y);
+      };
+    };
+  };
 };
 
 const gamerator = () => {
@@ -135,7 +135,7 @@ const gamerator = () => {
     if (arr.includes(random) === false) {
       arr[i] = random;
       object.num = random;
-      if (i % 2 === 0) object.x = 0;
+      if (i < 5) object.x = 0;
       else object.x = 1;
       object.y = i * 3;
       numbers.push(object);
@@ -143,7 +143,6 @@ const gamerator = () => {
     else i--;
   }
 };
-
 
 const numbersMove = () => {
   for (let i = 0; i < numbers.length; i++) {
@@ -168,13 +167,11 @@ const bulletsMove = () => {
 };
 
 const shoot = () => {
-  //let object = {x:0, y:0};
-  //object.x = 20;
-  //object.y = 10;
   bullets.push({ x: player.x - 1, y: player.y });
-}
+};
 
 module.exports = {
+  player,
   generateMap,
   fillMap,
   printMap,
