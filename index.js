@@ -1,20 +1,25 @@
-const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, isHit} = require('./map');
+const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, isHit, task, isGood, isFinish } = require('./map');
+const { getName, printScoreboard } = require('./scoreboard');
 
 const main = () => {
+    getName();
     gamerator();
+    task();
     fillMap();
     printMap();
 
     let i = 0;
     setInterval(() => {
         i++;
-        if (i%46 === 0){
+        if (i % 46 === 0) {
             numbersMove();
         }
         bulletsMove();
         isHit();
+        if (isFinish()) process.exit;
         fillMap();
         printMap();
+
     }, 65);
 
     // setInterval(() => {
@@ -22,7 +27,7 @@ const main = () => {
     //     fillMap();
     //     printMap();
     // }, 50);
-    
+
     const stdin = process.stdin;
     stdin.setRawMode(true); // Ne várjon enterre
     stdin.resume(); // Csak process.exit-el lehet kilépni
@@ -39,16 +44,14 @@ const main = () => {
         }
         if (key === "\033[A") {
             shoot();
-
         }
         //bulletsMove();
         //numbersMove();
         //fillMap();
         //printMap();
     });
-
-
-}
+    printScoreboard();
+};
 
 main();
 
