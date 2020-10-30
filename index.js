@@ -1,15 +1,14 @@
-const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, isHit, grid} = require('./map');
+const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, isHit } = require('./map');
 
 const main = () => {
     gamerator();
-    grid
     fillMap();
     printMap();
 
     let i = 0;
     setInterval(() => {
         i++;
-        if (i%46 === 0){
+        if (i % 46 === 0) {
             numbersMove();
         }
         bulletsMove();
@@ -23,7 +22,7 @@ const main = () => {
     //     fillMap();
     //     printMap();
     // }, 50);
-    
+
     const stdin = process.stdin;
     stdin.setRawMode(true); // Ne várjon enterre
     stdin.resume(); // Csak process.exit-el lehet kilépni
