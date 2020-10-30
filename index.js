@@ -41,7 +41,6 @@ const main = () => {
         }
         if (key === "\033[A") {
             shoot();
-
         }
         //bulletsMove();
         //numbersMove();
