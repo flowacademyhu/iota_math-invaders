@@ -39,12 +39,24 @@ const fillMap = () => {
   }
 };
 
-const printMap = () => {
-  const config = { singleLine: true };
+const printMap = (map) => {
+  const text = table(map, {
+    border: getBorderCharacters('void'),
+    columnDefault: {
+      paddingLeft: 0,
+      paddingRight: 0
+    },
+    drawHorizontalLine: () => {
+      return false;
+    }
+  });
   console.clear();
-  const text = table(map, config);
   console.log(text);
-};
+      // const config = { singleLine: true };
+      // console.clear();
+      // const text = table(map, config);
+      // console.log(text);
+  };
 
 const playerMove = (isRight) => {
   if (isRight && player.y < map[0].length - 1) {
