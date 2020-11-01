@@ -17,17 +17,16 @@ let exercises =
   [ 'Lődd ki a prímszámokat!',
     'Lődd ki a páratlan számokat!',
     'Lődd ki a páros számokat!',
-    'Lődd ki a 3-mal osztható számokat',
-    'Lődd ki a 4-gyel osztható számokat',
-    'Lődd ki az 5-tel osztható számokat',
-    'Lődd ki a 6-tal osztható számokat',
-    'Lődd ki a 7-tel osztható számokat',
-    'Lődd ki a 8-cal osztható számokat',
-    'Lődd ki a 9-cel osztható számokat',
+    'Lődd ki a 3-mal osztható számokat!',
+    'Lődd ki a 4-gyel osztható számokat!',
+    'Lődd ki az 5-tel osztható számokat!',
+    'Lődd ki a 6-tal osztható számokat!',
+    'Lődd ki a 7-tel osztható számokat!',
+    'Lődd ki a 8-cal osztható számokat!',
+    'Lődd ki a 9-cel osztható számokat!',
     'Lődd ki a számokat növekvő sorrendben!',
     'Lődd ki a számokat csökkenő sorrendben!'];
-let rand = 2;
-//Math.floor(Math.random() * exercises.length);
+let rand = Math.floor(Math.random() * exercises.length);
 
 
 const isPrime = (num) => {
