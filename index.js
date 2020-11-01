@@ -6,11 +6,9 @@ const main = () => {
     getName();
     gamerator();
     task();
-    fillMap();
-    printMap();
-
-    while (isFinish == false && player.life > 0){
-        
+ //   fillMap();
+//  printMap();
+    
     let i = 0;
     setInterval(() => {
         i++;
@@ -19,18 +17,18 @@ const main = () => {
         }
         bulletsMove();
         isHit();
-        // if (isFinish()) {
-        //     fillMap();
-        //     printMap();
-        //     console.clear();
-        //     printScoreboard();
-        //     process.exit();
-        //}
+        if (isFinish()) {
+            fillMap();
+            printMap();
+            console.clear();
+            printScoreboard();
+            process.exit();
+        }
         fillMap();
         printMap();
 
     }, 65);
-    if ()
+    
 
     // setInterval(() => {
     //     bulletsMove();
