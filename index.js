@@ -1,37 +1,39 @@
-const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, isHit, task, isGood, isFinish, player } = require('./map');
+const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, isHit, task, isGood, isFinish, player, reset, exercises } = require('./map');
 const { getName, printScoreboard } = require('./scoreboard');
 const readline = require('readline-sync');
 
-
 const menu = () => {
-    const stdin = process.stdin;
-    stdin.setRawMode(true); // Ne várjon enterre
-    stdin.resume(); // Csak process.exit-el lehet kilépni
-    stdin.setEncoding('utf8'); // Karaktereket kapjunk vissza
-    stdin.on('data', (key) => { // Callback függvény
-        if (key === 'y') {
-            main();
-        } else {
-            process.exit();
-        }
-    });    
- };
+    printScoreboard();
+    let continoue = readline.question('Szeretnél tovább játszani? (igen v nem) ');
+    if (continoue === 'igen') {
+        reset();
+        main();
+    }
+    else process.exit();
+}
 
 const main = () => {
-    getName();
+    if (player.name === '') {
+        getName();
+    }
     gamerator();
     task();
-
+    fillMap();
     let i = 0;
-    setInterval(() => {
+    const inter = setInterval(() => {
         i++;
-        if (i % 46 === 0) {
+        if (i % 44 === 0) {
             numbersMove();
         }
         bulletsMove();
         isHit();
         if (isFinish()) {
-           // process.stdin.removeAllListeners('data');
+            process.stdin.removeAllListeners('data');
+            process.stdin.removeAllListeners('keypress');
+            process.stdin.setRawMode(false);
+            process.stdin.resume();
+            process.stdin.end();
+            clearInterval(inter);
             fillMap();
             printMap();
             console.clear();
@@ -39,6 +41,7 @@ const main = () => {
             if (player.life > 0) {
                 console.clear();
                 console.log('Gratulálok, nyertél!');
+                player.score = Math.ceil(player.score/100) * 100;
                 menu();
             }
             else {
@@ -46,12 +49,10 @@ const main = () => {
                 console.log('Vesztettél!');
                 menu();
             }
-            // process.exit();
         }
         fillMap();
         printMap();
-
-    }, 65);
+    }, 66);
 
 
     const stdin = process.stdin;
@@ -59,10 +60,8 @@ const main = () => {
     stdin.resume(); // Csak process.exit-el lehet kilépni
     stdin.setEncoding('utf8'); // Karaktereket kapjunk vissza
     stdin.on('data', (key) => { // Callback függvény
-      //  console.log('cica');
         if (key === 'q') {
-            process.exit();
-            printScoreboard();
+            menu();
         }
         if (key === "\033[C") {
             playerMove(true);
@@ -74,8 +73,6 @@ const main = () => {
             shoot();
         }
     });
-    //  printScoreboard();
-
 };
 
 main();

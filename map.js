@@ -14,19 +14,19 @@ const numbers = []; // x, y, num
 const player = { name: '', x: map.length - 1, y: Math.floor(map[0].length / 2), score: 0, life: 3 };
 let actualExercise = '';
 let exercises =
-  [ 'Lődd ki a prímszámokat!',
-    'Lődd ki a páratlan számokat!',
-    'Lődd ki a páros számokat!',
-    'Lődd ki a 3-mal osztható számokat!',
-    'Lődd ki a 4-gyel osztható számokat!',
-    'Lődd ki az 5-tel osztható számokat!',
-    'Lődd ki a 6-tal osztható számokat!',
-    'Lődd ki a 7-tel osztható számokat!',
-    'Lődd ki a 8-cal osztható számokat!',
-    'Lődd ki a 9-cel osztható számokat!',
-    'Lődd ki a számokat növekvő sorrendben!',
-    'Lődd ki a számokat csökkenő sorrendben!'];
-let rand = Math.floor(Math.random() * exercises.length);
+  [ 'Shoot all the prime numbers',
+    'Shoot all the odd numbers',
+    'Shoot all the even numbers',
+    'Shoot all numbers divisible by 3',
+    'Shoot all numbers divisible by 4',
+    'Shoot all numbers divisible by 5',
+    'Shoot all numbers divisible by 6',
+    'Shoot all numbers divisible by 7',
+    'Shoot all numbers divisible by 8',
+    'Shoot all numbers divisible by 9',
+    'Shoot all numbers in ascending order',
+    'Shoot all numbers in descending order',];
+let rand;
 
 
 const isPrime = (num) => {
@@ -195,6 +195,7 @@ const hit = (x, y) => {
 };
 
 const gamerator = () => {
+  rand = Math.floor(Math.random() * exercises.length);
   let arr = [];
   if (rand === 0) {
     const primes = [2, 5, 13, 29, 43];
@@ -256,8 +257,22 @@ const shoot = () => {
   bullets.push({ x: player.x - 1, y: player.y });
 };
 
+const reset = () => {
+  for (let i = 0; i < map.length; i++) {
+    for (let j = 0; j < map[i].length; j++) {
+      map[i][j] = '';
+    }
+  }
+  numbers.splice(0, numbers.length);
+  bullets.splice(0, bullets.length);
+  player.x = map.length - 1;
+  player.y = Math.floor(map[0].length / 2);
+  player.life = 3;
+};
+
 module.exports = {
   player,
+  exercises,
   generateMap,
   fillMap,
   printMap,
@@ -270,5 +285,6 @@ module.exports = {
   isHit,
   task,
   isGood,
-  isFinish
+  isFinish,
+  reset
 };
