@@ -1,14 +1,27 @@
-const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, isHit, task, isGood, isFinish } = require('./map');
+const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, isHit, task, isGood, isFinish, player } = require('./map');
 const { getName, printScoreboard } = require('./scoreboard');
+const readline = require('readline-sync');
 
+
+const menu = () => {
+    const stdin = process.stdin;
+    stdin.setRawMode(true); // Ne várjon enterre
+    stdin.resume(); // Csak process.exit-el lehet kilépni
+    stdin.setEncoding('utf8'); // Karaktereket kapjunk vissza
+    stdin.on('data', (key) => { // Callback függvény
+        if (key === 'y') {
+            main();
+        } else {
+            process.exit();
+        }
+    });    
+ };
 
 const main = () => {
     getName();
     gamerator();
     task();
- //   fillMap();
-//  printMap();
-    
+
     let i = 0;
     setInterval(() => {
         i++;
@@ -18,29 +31,35 @@ const main = () => {
         bulletsMove();
         isHit();
         if (isFinish()) {
+           // process.stdin.removeAllListeners('data');
             fillMap();
             printMap();
             console.clear();
             printScoreboard();
-            process.exit();
+            if (player.life > 0) {
+                console.clear();
+                console.log('Gratulálok, nyertél!');
+                menu();
+            }
+            else {
+                console.clear();
+                console.log('Vesztettél!');
+                menu();
+            }
+            // process.exit();
         }
         fillMap();
         printMap();
 
     }, 65);
-    
 
-    // setInterval(() => {
-    //     bulletsMove();
-    //     fillMap();
-    //     printMap();
-    // }, 50);
 
     const stdin = process.stdin;
     stdin.setRawMode(true); // Ne várjon enterre
     stdin.resume(); // Csak process.exit-el lehet kilépni
     stdin.setEncoding('utf8'); // Karaktereket kapjunk vissza
     stdin.on('data', (key) => { // Callback függvény
+      //  console.log('cica');
         if (key === 'q') {
             process.exit();
             printScoreboard();
@@ -54,12 +73,9 @@ const main = () => {
         if (key === "\033[A") {
             shoot();
         }
-        //bulletsMove();
-        //numbersMove();
-        //fillMap();
-        //printMap();
     });
-    printScoreboard();
+    //  printScoreboard();
+
 };
 
 main();
