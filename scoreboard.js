@@ -1,3 +1,4 @@
+
 const readline = require('readline-sync');
 const { player } = require('./map');
 

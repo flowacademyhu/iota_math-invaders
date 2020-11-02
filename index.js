@@ -1,8 +1,6 @@
 const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, isHit, task, isGood, isFinish, player } = require('./map');
 const { getName, printScoreboard } = require('./scoreboard');
 const readline = require('readline-sync');
-const ctx = require('axel');
-
 
 const menu = () => {
     console.log('y or n');
@@ -18,7 +16,7 @@ const menu = () => {
             process.exit();
         }
     })
- };
+};
 const main = () => {
     getName();
     gamerator();

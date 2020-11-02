@@ -1,6 +1,5 @@
 const { table, getBorderCharacters } = require('table');
-const ctx = require('axel');
-
+const term = require( 'terminal-kit' ).terminal;
 const generateMap = (height, width) => {
   const arr = new Array(height);
   for (let i = 0; i < height; i++) {
@@ -105,23 +104,51 @@ const fillMap = () => {
     for (let j = 0; j < map[i].length; j++) {
       map[i][j] = ' ';
       if (player.x === i && player.y === j) {
-        map[i][j] = 'P';
+        map[i][j] = '🐈';
       }
       for (let k = 0; k < bullets.length; k++) {
         if (i === bullets[k].x && j === bullets[k].y) {
-          map[i][j] = 'B';
+          map[i][j] = '🧶';
         }
       }
       for (let k = 0; k < numbers.length; k++) {
         if (i === numbers[k].x && j === numbers[k].y) {
           map[i][j] = numbers[k].num;
-
         }
       }
     }
   }
 };
-
+const printMap = () => {
+  console.clear();
+  let config, output, options;
+  config = {
+    border: {
+      topBody: `─`,
+      topJoin: `─`,
+      topLeft: `┌`,
+      topRight: `┐`,
+      bottomBody: `─`,
+      bottomJoin: `─`,
+      bottomLeft: `└`,
+      bottomRight: `┘`,
+      bodyLeft: `│`,
+      bodyRight: `│`,
+      bodyJoin: ` `,
+      joinBody: ` `,
+      joinLeft: `│`,
+      joinRight: `│`,
+      joinJoin: ` `
+    },
+    columnDefault: {
+    width: 4
+  }
+};
+output = table(map, config);
+console.log(output);
+console.log(actualExercise);
+console.log(player);
+};
 const playerMove = (isRight) => {
   if (isRight && player.y < map[0].length - 1) {
     player.y++;
@@ -135,6 +162,7 @@ const isHit = () => {
       if (bullets[j].x === numbers[i].x && bullets[j].y === numbers[i].y && isGood(numbers[i].num)) {
         hit(numbers[i].x, numbers[i].y);
         player.score++;
+        bullets.splice(j, 1);
       }
       else if (bullets[j].x === numbers[i].x && bullets[j].y === numbers[i].y) {
         player.life--;
