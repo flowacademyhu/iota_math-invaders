@@ -1,6 +1,7 @@
 const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, isHit, task, isGood, isFinish, player } = require('./map');
 const { getName, printScoreboard } = require('./scoreboard');
 const readline = require('readline-sync');
+var ctx = require('axel');
 
 const menu = () => {
     console.log('y or n');
@@ -10,14 +11,13 @@ const menu = () => {
     stdin.resume(); // Csak process.exit-el lehet kilépni
     stdin.setEncoding('utf8'); // Karaktereket kapjunk vissza
     stdin.on('data', (key) => { // Callback függvény
-        console.log('cica');
         if (key === 'y') {
             main();
         } else {
             process.exit();
         }
     })
- };
+};
 const main = () => {
     getName();
     gamerator();
@@ -56,7 +56,6 @@ const main = () => {
     stdin.resume(); // Csak process.exit-el lehet kilépni
     stdin.setEncoding('utf8'); // Karaktereket kapjunk vissza
     stdin.on('data', (key) => { // Callback függvény
-        console.log('cica');
         if (key === 'q') {
             process.exit();
             printScoreboard();

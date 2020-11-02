@@ -7,7 +7,7 @@ const generateMap = (height, width) => {
   };
   return arr;
 };
-const map = generateMap(30, 15);
+const map = generateMap(20, 15);
 const bullets = []; // x, y
 const numbers = []; // x, y, num
 const player = { name: '', x: map.length - 1, y: Math.floor(map[0].length / 2), score: 0, life: 3 };
@@ -121,7 +121,7 @@ const fillMap = () => {
 };
 
 const printMap = () => {
-  console.clear();
+   console.clear();
   let config, output;
   config = {
     border: {
@@ -146,7 +146,7 @@ const printMap = () => {
 
     }
   };
-  console.clear();
+
   output = table(map, config);
   console.log(output);
 
