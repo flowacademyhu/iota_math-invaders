@@ -1,20 +1,27 @@
 const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, isHit, task, isGood, isFinish, player, reset, exercises } = require('./map');
 const { getName, printScoreboard } = require('./scoreboard');
 const readline = require('readline-sync');
-let term = require('terminal-kit').terminal;
+//let term = require('terminal-kit').terminal;
 
 const menu = () => {
     if (player.name === '') {
         getName();
     }
-    term.singleColumnMenu(exercises, (error, response) => {
-        let choose = response.selectedIndex;
-        // stdout.removeAllListeners('data', term);
-        //   term.removeAllListeners()
-        // term.reset()
-        // term.clear()
-        main(choose)
-    });
+    index = readline.keyInSelect(exercises, 'mit akarsz');
+    if (index === -1) {
+        process.exit();
+    } else {
+        main(index);
+    }
+
+    // term.singleColumnMenu(exercises, (error, response) => {
+    //     let choose = response.selectedIndex;
+    //     // stdout.removeAllListeners('data', term);
+    //     //   term.removeAllListeners()
+    //     // term.reset()
+    //     // term.clear()
+    //     main(choose)
+    // });
 }
 
 // const menu = () => {
@@ -30,7 +37,6 @@ const menu = () => {
 // }
 
 const main = (choose) => {
-   
     gamerator(choose);
     task();
     fillMap();
@@ -53,17 +59,19 @@ const main = (choose) => {
             fillMap();
             printMap();
             console.clear();
-            // printScoreboard();
             if (player.life > 0) {
                 console.clear();
                 console.log('Gratulálok, nyertél!');
-                menu();
+                reset();
+                printScoreboard();
             }
             else {
                 console.clear();
                 console.log('Vesztettél!');
-                menu();
+                printScoreboard();
+                reset();
             }
+            menu();
         }
         fillMap();
         printMap();

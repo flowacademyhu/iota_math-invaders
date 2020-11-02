@@ -135,6 +135,7 @@ const printMap = () => {
   console.clear();
   console.log(actualExercise);
   console.log(player);
+  console.log(rand);
   const text = table(map, config);
   console.log(text);
 };
