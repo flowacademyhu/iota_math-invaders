@@ -26,6 +26,7 @@ let exercises =
     'Lődd ki a számokat növekvő sorrendben!',
     'Lődd ki a számokat csökkenő sorrendben!'];
 let rand = Math.floor(Math.random() * exercises.length);
+
 const isPrime = (num) => {
   if (num === 0 || num === 1) {
     return false;
@@ -40,6 +41,7 @@ const isPrime = (num) => {
     return true;
   }
 };
+
 const isGood = (n) => {
   const helpArray = [];
   switch (rand) {
@@ -121,8 +123,8 @@ const fillMap = () => {
 };
 
 const printMap = () => {
-   console.clear();
-  let config, output;
+  console.clear();
+  let config, output, options;
   config = {
     border: {
       topBody: `─`,
@@ -143,35 +145,19 @@ const printMap = () => {
       joinLeft: `│`,
       joinRight: `│`,
       joinJoin: ` `
-
+    },
+    columnDefault: {
+      width: 4
     }
   };
 
-  output = table(map, config);
+  output = table(map, config, options);
   console.log(output);
 
-  // const config = { singleLine: true };
   console.log(actualExercise);
   console.log(player);
-  // const text = table(map, config);
-  // console.log(text);
 };
 
-
-// const printMap = () => {
-//   console.clear();
-//   console.log(actualExercise);
-//   console.log(rand);
-//   console.log(player);
-//   console.log(task());
-//   console.log(isFinish());
-//   for (let i = 0; i < map.length; i++) {
-//     for (let j = 0; j < map[i].length; j++) {
-//       process.stdout.write(map[i][j] + ' ');
-//     }
-//     console.log();
-//   }
-// };
 const playerMove = (isRight) => {
   if (isRight && player.y < map[0].length - 1) {
     player.y++;
