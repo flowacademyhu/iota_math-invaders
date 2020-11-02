@@ -14,7 +14,7 @@ const numbers = []; // x, y, num
 const player = { name: '', x: map.length - 1, y: Math.floor(map[0].length / 2), score: 0, life: 3 };
 let actualExercise = '';
 let exercises =
-  [ 'Shoot all the prime numbers',
+  ['Random exercise',
     'Shoot all the odd numbers',
     'Shoot all the even numbers',
     'Shoot all numbers divisible by 3',
@@ -25,7 +25,8 @@ let exercises =
     'Shoot all numbers divisible by 8',
     'Shoot all numbers divisible by 9',
     'Shoot all numbers in ascending order',
-    'Shoot all numbers in descending order',];
+    'Shoot all numbers in descending order',
+    'Shoot all the prime numbers'];
 let rand;
 
 
@@ -47,10 +48,6 @@ const isPrime = (num) => {
 const isGood = (n) => {
   const helpArray = [];
   switch (rand) {
-    case 0:
-      if (isPrime(n)) {
-        return true;
-      } else return false;
     case 1:
       if (n % 2 !== 0) {
         return true;
@@ -84,6 +81,10 @@ const isGood = (n) => {
         helpArray.push(numbers[i].num);
       }
       if (n === Math.max(...helpArray)) {
+        return true;
+      } else return false;
+    case 12:
+      if (isPrime(n)) {
         return true;
       } else return false;
   }
@@ -188,27 +189,37 @@ const hit = (x, y) => {
       if (numbers[j].x === bullets[i].x && numbers[j].y === bullets[i].y) {
         numbers.splice(j, 1);
         bullets.splice(i, 1);
-     //   console.log(numbers[j].x, bullets[i].x, numbers[j].y, bullets[i].y);
+        //   console.log(numbers[j].x, bullets[i].x, numbers[j].y, bullets[i].y);
       };
     };
   };
 };
 
-const gamerator = () => {
-  rand = Math.floor(Math.random() * exercises.length);
-  let arr = [];
-  if (rand === 0) {
-    const primes = [2, 5, 13, 29, 43];
-    for (let i = 0; i < 5; i++) {
-      const randIndex = Math.floor(Math.random() * 15);
-      arr[randIndex] = primes[i];
-    }
+// const selectExercise = (n) => {
+
+// }
+
+const gamerator = (choose) => {
+  if (choose === 0) {
+    rand = Math.floor(Math.random() * (exercises.length - 1) + 1);
+  } else {
+    rand = choose;
   }
-  if (rand >= 3 && rand <= 9) {
-    const mult = [2, 5, 8, 3, 7];
-    for (let i = 0; i < 5; i++) {
-      const randIndex = Math.floor(Math.random() * 15);
-      arr[randIndex] = mult[i] * rand;
+  let arr = [];
+  if (rand === 12) {
+    if (rand >= 3 && rand <= 9) {
+      const mult = [2, 5, 8, 3, 7];
+      for (let i = 0; i < 5; i++) {
+        const randIndex = Math.floor(Math.random() * 15);
+        arr[randIndex] = mult[i] * rand;
+      }
+    }
+    if (rand === 12) {
+    const primes = [2, 5, 13, 29, 43];
+      for (let i = 0; i < 5; i++) {
+        const randIndex = Math.floor(Math.random() * 15);
+        arr[randIndex] = primes[i];
+      }
     }
   }
 
@@ -216,9 +227,9 @@ const gamerator = () => {
     const random = Math.floor(Math.random() * (100 - 0) + 0);
     if (arr[i] === undefined) {
       if (arr.includes(random) === false) {
-      arr[i] = random;
+        arr[i] = random;
       } else i--;
-    } 
+    }
   }
 
   for (let i = 0; i < 15; i++) {
@@ -258,6 +269,11 @@ const shoot = () => {
 };
 
 const reset = () => {
+  if (player.life > 0) {
+    player.score = Math.ceil(player.score / 100) * 100;
+  } else {
+    player.score = 0;
+  }
   for (let i = 0; i < map.length; i++) {
     for (let j = 0; j < map[i].length; j++) {
       map[i][j] = '';
