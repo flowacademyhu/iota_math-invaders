@@ -123,6 +123,18 @@ const fillMap = () => {
 };
 
 const printMap = () => {
+  const mymap = generateMap(20, 15);
+  for (let i = 0; i < map.length; i++){
+    for (let j = 0; j < map[i].length; j++){
+      if (map[i][j] === 'P'){
+        mymap[i][j] = '🐱';
+      }
+      else if (map[i][j] === 'B'){
+        mymap[i][j] = '🧶';
+      }
+      else mymap[i][j] = map[i][j];
+    }
+  }
   console.clear();
   let config, output, options;
   config = {
@@ -151,12 +163,13 @@ const printMap = () => {
     }
   };
 
-  output = table(map, config, options);
+  output = table(mymap, config, options);
   console.log(output);
 
   console.log(actualExercise);
   console.log(player);
 };
+
 
 const playerMove = (isRight) => {
   if (isRight && player.y < map[0].length - 1) {
@@ -171,6 +184,7 @@ const isHit = () => {
       if (bullets[j].x === numbers[i].x && bullets[j].y === numbers[i].y && isGood(numbers[i].num)) {
         hit(numbers[i].x, numbers[i].y);
         player.score++;
+        bullets.splice(j, 1);
       }
       else if (bullets[j].x === numbers[i].x && bullets[j].y === numbers[i].y) {
         player.life--;
