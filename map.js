@@ -1,5 +1,9 @@
 const { table, getBorderCharacters } = require('table');
-const term = require('terminal-kit').terminal;
+var term = require('terminal-kit').terminal;
+const chalk = require("chalk");
+const figlet = require('figlet');
+const lolcatjs = require('lolcatjs');
+const { mainModule } = require('process');
 
 const generateMap = (height, width) => {
   const arr = new Array(height);
@@ -97,6 +101,7 @@ const task = () => {
   }
   return counter;
 };
+
 const isFinish = () => {
   let c = task();
   //ha leernek a szamok, player.life = 0
@@ -125,6 +130,18 @@ const fillMap = () => {
     }
   }
 };
+
+const appearTask = () => {
+  lolcatjs.fromString(figlet.textSync('Shoot all numbers in descending order!', {
+    font: 'ANSI Shadow',
+    horizontalLayout: 'full',
+    verticalLayout: 'full',
+    width: 200,
+    whitespaceBreak: true
+}));
+}
+
+
 const printMap = () => {
   const mymap = generateMap(20, 15);
   for (let i = 0; i < map.length; i++) {
@@ -141,11 +158,28 @@ const printMap = () => {
     
   }
   console.clear();
-  // term.table(map, {
-  //   checkerEvenCellTextAttr: { bgColor: 'gray' },
-  //   fit: true
-  // });
-  let config, output, options;
+
+  let cat;
+
+  if (player.life === 3) {
+    cat = '😻 😻 😻';
+  } else if (player.life === 2) {
+    cat = '😸 😸';
+  } else if (player.life === 1) {
+    cat = '🙀';
+  }
+
+
+
+  console.clear();
+
+  console.log(chalk.bold.greenBright(actualExercise));
+  console.log();
+  process.stdout.write(chalk.bold.greenBright('  name: ' + player.name + '                                  ' + '🐟: ' + player.score + '                                   ' + 'Life: ' + cat));
+  console.log();
+
+
+  let config, output;
   config = {
     border: {
       topBody: `─`,
@@ -168,11 +202,11 @@ const printMap = () => {
       width: 4
     }
   };
-  
-  output = table(mymap, config, options);
-  console.log(output);
-  console.log(actualExercise);
-  console.log(player);
+
+  output = table(mymap, config);
+  console.log(chalk.bold.greenBright(output));
+
+
 };
 
 
@@ -287,6 +321,7 @@ module.exports = {
   generateMap,
   fillMap,
   printMap,
+  appearTask,
   playerMove,
   hit,
   gamerator,

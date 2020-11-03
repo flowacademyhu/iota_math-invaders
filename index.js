@@ -1,4 +1,4 @@
-const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, task, isGood, isFinish, player, reset, exercises } = require('./map');
+const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, task, isGood, isFinish, player, reset, exercises, appearTask } = require('./map');
 const { getName, printScoreboard } = require('./scoreboard');
 const readline = require('readline-sync');
 //let term = require('terminal-kit').terminal;
@@ -18,35 +18,18 @@ const menu = () => {
     if (index === -1) {
         process.exit();
     } else {
-        main(index);
+
+            main(index);
+        };
     }
 
-    // term.singleColumnMenu(exercises, (error, response) => {
-    //     let choose = response.selectedIndex;
-    //     // stdout.removeAllListeners('data', term);
-    //     //   term.removeAllListeners()
-    //     // term.reset()
-    //     // term.clear()
-    //     main(choose)
-    // });
-}
-
-// const menu = () => {
-//     printScoreboard();
-//     let continoue = readline.question('Szeretnél tovább játszani? (igen v nem) ');
-//     if (continoue === 'igen') {
-//         reset();
-//         main();
-//     }
-//     else {
-//         process.exit();
-//     }
-// }
 
 const main = (choose) => {
     gamerator(choose);
+    console.clear();
     task();
- //   fillMap();
+    
+    //   fillMap();
     let i = 0;
     inter = setInterval(() => {
         i++;
