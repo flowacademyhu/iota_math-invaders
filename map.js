@@ -1,4 +1,5 @@
 const { table, getBorderCharacters } = require('table');
+var term = require( 'terminal-kit' ).terminal ;
 
 const generateMap = (height, width) => {
   const arr = new Array(height);
@@ -7,8 +8,7 @@ const generateMap = (height, width) => {
   };
   return arr;
 };
-
-const map = generateMap(30, 15);
+const map = generateMap(20, 15);
 const bullets = []; // x, y
 const numbers = []; // x, y, num
 const player = { name: '', x: map.length - 1, y: Math.floor(map[0].length / 2), score: 0, life: 3 };
@@ -29,6 +29,20 @@ let exercises =
     'Shoot all the prime numbers'];
 let rand;
 
+const isPrime = (num) => {
+  if (num === 0 || num === 1) {
+    return false;
+  } else {
+    for (let i = 2; i <= Math.sqrt(num); i++) {
+      if (isPrime(i)) {
+        if (num % i === 0) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+};
 
 const isPrime = (num) => {
   if (num === 0 || num === 1) {
@@ -48,6 +62,10 @@ const isPrime = (num) => {
 const isGood = (n) => {
   const helpArray = [];
   switch (rand) {
+    case 0:
+      if (isPrime(n)) {
+        return true;
+      } else return false;
     case 1:
       if (n % 2 !== 0) {
         return true;
@@ -107,8 +125,6 @@ const isFinish = () => {
   }
   return false;
 }
-
-
 const fillMap = () => {
   for (let i = 0; i < map.length; i++) {
     for (let j = 0; j < map[i].length; j++) {
@@ -130,30 +146,55 @@ const fillMap = () => {
   }
 };
 
-
 const printMap = () => {
-  const config = { singleLine: true };
+  const mymap = generateMap(20, 15);
+  for (let i = 0; i < map.length; i++){
+    for (let j = 0; j < map[i].length; j++){
+      if (map[i][j] === 'P'){
+        mymap[i][j] = '🐱';
+      }
+      else if (map[i][j] === 'B'){
+        mymap[i][j] = '🧶';
+      }          
+      else mymap[i][j] = map[i][j];
+    }
+  }
+  
   console.clear();
+  let config, output;
+  config = {
+    border: {
+      topBody: `─`,
+      topJoin: `─`,
+      topLeft: `┌`,
+      topRight: `┐`,
+
+      bottomBody: `─`,
+      bottomJoin: `─`,
+      bottomLeft: `└`,
+      bottomRight: `┘`,
+
+      bodyLeft: `│`,
+      bodyRight: `│`,
+      bodyJoin: ` `,
+
+      joinBody: ` `,
+      joinLeft: `│`,
+      joinRight: `│`,
+      joinJoin: ` `
+    },
+    columnDefault: {
+      width: 4
+    }
+  };
+
+  output = table(mymap, config);
+  console.log(output);
+
   console.log(actualExercise);
   console.log(player);
-  const text = table(map, config);
-  console.log(text);
 };
 
-// const printMap = () => {
-//   console.clear();
-//   console.log(actualExercise);
-//   console.log(rand);
-//   console.log(player); 
-//   console.log(task());
-//   console.log(isFinish());
-//   for (let i = 0; i < map.length; i++) {
-//     for (let j = 0; j < map[i].length; j++) {
-//       process.stdout.write(map[i][j] + ' ');
-//     }
-//     console.log();
-//   }
-// };
 
 
 const playerMove = (isRight) => {
@@ -221,7 +262,6 @@ const gamerator = (choose) => {
     numbers.push(object);
   }
 };
-
 const numbersMove = () => {
   for (let i = 0; i < numbers.length; i++) {
     if (numbers[i].x < map.length - 2) {
@@ -231,7 +271,6 @@ const numbersMove = () => {
     }
   }
 };
-
 const bulletsMove = () => {
   for (let i = 0; i < bullets.length; i++) {
     if (bullets[i].x === 0) {
@@ -242,7 +281,6 @@ const bulletsMove = () => {
     bullets[i].x--;
   };
 };
-
 const shoot = () => {
   bullets.push({ x: player.x - 1, y: player.y });
 };

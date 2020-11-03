@@ -1,3 +1,4 @@
+
 const readline = require('readline-sync');
 let terminalKit = require('terminal-kit').terminal;
 const { player, exercises } = require('./map');
