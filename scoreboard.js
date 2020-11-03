@@ -1,6 +1,7 @@
 const readline = require('readline-sync');
 let terminalKit = require('terminal-kit').terminal;
-const { player } = require('./map');
+const { player, exercises } = require('./map');
+
 
 let playersDatabase = [
     { name: 'Darth Vader', score: 12 },
@@ -12,11 +13,12 @@ let playersDatabase = [
 const getName = () => {
     player.name = readline.question('\x1b[93m\x1b[1mÜdv a játékban! Kérjük add meg a neved: \x1b[92m\x1b[1m ');
     playersDatabase.push(player);
+    console.log('');
 };
 
 const printScoreboard = () => {
     let scoreboard = [['#', 'Játékos neve', 'Játékos pontszáma']];
-    
+
     playersDatabase.sort((a, b) => {
         return b.score - a.score;
     });
@@ -30,17 +32,22 @@ const printScoreboard = () => {
         contentHasMarkup: true,
         borderChars: 'heavy',
         borderAttr: { color: 'white' },
-        textAttr: { bgColor: 'default' },
-        firstCellTextAttr: { bgColor: 'blue' },
-        firstRowTextAttr: { bgColor: 'red' },
-        firstColumnTextAttr: { bgColor: 'red' },
-        secondColumnTextAttr: { bgColor: 'red' },
+        textAttr: { bgColor: 'default', bold: true },
+        firstCellTextAttr: { bgColor: 'blue', bold: true },
+        firstRowTextAttr: { bgColor: 'red', bold: true },
+        firstColumnTextAttr: { bgColor: 'red', bold: true },
+        secondColumnTextAttr: { bgColor: 'red', bold: true },
         width: 50,
         lineWrap: false,
         fit: true
     }
     );
 };
+
+// terminalKit.gridMenu(exercises, (error, response) => {
+//     response.selectedIndex;
+//     process.exit();
+// });
 
 module.exports = {
     getName,
