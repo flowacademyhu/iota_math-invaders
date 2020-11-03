@@ -1,4 +1,5 @@
 const { table, getBorderCharacters } = require('table');
+var term = require( 'terminal-kit' ).terminal ;
 
 const generateMap = (height, width) => {
   const arr = new Array(height);
@@ -12,6 +13,7 @@ const bullets = []; // x, y
 const numbers = []; // x, y, num
 const player = { name: '', x: map.length - 1, y: Math.floor(map[0].length / 2), score: 0, life: 3 };
 let actualExercise = '';
+
 let exercises =
   ['Lődd ki a prímszámokat!',
     'Lődd ki a páratlan számokat!',
@@ -86,6 +88,7 @@ const isGood = (n) => {
       } else return false;
   }
 };
+
 const task = () => {
   actualExercise = exercises[rand];
   let counter = 0;
@@ -94,6 +97,7 @@ const task = () => {
   }
   return counter;
 };
+
 const isFinish = () => {
   let c = task();
   if (c === 0 || player.life === 0) {
@@ -131,10 +135,11 @@ const printMap = () => {
       }
       else if (map[i][j] === 'B'){
         mymap[i][j] = '🧶';
-      }
+      }          
       else mymap[i][j] = map[i][j];
     }
   }
+  
   console.clear();
   let config, output, options;
   config = {
