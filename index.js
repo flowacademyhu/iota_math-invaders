@@ -1,4 +1,4 @@
-const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, task, isGood, isFinish, player, reset, exercises, appearTask } = require('./map');
+const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, task, isGood, isFinish, player, reset, resetScoreWin, exercises, appearTask } = require('./map');
 const { getName, printScoreboard } = require('./scoreboard');
 const readline = require('readline-sync');
 //let term = require('terminal-kit').terminal;
@@ -64,6 +64,9 @@ const main = () => {
         bulletsMove();
         hit();
         if (isFinish()) {
+            if (player.life > 0) {
+                resetScoreWin();
+            }
             printSB();
         }
     }, 65);
@@ -103,12 +106,10 @@ const printSB = () => {
     console.clear();
     if (player.life > 0) {
         console.log('Gratulálok, nyertél!');
-        player.score = Math.ceil(player.score / 100) * 100;
-        printScoreboard();
     } else {
         console.log('Vesztettél!');
-        printScoreboard();
     }
+    printScoreboard();
     console.log('Press Enter to continue');
     const stdin = process.stdin;
     stdin.setRawMode(true); // Ne várjon enterre

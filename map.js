@@ -1,9 +1,8 @@
 const { table, getBorderCharacters } = require('table');
-var term = require('terminal-kit').terminal;
+const term = require('terminal-kit').terminal;
 const chalk = require("chalk");
 const figlet = require('figlet');
 const lolcatjs = require('lolcatjs');
-//const { mainModule } = require('process');
 
 const generateMap = (height, width) => {
   const arr = new Array(height);
@@ -16,6 +15,7 @@ const map = generateMap(20, 15);
 const bullets = []; // x, y
 const numbers = []; // x, y, num
 const player = { name: '', x: map.length - 1, y: Math.floor(map[0].length / 2), score: 0, life: 3 };
+let previousScore = 0;
 let actualExercise = '';
 const exercises =
   [ 'Shoot all the odd numbers (30 scores)',
@@ -326,6 +326,17 @@ const reset = () => {
   player.life = 3;
 };
 
+const resetScoreWin = () => {
+  if (rand === 0 || rand === 1 || rand === 4) {
+    player.score = previousScore + 30;
+  } else if (rand >= 9 && rand <= 11) {
+    player.score = previousScore + 100;
+  } else {
+    player.score = previousScore + 60;
+  }
+  previousScore = player.score;
+}
+
 
 module.exports = {
   player,
@@ -344,5 +355,6 @@ module.exports = {
   isGood,
   isFinish,
   reset,
+  resetScoreWin,
   printExercise
 };
