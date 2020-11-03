@@ -11,29 +11,13 @@ const generateMap = (height, width) => {
   }
   return arr;
 };
-const map = generateMap(20, 15);
+const map = generateMap(15, 15);
 const bullets = []; // x, y
 const numbers = []; // x, y, num
 const player = { name: '', x: map.length - 1, y: Math.floor(map[0].length / 2), score: 0, life: 3 };
 let previousScore = 0;
 let actualExercise = '';
 
-// const exercises =
-//   [['Shoot all the odd numbers',
-//     'Shoot all the even numbers',
-//     'Shoot all numbers divisible by 3',
-//     'Shoot all numbers divisible by 4',
-//     'Shoot all numbers divisible by 5',
-//     'Shoot all numbers divisible by 6',
-//     'Shoot all numbers divisible by 7',
-//     'Shoot all numbers divisible by 8',
-//     'Shoot all numbers divisible by 9',
-//     'Shoot all numbers in ascending order',
-//     'Shoot all numbers in descending order',
-//     'Shoot all the prime numbers',
-//     'Random exercise'],
-//     [' (30 scores)', ' (30 scores)', ' (60 scores)', ' (60 scores)', ' (30 scores)', ' (60 scores)',
-//   ' (60 scores)', ' (60 scores)', ' (60 scores)', ' (100 scores)', ' (100 scores)', ' (100 scores)', '']];
 
 const exercises =
   [ ['Shoot all the odd numbers', '(30 scores)'],
@@ -162,7 +146,7 @@ const appearTask = () => {
 
 
 const printMap = () => {
-  const mymap = generateMap(20, 15);
+  const mymap = generateMap(15, 15);
   for (let i = 0; i < map.length; i++) {
     for (let j = 0; j < map[i].length; j++) {
       if (map[i][j] === 'P') {
@@ -195,6 +179,7 @@ const printMap = () => {
   console.log();
   process.stdout.write(chalk.bold.greenBright('  name: ' + player.name + '                                  ' + '🐟: ' + player.score + '                                   ' + 'Life: ' + cat));
   console.log();
+  
 
 
   let config, output;
@@ -257,23 +242,31 @@ const hit = () => {
 
 const gamerator = (choose) => {
   if (choose === 12) {
-    rand = Math.floor(Math.random() * (exercises[0].length - 1) + 1);
+    rand = Math.floor(Math.random() * (exercises.length - 1));
   } else {
     rand = choose;
   }
-  let arr = [];
+  const arr = [];
   if (rand >= 2 && rand <= 8) {
     const mult = [2, 5, 8, 3, 7];
     for (let i = 0; i < 5; i++) {
       const randIndex = Math.floor(Math.random() * 15);
-      arr[randIndex] = mult[i] * (rand + 1);
+      if (arr[randIndex] === undefined) {
+        arr[randIndex] = mult[i] * (rand + 1);
+      } else {
+        i--;
+      }
     }
   }
   if (rand === 11) {
     const primes = [2, 5, 13, 29, 43];
     for (let i = 0; i < 5; i++) {
       const randIndex = Math.floor(Math.random() * 15);
-      arr[randIndex] = primes[i];
+      if (arr[randIndex] === undefined) {
+        arr[randIndex] = primes[i];
+      } else {
+        i--;
+      }
     }
   }
 

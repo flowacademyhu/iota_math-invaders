@@ -39,8 +39,6 @@ const menu = () => {
         stdin.on('data', (key) => { // Callback függvény
             main();
         });
-
-        //  main(index);
     };
 }
 
