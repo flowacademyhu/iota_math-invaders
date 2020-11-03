@@ -132,7 +132,8 @@ const fillMap = () => {
 };
 
 const appearTask = () => {
-  lolcatjs.fromString(figlet.textSync('Shoot all numbers in descending order!', {
+  console.clear();
+  lolcatjs.fromString(figlet.textSync(actualExercise, {
     font: 'ANSI Shadow',
     horizontalLayout: 'full',
     verticalLayout: 'full',

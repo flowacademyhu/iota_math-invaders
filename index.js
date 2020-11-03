@@ -18,17 +18,54 @@ const menu = () => {
     if (index === -1) {
         process.exit();
     } else {
+        gamerator(index);
+        task();
+    
+        process.stdin.removeAllListeners('data');
+    process.stdin.removeAllListeners('keypress');
+    process.stdin.setRawMode(false);
+    process.stdin.resume();
+    process.stdin.end();
+    clearInterval(inter);
+    
+    appearTask();
+    console.log('Press any key to continue')
 
-            main(index);
+    const stdin = process.stdin;
+stdin.setRawMode(true); // Ne várjon enterre
+stdin.resume(); // Csak process.exit-el lehet kilépni
+stdin.setEncoding('utf8'); // Karaktereket kapjunk vissza
+stdin.on('data', (key) => { // Callback függvény
+  main();
+});
+
+     //  main(index);
         };
     }
 
 
-const main = (choose) => {
-    gamerator(choose);
-    console.clear();
-    task();
-    
+const main = () => {
+//     gamerator(choose);
+//     console.clear();
+//     task();
+
+    process.stdin.removeAllListeners('data');
+process.stdin.removeAllListeners('keypress');
+process.stdin.setRawMode(false);
+process.stdin.resume();
+process.stdin.end();
+clearInterval(inter);
+
+// appearTask();
+
+// const stdin = process.stdin;
+// stdin.setRawMode(true); // Ne várjon enterre
+// stdin.resume(); // Csak process.exit-el lehet kilépni
+// stdin.setEncoding('utf8'); // Karaktereket kapjunk vissza
+// stdin.on('data', (key) => { // Callback függvény
+//   printMap();
+// });
+
     //   fillMap();
     let i = 0;
     inter = setInterval(() => {
