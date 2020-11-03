@@ -1,5 +1,9 @@
 const { table, getBorderCharacters } = require('table');
 var term = require('terminal-kit').terminal;
+const chalk = require("chalk");
+const figlet = require('figlet');
+const lolcatjs = require('lolcatjs');
+//const { mainModule } = require('process');
 
 const generateMap = (height, width) => {
   const arr = new Array(height);
@@ -132,6 +136,18 @@ const fillMap = () => {
   }
 };
 
+const appearTask = () => {
+  console.clear();
+  lolcatjs.fromString(figlet.textSync(actualExercise, {
+    font: 'ANSI Shadow',
+    horizontalLayout: 'full',
+    verticalLayout: 'full',
+    width: 200,
+    whitespaceBreak: true
+}));
+}
+
+
 const printMap = () => {
   const mymap = generateMap(20, 15);
   for (let i = 0; i < map.length; i++) {
@@ -147,6 +163,27 @@ const printMap = () => {
   }
 
   console.clear();
+
+  let cat;
+
+  if (player.life === 3) {
+    cat = '😻 😻 😻';
+  } else if (player.life === 2) {
+    cat = '😸 😸';
+  } else if (player.life === 1) {
+    cat = '🙀';
+  }
+
+
+
+  console.clear();
+
+  console.log(chalk.bold.greenBright(actualExercise));
+  console.log();
+  process.stdout.write(chalk.bold.greenBright('  name: ' + player.name + '                                  ' + '🐟: ' + player.score + '                                   ' + 'Life: ' + cat));
+  console.log();
+
+
   let config, output;
   config = {
     border: {
@@ -175,7 +212,8 @@ const printMap = () => {
   };
 
   output = table(mymap, config);
-  console.log(output);
+  console.log(chalk.bold.greenBright(output));
+
 
   console.log(actualExercise);
   console.log(player);
@@ -295,6 +333,7 @@ module.exports = {
   generateMap,
   fillMap,
   printMap,
+  appearTask,
   playerMove,
   hit,
   gamerator,
