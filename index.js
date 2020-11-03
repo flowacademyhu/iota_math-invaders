@@ -15,7 +15,8 @@ const menu = () => {
     if (player.name === '') {
         getName();
     }
-    index = readline.keyInSelect(exercises, 'Choose an exercise');
+    const excercisesInput = exercises.map(input => input.join(' '));
+    index = readline.keyInSelect(excercisesInput, 'Choose an exercise');
     if (index === -1) {
         process.exit();
     } else {

@@ -8,7 +8,7 @@ const generateMap = (height, width) => {
   const arr = new Array(height);
   for (let i = 0; i < height; i++) {
     arr[i] = new Array(width);
-  };
+  }
   return arr;
 };
 const map = generateMap(20, 15);
@@ -17,20 +17,38 @@ const numbers = []; // x, y, num
 const player = { name: '', x: map.length - 1, y: Math.floor(map[0].length / 2), score: 0, life: 3 };
 let previousScore = 0;
 let actualExercise = '';
+
+// const exercises =
+//   [['Shoot all the odd numbers',
+//     'Shoot all the even numbers',
+//     'Shoot all numbers divisible by 3',
+//     'Shoot all numbers divisible by 4',
+//     'Shoot all numbers divisible by 5',
+//     'Shoot all numbers divisible by 6',
+//     'Shoot all numbers divisible by 7',
+//     'Shoot all numbers divisible by 8',
+//     'Shoot all numbers divisible by 9',
+//     'Shoot all numbers in ascending order',
+//     'Shoot all numbers in descending order',
+//     'Shoot all the prime numbers',
+//     'Random exercise'],
+//     [' (30 scores)', ' (30 scores)', ' (60 scores)', ' (60 scores)', ' (30 scores)', ' (60 scores)',
+//   ' (60 scores)', ' (60 scores)', ' (60 scores)', ' (100 scores)', ' (100 scores)', ' (100 scores)', '']];
+
 const exercises =
-  [ 'Shoot all the odd numbers (30 scores)',
-    'Shoot all the even numbers (30 scores)',
-    'Shoot all numbers divisible by 3 (60 scores)',
-    'Shoot all numbers divisible by 4 (60 scores)',
-    'Shoot all numbers divisible by 5 (30 scores)',
-    'Shoot all numbers divisible by 6 (60 scores)',
-    'Shoot all numbers divisible by 7 (60 scores)',
-    'Shoot all numbers divisible by 8 (60 scores)',
-    'Shoot all numbers divisible by 9 (60 scores)',
-    'Shoot all numbers in ascending order (100 scores)',
-    'Shoot all numbers in descending order (100 scores)',
-    'Shoot all the prime numbers (100 scores)',
-    'Random exercise'];
+  [ ['Shoot all the odd numbers', '(30 scores)'],
+    ['Shoot all the even numbers', ' (30 scores)'],
+    ['Shoot all numbers divisible by 3', '(60 scores)'],
+    ['Shoot all numbers divisible by 4', '(60 scores)'],
+    ['Shoot all numbers divisible by 5', '(30 scores)'],
+    ['Shoot all numbers divisible by 6', '(60 scores)'],
+    ['Shoot all numbers divisible by 7', '(60 scores)'],
+    ['Shoot all numbers divisible by 8', '(60 scores)'],
+    ['Shoot all numbers divisible by 9', '(60 scores)'],
+    ['Shoot all numbers in ascending order', '(100 scores)'],
+    ['Shoot all numbers in descending order', '(100 scores)'],
+    ['Shoot all the prime numbers', '(100 scores)'],
+    ['Random exercise', '']];
 let rand;
 
 const isPrime = (num) => {
@@ -94,7 +112,7 @@ const isGood = (n) => {
 };
 
 const task = () => {
-  actualExercise = exercises[rand];
+  actualExercise = exercises[rand][0];
   let counter = 0;
   for (let i = 0; i < numbers.length; i++) {
     if (isGood(numbers[i].num)) counter++;
@@ -102,11 +120,6 @@ const task = () => {
   return counter;
 };
 
-const printExercise = () => {
-  console.clear();
-  console.log(actualExercise);
-  console.log('Press any key to continue');
-}
 
 const isFinish = () => {
   let c = task();
@@ -142,7 +155,7 @@ const appearTask = () => {
     font: 'ANSI Shadow',
     horizontalLayout: 'full',
     verticalLayout: 'full',
-    width: 200,
+    width: 100,
     whitespaceBreak: true
 }));
 }
@@ -213,11 +226,6 @@ const printMap = () => {
 
   output = table(mymap, config);
   console.log(chalk.bold.greenBright(output));
-
-
-  console.log(actualExercise);
-  console.log(player);
-  console.log(rand);
 };
 
 
@@ -249,7 +257,7 @@ const hit = () => {
 
 const gamerator = (choose) => {
   if (choose === 12) {
-    rand = Math.floor(Math.random() * (exercises.length - 1) + 1);
+    rand = Math.floor(Math.random() * (exercises[0].length - 1) + 1);
   } else {
     rand = choose;
   }
@@ -355,6 +363,5 @@ module.exports = {
   isGood,
   isFinish,
   reset,
-  resetScoreWin,
-  printExercise
+  resetScoreWin
 };
