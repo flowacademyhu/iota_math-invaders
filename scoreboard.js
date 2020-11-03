@@ -25,13 +25,7 @@ const printScoreboard = () => {
     };
 
     for (let i = 0; i < rankJson.length; i++) {
-        if (rankJson[i].name === player.name) {
-            //     rankJson.splice(i, 1);                 
-            //     rankJson.push(player);                  
-            //     fs.writeFileSync('./ranking.json', JSON.stringify(rankJson, null, 2), (err) => {
-            //     });
-            //     break;
-            // } else {                                    
+        if (rankJson[i].name === player.name) {                               
             rankJson.splice(i, 1);
             rankJson.push(player);
             fs.writeFileSync('./ranking.json', JSON.stringify(rankJson, null, 2), (err) => {
