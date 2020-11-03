@@ -1,9 +1,16 @@
-const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, isHit, task, isGood, isFinish, player, reset, exercises } = require('./map');
+const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, task, isGood, isFinish, player, reset, exercises } = require('./map');
 const { getName, printScoreboard } = require('./scoreboard');
 const readline = require('readline-sync');
 //let term = require('terminal-kit').terminal;
+let inter;
 
 const menu = () => {
+    process.stdin.removeAllListeners('data');
+    process.stdin.removeAllListeners('keypress');
+    process.stdin.setRawMode(false);
+    process.stdin.resume();
+    process.stdin.end();
+    clearInterval(inter);
     if (player.name === '') {
         getName();
     }
@@ -39,26 +46,23 @@ const menu = () => {
 const main = (choose) => {
     gamerator(choose);
     task();
-    fillMap();
+ //   fillMap();
     let i = 0;
-    const inter = setInterval(() => {
+    inter = setInterval(() => {
         i++;
-        if (i % 44 === 0) {
+        if (i % 46 === 0) {
             numbersMove();
         }
         bulletsMove();
-        isHit();
+        hit();
         if (isFinish()) {
-            process.stdin.removeAllListeners('data');
-            process.stdin.removeAllListeners('keypress');
-            process.stdin.setRawMode(false);
-            process.stdin.resume();
-            process.stdin.end();
-            clearInterval(inter);
-            console.clear();
+            // process.stdin.removeAllListeners('data');
+            // process.stdin.removeAllListeners('keypress');
+            // process.stdin.setRawMode(false);
+            // process.stdin.resume();
+            // process.stdin.end();
             fillMap();
             printMap();
-            console.clear();
             if (player.life > 0) {
                 console.clear();
                 console.log('Gratulálok, nyertél!');
@@ -75,7 +79,7 @@ const main = (choose) => {
         }
         fillMap();
         printMap();
-    }, 66);
+    }, 65);
 
 
     const stdin = process.stdin;
@@ -84,6 +88,10 @@ const main = (choose) => {
     stdin.setEncoding('utf8'); // Karaktereket kapjunk vissza
     stdin.on('data', (key) => { // Callback függvény
         if (key === 'q') {
+            console.clear();
+            printScoreboard();
+            player.score = 0;
+            reset();
             menu();
         }
         if (key === "\033[C") {
