@@ -1,6 +1,7 @@
 const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, task, isGood, isFinish, player, reset, exercises, appearTask } = require('./map');
 const { getName, printScoreboard } = require('./scoreboard');
 const readline = require('readline-sync');
+const chalk = require("chalk");
 //let term = require('terminal-kit').terminal;
 let inter;
 
@@ -15,7 +16,7 @@ const menu = () => {
     if (player.name === '') {
         getName();
     }
-    index = readline.keyInSelect(exercises, 'Choose an exercise');
+    index = readline.keyInSelect(exercises, chalk.bold.greenBright('Choose an exercise'));
     if (index === -1) {
         process.exit();
     } else {
@@ -30,7 +31,7 @@ const menu = () => {
         clearInterval(inter);
 
         appearTask();
-        console.log('Press any key to continue')
+        console.log(chalk.bold.greenBright('Press any key to continue'))
 
         const stdin = process.stdin;
         stdin.setRawMode(true); // Ne várjon enterre
@@ -104,14 +105,21 @@ const printSB = () => {
     clearInterval(inter);
     console.clear();
     if (player.life > 0) {
-        console.log('Gratulálok, nyertél!');
+        console.log('\n\n\n\n');
+        console.log(chalk.bold.greenBright('                Y O U    W I N !'));
+        console.log('\n\n');
         player.score = Math.ceil(player.score / 100) * 100;
         printScoreboard();
+        console.log('\n\n\n\n');
+       
     } else {
-        console.log('Vesztettél!');
+        console.log('\n\n\n\n');
+        console.log(chalk.bold.redBright('              G A M E   O V E R'));
+        console.log('\n\n');
         printScoreboard();
+        console.log('\n\n\n\n');
     }
-    console.log('Press Enter to continue');
+    console.log(chalk.bold.greenBright('Press Enter to continue'));
     const stdin = process.stdin;
     stdin.setRawMode(true); // Ne várjon enterre
     stdin.resume(); // Csak process.exit-el lehet kilépni

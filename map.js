@@ -18,7 +18,7 @@ const numbers = []; // x, y, num
 const player = { name: '', x: map.length - 1, y: Math.floor(map[0].length / 2), score: 0, life: 3 };
 let actualExercise = '';
 const exercises =
-  [ 'Shoot all the odd numbers',
+  ['Shoot all the odd numbers',
     'Shoot all the even numbers',
     'Shoot all numbers divisible by 3',
     'Shoot all numbers divisible by 4',
@@ -132,13 +132,20 @@ const fillMap = () => {
 
 const appearTask = () => {
   console.clear();
-  lolcatjs.fromString(figlet.textSync(actualExercise, {
+  console.log();
+  console.log();
+  console.log();
+  console.log();
+  console.log();
+  lolcatjs.fromString(figlet.textSync(, {
     font: 'ANSI Shadow',
     horizontalLayout: 'full',
     verticalLayout: 'full',
     width: 200,
     whitespaceBreak: true
-}));
+  }));
+  console.log();
+  console.log();
 }
 
 
@@ -171,7 +178,7 @@ const printMap = () => {
 
 
   console.clear();
-
+  console.log();
   console.log(chalk.bold.greenBright(actualExercise));
   console.log();
   process.stdout.write(chalk.bold.greenBright('  name: ' + player.name + '                                  ' + '🐟: ' + player.score + '                                   ' + 'Life: ' + cat));
@@ -207,11 +214,6 @@ const printMap = () => {
 
   output = table(mymap, config);
   console.log(chalk.bold.greenBright(output));
-
-
-  console.log(actualExercise);
-  console.log(player);
-  console.log(rand);
 };
 
 
