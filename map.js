@@ -1,5 +1,5 @@
 const { table, getBorderCharacters } = require('table');
-const term = require( 'terminal-kit' ).terminal;
+const term = require('terminal-kit').terminal;
 const generateMap = (height, width) => {
   const arr = new Array(height);
   for (let i = 0; i < height; i++) {
@@ -26,6 +26,7 @@ let exercises =
     'Lődd ki a számokat növekvő sorrendben!',
     'Lődd ki a számokat csökkenő sorrendben!'];
 let rand = Math.floor(Math.random() * exercises.length);
+
 const isPrime = (num) => {
   if (num === 0 || num === 1) {
     return false;
@@ -40,6 +41,7 @@ const isPrime = (num) => {
     return true;
   }
 };
+
 const isGood = (n) => {
   const helpArray = [];
   switch (rand) {
@@ -104,11 +106,11 @@ const fillMap = () => {
     for (let j = 0; j < map[i].length; j++) {
       map[i][j] = ' ';
       if (player.x === i && player.y === j) {
-        map[i][j] = '🐈';
+        map[i][j] = 'P';
       }
       for (let k = 0; k < bullets.length; k++) {
         if (i === bullets[k].x && j === bullets[k].y) {
-          map[i][j] = '🧶';
+          map[i][j] = 'B';
         }
       }
       for (let k = 0; k < numbers.length; k++) {
@@ -120,7 +122,25 @@ const fillMap = () => {
   }
 };
 const printMap = () => {
+  const mymap = generateMap(20, 15);
+  for (let i = 0; i < map.length; i++) {
+    for (let j = 0; j < map[i].length; j++) {
+      if (map[i][j] === 'P') {
+        mymap[i][j] = '🐱';
+      }
+      else if (map[i][j] === 'B') {
+        mymap[i][j] = '🧶';
+      }
+      else mymap[i][j] = map[i][j];
+      
+    }
+    
+  }
   console.clear();
+  // term.table(map, {
+  //   checkerEvenCellTextAttr: { bgColor: 'gray' },
+  //   fit: true
+  // });
   let config, output, options;
   config = {
     border: {
@@ -141,14 +161,16 @@ const printMap = () => {
       joinJoin: ` `
     },
     columnDefault: {
-    width: 4
-  }
+      width: 4
+    }
+  };
+  
+  output = table(mymap, config, options);
+  console.log(output);
+  console.log(actualExercise);
+  console.log(player);
 };
-output = table(map, config);
-console.log(output);
-console.log(actualExercise);
-console.log(player);
-};
+
 const playerMove = (isRight) => {
   if (isRight && player.y < map[0].length - 1) {
     player.y++;
