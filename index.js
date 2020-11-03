@@ -1,4 +1,4 @@
-const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, task, isGood, isFinish, player, reset, exercises } = require('./map');
+const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, task, isGood, isFinish, player, reset, exercises, printExercise } = require('./map');
 const { getName, printScoreboard } = require('./scoreboard');
 const readline = require('readline-sync');
 //let term = require('terminal-kit').terminal;
@@ -19,9 +19,26 @@ const menu = () => {
     if (index === -1) {
         process.exit();
     } else {
-        main(index);
+        gamerator(index);
+        task();
+        process.stdin.removeAllListeners('data');
+        process.stdin.removeAllListeners('keypress');
+        process.stdin.setRawMode(false);
+        process.stdin.resume();
+        process.stdin.end();
+        clearInterval(inter);
+        printExercise();
+        const stdin = process.stdin;
+        stdin.setRawMode(true); // Ne várjon enterre
+        stdin.resume(); // Csak process.exit-el lehet kilépni
+        stdin.setEncoding('utf8'); // Karaktereket kapjunk vissza
+        stdin.on('data', (key) => { // Callback függvény
+            main();
+        });
     }
 }
+
+
 
 // const scanEnter = () => {
 //     process.stdin.removeAllListeners('data');
@@ -76,10 +93,8 @@ const printSB = () => {
 }
 
 
-const main = (choose) => {
+const main = () => {
     console.clear();
-    gamerator(choose);
-    task();
     let i = 0;
     inter = setInterval(() => {
         i++;

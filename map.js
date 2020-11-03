@@ -14,18 +14,18 @@ const numbers = []; // x, y, num
 const player = { name: '', x: map.length - 1, y: Math.floor(map[0].length / 2), score: 0, life: 3 };
 let actualExercise = '';
 const exercises =
-  [ 'Shoot all the odd numbers',
-    'Shoot all the even numbers',
-    'Shoot all numbers divisible by 3',
-    'Shoot all numbers divisible by 4',
-    'Shoot all numbers divisible by 5',
-    'Shoot all numbers divisible by 6',
-    'Shoot all numbers divisible by 7',
-    'Shoot all numbers divisible by 8',
-    'Shoot all numbers divisible by 9',
-    'Shoot all numbers in ascending order',
-    'Shoot all numbers in descending order',
-    'Shoot all the prime numbers',
+  [ 'Shoot all the odd numbers (30 scores)',
+    'Shoot all the even numbers (30 scores)',
+    'Shoot all numbers divisible by 3 (60 scores)',
+    'Shoot all numbers divisible by 4 (60 scores)',
+    'Shoot all numbers divisible by 5 (30 scores)',
+    'Shoot all numbers divisible by 6 (60 scores)',
+    'Shoot all numbers divisible by 7 (60 scores)',
+    'Shoot all numbers divisible by 8 (60 scores)',
+    'Shoot all numbers divisible by 9 (60 scores)',
+    'Shoot all numbers in ascending order (100 scores)',
+    'Shoot all numbers in descending order (100 scores)',
+    'Shoot all the prime numbers (100 scores)',
     'Random exercise'];
 let rand;
 
@@ -97,6 +97,12 @@ const task = () => {
   }
   return counter;
 };
+
+const printExercise = () => {
+  console.clear();
+  console.log(actualExercise);
+  console.log('Press any key to continue');
+}
 
 const isFinish = () => {
   let c = task();
@@ -298,5 +304,6 @@ module.exports = {
   task,
   isGood,
   isFinish,
-  reset
+  reset,
+  printExercise
 };
