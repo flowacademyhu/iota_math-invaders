@@ -141,7 +141,7 @@ const printMap = () => {
   }
   
   console.clear();
-  let config, output, options;
+  let config, output;
   config = {
     border: {
       topBody: `─`,
@@ -168,7 +168,7 @@ const printMap = () => {
     }
   };
 
-  output = table(mymap, config, options);
+  output = table(mymap, config);
   console.log(output);
 
   console.log(actualExercise);
