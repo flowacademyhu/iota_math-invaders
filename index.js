@@ -2,6 +2,7 @@ const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove,
 const { getName, printScoreboard } = require('./scoreboard');
 const readline = require('readline-sync');
 const chalk = require("chalk");
+const figlet = require('figlet');
 //let term = require('terminal-kit').terminal;
 let inter;
 
@@ -106,7 +107,13 @@ const printSB = () => {
     console.clear();
     if (player.life > 0) {
         console.log('\n\n\n\n');
-        console.log(chalk.bold.greenBright('                Y O U    W I N !'));
+        console.log(chalk.bold.greenBright(figlet.textSync('You win!', {
+            font: 'ANSI Shadow',
+            horizontalLayout: 'full',
+            verticalLayout: 'full',
+            width: 200,
+            whitespaceBreak: true
+        })));
         console.log('\n\n');
         player.score = Math.ceil(player.score / 100) * 100;
         printScoreboard();
@@ -114,7 +121,13 @@ const printSB = () => {
        
     } else {
         console.log('\n\n\n\n');
-        console.log(chalk.bold.redBright('              G A M E   O V E R'));
+        console.log(chalk.bold.red(figlet.textSync('game over', {
+            font: 'ANSI Shadow',
+            horizontalLayout: 'full',
+            verticalLayout: 'full',
+            width: 200,
+            whitespaceBreak: true
+        })));
         console.log('\n\n');
         printScoreboard();
         console.log('\n\n\n\n');

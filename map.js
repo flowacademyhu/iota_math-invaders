@@ -137,7 +137,7 @@ const appearTask = () => {
   console.log();
   console.log();
   console.log();
-  lolcatjs.fromString(figlet.textSync(, {
+  lolcatjs.fromString(figlet.textSync(actualExercise, {
     font: 'ANSI Shadow',
     horizontalLayout: 'full',
     verticalLayout: 'full',
