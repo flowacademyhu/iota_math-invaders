@@ -258,7 +258,7 @@ const gamerator = (choose) => {
     const mult = [2, 5, 8, 3, 7];
     for (let i = 0; i < 5; i++) {
       const randIndex = Math.floor(Math.random() * 15);
-      arr[randIndex] = mult[i] * rand;
+      arr[randIndex] = mult[i] * (rand + 1);
     }
   }
   if (rand === 11) {
