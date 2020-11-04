@@ -1,4 +1,4 @@
-const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, task, isGood, isFinish, player, reset, resetScoreWin, exercises, appearTask } = require('./map');
+const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, task, isGood, isFinish, player, reset, resetScoreWin, exercises, appearTask, fillExtra, extraMove, collection } = require('./map');
 const { getName, printScoreboard } = require('./scoreboard');
 const readline = require('readline-sync');
 const chalk = require("chalk");
@@ -57,13 +57,20 @@ const main = () => {
     let i = 0;
     inter = setInterval(() => {
         i++;
-        if (i % 46 === 0) {
+        if (i % 55 === 0) {
             numbersMove();
+        }
+        if (i % 70 === 0) {
+            fillExtra();
+        }
+        if (i % 3 === 0) {
+            extraMove();
         }
         fillMap();
         printMap();
         bulletsMove();
         hit();
+        collection();
         if (isFinish()) {
             if (player.life > 0) {
                 resetScoreWin();
@@ -98,7 +105,6 @@ const main = () => {
         }
     });
 };
-
 
 menu();
 
