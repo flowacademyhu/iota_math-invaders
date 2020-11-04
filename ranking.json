@@ -47,18 +47,11 @@
     "life": 3
   },
   {
-    "name": "fsd",
+    "name": "Melani",
     "x": 14,
-    "y": 8,
-    "score": 1,
-    "life": 0
-  },
-  {
-    "name": "[Afds",
-    "x": 14,
-    "y": 8,
-    "score": 1,
-    "life": 0
+    "y": 7,
+    "score": 30,
+    "life": 3
   },
   {
     "name": "d",
@@ -89,21 +82,21 @@
     "life": 0
   },
   {
-    "name": "Ani",
+    "name": "[Afds",
     "x": 14,
-    "y": 7,
-    "score": 0,
+    "y": 8,
+    "score": 1,
+    "life": 0
+  },
+  {
+    "name": "fsd",
+    "x": 14,
+    "y": 8,
+    "score": 1,
     "life": 0
   },
   {
     "name": "ANIKÓ",
-    "x": 14,
-    "y": 7,
-    "score": 0,
-    "life": 0
-  },
-  {
-    "name": "f",
     "x": 14,
     "y": 7,
     "score": 0,
@@ -140,13 +133,6 @@
   {
     "name": "Stormtrooper",
     "score": 0
-  },
-  {
-    "name": "Meli",
-    "x": 14,
-    "y": 7,
-    "score": 0,
-    "life": 3
   },
   {
     "name": "123",
@@ -275,10 +261,24 @@
     "life": 3
   },
   {
-    "name": "Melani",
+    "name": "Ani",
     "x": 14,
     "y": 7,
-    "score": 30,
+    "score": 0,
+    "life": 0
+  },
+  {
+    "name": "Meli",
+    "x": 14,
+    "y": 7,
+    "score": 0,
     "life": 3
+  },
+  {
+    "name": "f",
+    "x": 14,
+    "y": 6,
+    "score": 0,
+    "life": 2
   }
 ]
