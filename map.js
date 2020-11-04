@@ -18,7 +18,6 @@ const numbers = []; // x, y, num
 const extra = [];
 const player = { name: '', x: map.length - 1, y: Math.floor(map[0].length / 2), score: 0, life: 3, symb: '' };
 let previousScore = 0;
-let actualExercise = '';
 
 
 const exercises =
@@ -97,17 +96,20 @@ const isGood = (n) => {
   }
 };
 
-const task = () => {
-  actualExercise = exercises[rand][0];
+const calculateCounter = () => {
   let counter = 0;
   for (let i = 0; i < numbers.length; i++) {
     if (isGood(numbers[i].num)) counter++;
   }
   return counter;
-};
+}
+
+const getActualExercise = () => {
+  return exercises[rand][0];
+}
 
 const isFinish = () => {
-  let c = task();
+  let c = calculateCounter();
   if (c === 0 || player.life === 0) {
     return true;
   }
@@ -143,26 +145,26 @@ const fillMap = () => {
   }
 };
 
-const appearTask = () => {
-  console.clear();
-  console.log();
-  console.log();
-  console.log();
-  console.log();
-  console.log();
-  lolcatjs.fromString(figlet.textSync(actualExercise, {
-    font: 'ANSI Shadow',
-    horizontalLayout: 'full',
-    verticalLayout: 'full',
-    width: 200,
-    whitespaceBreak: true
-  }));
-  console.log();
-  console.log();
+
+const countLife = (life) => {
+  let cat;
+
+  if (life === 5) {
+    cat = '😻 😻 😻 🎀 🎀';
+  } else if (life === 4) {
+    cat = '😻 😻 😻 🎀';
+  } else if (life === 3) {
+    cat = '😻 😻 😻';
+  } else if (life === 2) {
+    cat = '😸 😸';
+  } else if (life === 1) {
+    cat = '🙀';
+  }
+
+  return cat;
 }
 
-
-const printMap = () => {
+const printMap = (exercise) => {
   const mymap = generateMap(15, 15);
   for (let i = 0; i < map.length; i++) {
     for (let j = 0; j < map[i].length; j++) {
@@ -181,25 +183,12 @@ const printMap = () => {
 
   console.clear();
 
-  let cat;
-
-  if (player.life === 5) {
-    cat = '😻 😻 😻 🎀 🎀';
-  } else if (player.life === 4) {
-    cat = '😻 😻 😻 🎀';
-  } else if (player.life === 3) {
-    cat = '😻 😻 😻';
-  } else if (player.life === 2) {
-    cat = '😸 😸';
-  } else if (player.life === 1) {
-    cat = '🙀';
-  }
-
+let cat = countLife(player.life);
 
 
   console.clear();
   console.log();
-  console.log(chalk.bold.greenBright(actualExercise));
+  console.log(chalk.bold.greenBright(exercise));
   console.log();
   process.stdout.write(chalk.bold.greenBright('  name: ' + player.name + '                                  ' + '🐟: ' + player.score + '                                   ' + 'Life: ' + cat));
   console.log();
@@ -421,14 +410,13 @@ module.exports = {
   generateMap,
   fillMap,
   printMap,
-  appearTask,
   playerMove,
   hit,
   gamerator,
   numbersMove,
   bulletsMove,
   shoot,
-  task,
+  getActualExercise,
   isGood,
   isFinish,
   reset,

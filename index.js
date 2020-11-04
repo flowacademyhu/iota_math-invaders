@@ -1,9 +1,9 @@
-const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, task, isGood, isFinish, player, reset, resetScoreWin, exercises, appearTask, fillExtra, extraMove, collection, getPlayerSymb } = require('./map');
+const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, getActualExercise, isGood, isFinish, player, reset, resetScoreWin, exercises, fillExtra, extraMove, collection, getPlayerSymb } = require('./map');
 const { getName, printScoreboard } = require('./scoreboard');
 const readline = require('readline-sync');
 const chalk = require("chalk");
 const figlet = require('figlet');
-const {printSB, endOfGame} = require('./gui');
+const { appearTask, endOfGame } = require('./gui');
 //let term = require('terminal-kit').terminal;
 let inter;
 
@@ -26,7 +26,7 @@ const menu = () => {
         process.exit();
     } else {
         gamerator(index);
-        task();
+        
         process.stdin.removeAllListeners('data');
         process.stdin.removeAllListeners('keypress');
         process.stdin.setRawMode(false);
@@ -34,7 +34,8 @@ const menu = () => {
         process.stdin.end();
         clearInterval(inter);
 
-        appearTask();
+        const actualExercise = getActualExercise();
+        appearTask(actualExercise);
         console.log(chalk.bold.greenBright('Press any key to continue'))
 
         const stdin = process.stdin;
@@ -68,15 +69,18 @@ const main = () => {
             extraMove();
         }
         fillMap();
-        printMap();
+        const actualExercise = getActualExercise();
+        printMap(actualExercise);
         bulletsMove();
         hit();
         collection();
         if (isFinish()) {
-            if (player.life > 0) {
+            const isWin = player.life > 0
+            if (isWin) {
                 resetScoreWin();
             }
-            endOfGame(inter);
+            
+            endOfGame(inter, isWin);
             reset();
             menu();
         }
