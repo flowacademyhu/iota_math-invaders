@@ -1,48 +1,39 @@
 const { table, getBorderCharacters } = require('table');
-var term = require( 'terminal-kit' ).terminal ;
+const term = require('terminal-kit').terminal;
+const chalk = require("chalk");
+const figlet = require('figlet');
+const lolcatjs = require('lolcatjs');
 
 const generateMap = (height, width) => {
   const arr = new Array(height);
   for (let i = 0; i < height; i++) {
     arr[i] = new Array(width);
-  };
+  }
   return arr;
 };
-const map = generateMap(20, 15);
+const map = generateMap(15, 15);
 const bullets = []; // x, y
 const numbers = []; // x, y, num
 const player = { name: '', x: map.length - 1, y: Math.floor(map[0].length / 2), score: 0, life: 3 };
+let previousScore = 0;
 let actualExercise = '';
-let exercises =
-  ['Random exercise',
-    'Shoot all the odd numbers',
-    'Shoot all the even numbers',
-    'Shoot all numbers divisible by 3',
-    'Shoot all numbers divisible by 4',
-    'Shoot all numbers divisible by 5',
-    'Shoot all numbers divisible by 6',
-    'Shoot all numbers divisible by 7',
-    'Shoot all numbers divisible by 8',
-    'Shoot all numbers divisible by 9',
-    'Shoot all numbers in ascending order',
-    'Shoot all numbers in descending order',
-    'Shoot all the prime numbers'];
-let rand;
 
-const isPrime = (num) => {
-  if (num === 0 || num === 1) {
-    return false;
-  } else {
-    for (let i = 2; i <= Math.sqrt(num); i++) {
-      if (isPrime(i)) {
-        if (num % i === 0) {
-          return false;
-        }
-      }
-    }
-    return true;
-  }
-};
+
+const exercises =
+  [ ['Shoot all the odd numbers', '(30 scores)'],
+    ['Shoot all the even numbers', ' (30 scores)'],
+    ['Shoot all numbers divisible by 3', '(60 scores)'],
+    ['Shoot all numbers divisible by 4', '(60 scores)'],
+    ['Shoot all numbers divisible by 5', '(30 scores)'],
+    ['Shoot all numbers divisible by 6', '(60 scores)'],
+    ['Shoot all numbers divisible by 7', '(60 scores)'],
+    ['Shoot all numbers divisible by 8', '(60 scores)'],
+    ['Shoot all numbers divisible by 9', '(60 scores)'],
+    ['Shoot all numbers in ascending order', '(100 scores)'],
+    ['Shoot all numbers in descending order', '(100 scores)'],
+    ['Shoot all the prime numbers', '(100 scores)'],
+    ['Random exercise', '']];
+let rand;
 
 const isPrime = (num) => {
   if (num === 0 || num === 1) {
@@ -63,45 +54,41 @@ const isGood = (n) => {
   const helpArray = [];
   switch (rand) {
     case 0:
-      if (isPrime(n)) {
-        return true;
-      } else return false;
-    case 1:
       if (n % 2 !== 0) {
         return true;
       }
       else return false;
-    case 2:
+    case 1:
       if (n % 2 === 0) {
         return true;
       }
       else return false;
+    case 2:
     case 3:
     case 4:
     case 5:
     case 6:
     case 7:
     case 8:
-    case 9:
-      if (n % rand === 0) {
+      if (n % (rand + 1) === 0) {
         return true;
       }
       else return false;
-    case 10:
+    case 9:
       for (let i = 0; i < numbers.length; i++) {
         helpArray.push(numbers[i].num);
       }
       if (n === Math.min(...helpArray)) {
         return true;
       } else return false;
-    case 11:
+    case 10:
       for (let i = 0; i < numbers.length; i++) {
         helpArray.push(numbers[i].num);
       }
       if (n === Math.max(...helpArray)) {
         return true;
       } else return false;
-    case 12:
+    case 11:
       if (isPrime(n)) {
         return true;
       } else return false;
@@ -109,7 +96,7 @@ const isGood = (n) => {
 };
 
 const task = () => {
-  actualExercise = exercises[rand];
+  actualExercise = exercises[rand][0];
   let counter = 0;
   for (let i = 0; i < numbers.length; i++) {
     if (isGood(numbers[i].num)) counter++;
@@ -117,9 +104,9 @@ const task = () => {
   return counter;
 };
 
+
 const isFinish = () => {
   let c = task();
-  //ha leernek a szamok, player.life = 0
   if (c === 0 || player.life === 0) {
     return true;
   }
@@ -146,21 +133,62 @@ const fillMap = () => {
   }
 };
 
+const appearTask = () => {
+  console.clear();
+  console.log();
+  console.log();
+  console.log();
+  console.log();
+  console.log();
+  lolcatjs.fromString(figlet.textSync(actualExercise, {
+    font: 'ANSI Shadow',
+    horizontalLayout: 'full',
+    verticalLayout: 'full',
+    width: 100,
+    whitespaceBreak: true
+  }));
+  console.log();
+  console.log();
+}
+
+
 const printMap = () => {
-  const mymap = generateMap(20, 15);
-  for (let i = 0; i < map.length; i++){
-    for (let j = 0; j < map[i].length; j++){
-      if (map[i][j] === 'P'){
+  const mymap = generateMap(15, 15);
+  for (let i = 0; i < map.length; i++) {
+    for (let j = 0; j < map[i].length; j++) {
+      if (map[i][j] === 'P') {
         mymap[i][j] = '🐱';
       }
-      else if (map[i][j] === 'B'){
+      else if (map[i][j] === 'B') {
         mymap[i][j] = '🧶';
-      }          
+      }
       else mymap[i][j] = map[i][j];
     }
   }
-  
+
   console.clear();
+
+  let cat;
+
+  if (player.life === 3) {
+    cat = '😻 😻 😻';
+  } else if (player.life === 2) {
+    cat = '😸 😸';
+  } else if (player.life === 1) {
+    cat = '🙀';
+  }
+
+
+
+  console.clear();
+  console.log();
+  console.log(chalk.bold.greenBright(actualExercise));
+  console.log();
+  process.stdout.write(chalk.bold.greenBright('  name: ' + player.name + '                                  ' + '🐟: ' + player.score + '                                   ' + 'Life: ' + cat));
+  console.log();
+  
+
+
   let config, output;
   config = {
     border: {
@@ -189,10 +217,7 @@ const printMap = () => {
   };
 
   output = table(mymap, config);
-  console.log(output);
-
-  console.log(actualExercise);
-  console.log(player);
+  console.log(chalk.bold.greenBright(output));
 };
 
 
@@ -223,24 +248,32 @@ const hit = () => {
 
 
 const gamerator = (choose) => {
-  if (choose === 0) {
-    rand = Math.floor(Math.random() * (exercises.length - 1) + 1);
+  if (choose === 12) {
+    rand = Math.floor(Math.random() * (exercises.length - 1));
   } else {
     rand = choose;
   }
-  let arr = [];
-  if (rand >= 3 && rand <= 9) {
+  const arr = [];
+  if (rand >= 2 && rand <= 8) {
     const mult = [2, 5, 8, 3, 7];
     for (let i = 0; i < 5; i++) {
       const randIndex = Math.floor(Math.random() * 15);
-      arr[randIndex] = mult[i] * rand;
+      if (arr[randIndex] === undefined) {
+        arr[randIndex] = mult[i] * (rand + 1);
+      } else {
+        i--;
+      }
     }
   }
-  if (rand === 12) {
+  if (rand === 11) {
     const primes = [2, 5, 13, 29, 43];
     for (let i = 0; i < 5; i++) {
       const randIndex = Math.floor(Math.random() * 15);
-      arr[randIndex] = primes[i];
+      if (arr[randIndex] === undefined) {
+        arr[randIndex] = primes[i];
+      } else {
+        i--;
+      }
     }
   }
 
@@ -286,9 +319,7 @@ const shoot = () => {
 };
 
 const reset = () => {
-  if (player.life > 0) {
-    player.score = Math.ceil(player.score / 100) * 100;
-  } else {
+  if (player.life === 0) {
     player.score = 0;
   }
   for (let i = 0; i < map.length; i++) {
@@ -303,12 +334,25 @@ const reset = () => {
   player.life = 3;
 };
 
+const resetScoreWin = () => {
+  if (rand === 0 || rand === 1 || rand === 4) {
+    player.score = previousScore + 30;
+  } else if (rand >= 9 && rand <= 11) {
+    player.score = previousScore + 100;
+  } else {
+    player.score = previousScore + 60;
+  }
+  previousScore = player.score;
+}
+
+
 module.exports = {
   player,
   exercises,
   generateMap,
   fillMap,
   printMap,
+  appearTask,
   playerMove,
   hit,
   gamerator,
@@ -318,5 +362,6 @@ module.exports = {
   task,
   isGood,
   isFinish,
-  reset
+  reset,
+  resetScoreWin
 };
