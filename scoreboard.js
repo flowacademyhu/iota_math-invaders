@@ -6,18 +6,18 @@ const fs = require('fs');
 
 const getName = () => {
     player.name = readline.question('\x1b[93m\x1b[1mÜdv a játékban! Kérjük add meg a neved: \x1b[92m\x1b[1m ');
-    let nameExists = true;
+    let nameDoesntExist = true;
     for (let i = 0; i < rankJson.length; i++) {
         if (rankJson[i].name === player.name) {
             rankJson.splice(i, 1);
             rankJson.push(player);
             fs.writeFileSync('./ranking.json', JSON.stringify(rankJson, null, 2), (err) => {
             });
-            nameExists = false;
+            nameDoesntExist = false;
             break;
         };
     };
-    if (nameExists) {
+    if (nameDoesntExist) {          
         rankJson.push(player);
         fs.writeFileSync('./ranking.json', JSON.stringify(rankJson, null, 2), (err) => {
         });
@@ -25,7 +25,7 @@ const getName = () => {
 };
 
 const printScoreboard = () => {
-    for (let i = 0; i < rankJson.length; i++) {
+    for (let i = 0; i < rankJson.length; i++) {     // ez lehet mar nem kell
         if (rankJson[i].name === player.name) {
             rankJson[i].score = player.score;
             break;
