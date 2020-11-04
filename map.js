@@ -18,21 +18,20 @@ const player = { name: '', x: map.length - 1, y: Math.floor(map[0].length / 2), 
 let previousScore = 0;
 let actualExercise = '';
 
-
 const exercises =
-  [ ['Shoot all the odd numbers', '(30 scores)'],
-    ['Shoot all the even numbers', ' (30 scores)'],
-    ['Shoot all numbers divisible by 3', '(60 scores)'],
-    ['Shoot all numbers divisible by 4', '(60 scores)'],
-    ['Shoot all numbers divisible by 5', '(30 scores)'],
-    ['Shoot all numbers divisible by 6', '(60 scores)'],
-    ['Shoot all numbers divisible by 7', '(60 scores)'],
-    ['Shoot all numbers divisible by 8', '(60 scores)'],
-    ['Shoot all numbers divisible by 9', '(60 scores)'],
-    ['Shoot all numbers in ascending order', '(100 scores)'],
-    ['Shoot all numbers in descending order', '(100 scores)'],
-    ['Shoot all the prime numbers', '(100 scores)'],
-    ['Random exercise', '']];
+  [['Shoot all the odd numbers', '(30 scores)'],
+  ['Shoot all the even numbers', ' (30 scores)'],
+  ['Shoot all numbers divisible by 3', '(60 scores)'],
+  ['Shoot all numbers divisible by 4', '(60 scores)'],
+  ['Shoot all numbers divisible by 5', '(30 scores)'],
+  ['Shoot all numbers divisible by 6', '(60 scores)'],
+  ['Shoot all numbers divisible by 7', '(60 scores)'],
+  ['Shoot all numbers divisible by 8', '(60 scores)'],
+  ['Shoot all numbers divisible by 9', '(60 scores)'],
+  ['Shoot all numbers in ascending order', '(100 scores)'],
+  ['Shoot all numbers in descending order', '(100 scores)'],
+  ['Shoot all the prime numbers', '(100 scores)'],
+  ['Random exercise', '']];
 let rand;
 
 const isPrime = (num) => {
@@ -112,6 +111,7 @@ const isFinish = () => {
   }
   return false;
 }
+
 const fillMap = () => {
   for (let i = 0; i < map.length; i++) {
     for (let j = 0; j < map[i].length; j++) {
@@ -163,8 +163,8 @@ const printMap = () => {
         mymap[i][j] = '🧶';
       }
       else mymap[i][j] = map[i][j];
-    }
-  }
+    };
+  };
 
   console.clear();
 
@@ -178,16 +178,12 @@ const printMap = () => {
     cat = '🙀';
   }
 
-
-
   console.clear();
   console.log();
   console.log(chalk.bold.greenBright(actualExercise));
   console.log();
   process.stdout.write(chalk.bold.greenBright('  name: ' + player.name + '                                  ' + '🐟: ' + player.score + '                                   ' + 'Life: ' + cat));
   console.log();
-  
-
 
   let config, output;
   config = {
@@ -219,8 +215,6 @@ const printMap = () => {
   output = table(mymap, config);
   console.log(chalk.bold.greenBright(output));
 };
-
-
 
 const playerMove = (isRight) => {
   if (isRight && player.y < map[0].length - 1) {
@@ -314,6 +308,7 @@ const bulletsMove = () => {
     bullets[i].x--;
   };
 };
+
 const shoot = () => {
   bullets.push({ x: player.x - 1, y: player.y });
 };
