@@ -3,6 +3,8 @@ const { getName, printScoreboard } = require('./scoreboard');
 const readline = require('readline-sync');
 const chalk = require("chalk");
 const figlet = require('figlet');
+const mpg = require('mpg123');
+const sound = new mpg.MpgPlayer();
 //let term = require('terminal-kit').terminal;
 let inter;
 
@@ -118,7 +120,7 @@ const printSB = () => {
         player.score = Math.ceil(player.score / 100) * 100;
         printScoreboard();
         console.log('\n\n\n\n');
-       
+        sound.play("sound/win.mp3");
     } else {
         console.log('\n\n\n\n');
         console.log(chalk.bold.red(figlet.textSync('game over', {

@@ -3,6 +3,8 @@ const term = require('terminal-kit').terminal;
 const chalk = require("chalk");
 const figlet = require('figlet');
 const lolcatjs = require('lolcatjs');
+let mpg = require('mpg123');
+const sound = new mpg.MpgPlayer();
 
 const generateMap = (height, width) => {
   const arr = new Array(height);
@@ -273,6 +275,8 @@ const gamerator = (choose) => {
         i--;
       }
     }
+    sound.play("sound/prím.mp3");
+    sound.stop("sound/prím.mp3");
   }
 
   for (let i = 0; i < 15; i++) {
