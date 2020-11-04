@@ -5,22 +5,25 @@ const rankJson = require('./ranking.json');
 const fs = require('fs');
 const getName = () => {
     player.name = readline.question('\x1b[93m\x1b[1mÜdv a játékban! Kérjük add meg a neved: \x1b[92m\x1b[1m ');
+    let nameDoesntExist = true;
     for (let i = 0; i < rankJson.length; i++) {
         if (rankJson[i].name === player.name) {
             rankJson.splice(i, 1);
             rankJson.push(player);
             fs.writeFileSync('./ranking.json', JSON.stringify(rankJson, null, 2), (err) => {
             });
-        } else {
-            rankJson.push(player);
-            fs.writeFileSync('./ranking.json', JSON.stringify(rankJson, null, 2), (err) => {
-            });
+            nameDoesntExist = false;
             break;
-        }
+        };
+    };
+    if (nameDoesntExist) {
+        rankJson.push(player);
+        fs.writeFileSync('./ranking.json', JSON.stringify(rankJson, null, 2), (err) => {
+        });
     };
 };
 const printScoreboard = () => {
-    for (let i = 0; i < rankJson.length; i++) {
+    for (let i = 0; i < rankJson.length; i++) {     // ez lehet mar nem kell
         if (rankJson[i].name === player.name) {
             rankJson[i].score = player.score;
             break;
@@ -28,12 +31,6 @@ const printScoreboard = () => {
     };
     for (let i = 0; i < rankJson.length; i++) {
         if (rankJson[i].name === player.name) {
-            //     rankJson.splice(i, 1);
-            //     rankJson.push(player);
-            //     fs.writeFileSync('./ranking.json', JSON.stringify(rankJson, null, 2), (err) => {
-            //     });
-            //     break;
-            // } else {
             rankJson.splice(i, 1);
             rankJson.push(player);
             fs.writeFileSync('./ranking.json', JSON.stringify(rankJson, null, 2), (err) => {
@@ -52,7 +49,7 @@ const printScoreboard = () => {
         hasBorder: true,
         contentHasMarkup: true,
         borderChars: 'heavy',
-        borderAttr: { color: 'green' },
+        borderAttr: { color: 'white' },
         textAttr: { bgColor: 'default', bold: true },
         firstCellTextAttr: { bgColor: 'blue', bold: true },
         firstRowTextAttr: { bgColor: 'red', bold: true },
