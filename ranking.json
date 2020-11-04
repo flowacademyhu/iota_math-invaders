@@ -47,17 +47,38 @@
     "life": 3
   },
   {
-    "name": "Melani",
-    "x": 14,
-    "y": 7,
-    "score": 30,
-    "life": 3
-  },
-  {
     "name": "d",
     "x": 14,
     "y": 8,
     "score": 1,
+    "life": 0
+  },
+  {
+    "name": "Melani",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3
+  },
+  {
+    "name": "hfg",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3
+  },
+  {
+    "name": "gds",
+    "x": 14,
+    "y": 7,
+    "score": 30,
+    "life": 0
+  },
+  {
+    "name": "dshghsk",
+    "x": 14,
+    "y": 11,
+    "score": 4,
     "life": 0
   }
 ]

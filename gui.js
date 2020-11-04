@@ -1,13 +1,30 @@
 const { printScoreboard } = require("./scoreboard");
 const chalk = require("chalk");
 const figlet = require('figlet');
-const { player } = require("./map");
 //let terminalKit = require('terminal-kit').terminal;
 var readlineSync = require('readline-sync');
+const lolcatjs = require('lolcatjs');
+
+const appearTask = (task) => {
+    console.clear();
+    console.log();
+    console.log();
+    console.log();
+    console.log();
+    console.log();
+    lolcatjs.fromString(figlet.textSync(task, {
+      font: 'ANSI Shadow',
+      horizontalLayout: 'full',
+      verticalLayout: 'full',
+      width: 200,
+      whitespaceBreak: true
+    }));
+    console.log();
+    console.log();
+  }
 
 
-
-const endOfGame = (inter) => {
+const endOfGame = (inter, isWin) => {
     process.stdin.removeAllListeners('data');
     process.stdin.removeAllListeners('keypress');
     process.stdin.setRawMode(false);
@@ -16,7 +33,7 @@ const endOfGame = (inter) => {
     clearInterval(inter);
     console.clear();
 
-    if (player.life > 0) {
+    if (isWin) {
         console.log('\n\n\n\n\n\n\n\n\n\n');
         console.log(chalk.bold.greenBright(figlet.textSync('you win', {
             font: 'ANSI Shadow',
@@ -65,5 +82,5 @@ const printSB = () => {
 
 module.exports = {
     endOfGame,
-    printSB
+    appearTask,
 }
