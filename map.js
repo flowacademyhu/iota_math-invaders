@@ -1,36 +1,38 @@
 const { table, getBorderCharacters } = require('table');
-var term = require('terminal-kit').terminal;
+const term = require('terminal-kit').terminal;
 const chalk = require("chalk");
 const figlet = require('figlet');
 const lolcatjs = require('lolcatjs');
-//const { mainModule } = require('process');
 
 const generateMap = (height, width) => {
   const arr = new Array(height);
   for (let i = 0; i < height; i++) {
     arr[i] = new Array(width);
-  };
+  }
   return arr;
 };
-const map = generateMap(20, 15);
+const map = generateMap(15, 15);
 const bullets = []; // x, y
 const numbers = []; // x, y, num
 const player = { name: '', x: map.length - 1, y: Math.floor(map[0].length / 2), score: 0, life: 3 };
+let previousScore = 0;
 let actualExercise = '';
+
+
 const exercises =
-  [ 'Shoot all the odd numbers',
-    'Shoot all the even numbers',
-    'Shoot all numbers divisible by 3',
-    'Shoot all numbers divisible by 4',
-    'Shoot all numbers divisible by 5',
-    'Shoot all numbers divisible by 6',
-    'Shoot all numbers divisible by 7',
-    'Shoot all numbers divisible by 8',
-    'Shoot all numbers divisible by 9',
-    'Shoot all numbers in ascending order',
-    'Shoot all numbers in descending order',
-    'Shoot all the prime numbers',
-    'Random exercise'];
+  [ ['Shoot all the odd numbers', '(30 scores)'],
+    ['Shoot all the even numbers', ' (30 scores)'],
+    ['Shoot all numbers divisible by 3', '(60 scores)'],
+    ['Shoot all numbers divisible by 4', '(60 scores)'],
+    ['Shoot all numbers divisible by 5', '(30 scores)'],
+    ['Shoot all numbers divisible by 6', '(60 scores)'],
+    ['Shoot all numbers divisible by 7', '(60 scores)'],
+    ['Shoot all numbers divisible by 8', '(60 scores)'],
+    ['Shoot all numbers divisible by 9', '(60 scores)'],
+    ['Shoot all numbers in ascending order', '(100 scores)'],
+    ['Shoot all numbers in descending order', '(100 scores)'],
+    ['Shoot all the prime numbers', '(100 scores)'],
+    ['Random exercise', '']];
 let rand;
 
 const isPrime = (num) => {
@@ -94,13 +96,14 @@ const isGood = (n) => {
 };
 
 const task = () => {
-  actualExercise = exercises[rand];
+  actualExercise = exercises[rand][0];
   let counter = 0;
   for (let i = 0; i < numbers.length; i++) {
     if (isGood(numbers[i].num)) counter++;
   }
   return counter;
 };
+
 
 const isFinish = () => {
   let c = task();
@@ -132,18 +135,25 @@ const fillMap = () => {
 
 const appearTask = () => {
   console.clear();
+  console.log();
+  console.log();
+  console.log();
+  console.log();
+  console.log();
   lolcatjs.fromString(figlet.textSync(actualExercise, {
     font: 'ANSI Shadow',
     horizontalLayout: 'full',
     verticalLayout: 'full',
-    width: 200,
+    width: 100,
     whitespaceBreak: true
-}));
+  }));
+  console.log();
+  console.log();
 }
 
 
 const printMap = () => {
-  const mymap = generateMap(20, 15);
+  const mymap = generateMap(15, 15);
   for (let i = 0; i < map.length; i++) {
     for (let j = 0; j < map[i].length; j++) {
       if (map[i][j] === 'P') {
@@ -173,11 +183,12 @@ const printMap = () => {
 
 
   console.clear();
-
+  console.log();
   console.log(chalk.bold.greenBright(actualExercise));
   console.log();
   process.stdout.write(chalk.bold.greenBright('  name: ' + player.name + '                                  ' + '🐟: ' + player.score + '                                   ' + 'Life: ' + cat));
   console.log();
+  
 
 
   let config, output;
@@ -206,11 +217,6 @@ const printMap = () => {
 
   output = table(mymap, config);
   console.log(chalk.bold.greenBright(output));
-
-
-  console.log(actualExercise);
-  console.log(player);
-  console.log(rand);
 };
 
 
@@ -241,23 +247,31 @@ const hit = () => {
 
 const gamerator = (choose) => {
   if (choose === 12) {
-    rand = Math.floor(Math.random() * (exercises.length - 1) + 1);
+    rand = Math.floor(Math.random() * (exercises.length - 1));
   } else {
     rand = choose;
   }
-  let arr = [];
+  const arr = [];
   if (rand >= 2 && rand <= 8) {
     const mult = [2, 5, 8, 3, 7];
     for (let i = 0; i < 5; i++) {
       const randIndex = Math.floor(Math.random() * 15);
-      arr[randIndex] = mult[i] * rand;
+      if (arr[randIndex] === undefined) {
+        arr[randIndex] = mult[i] * (rand + 1);
+      } else {
+        i--;
+      }
     }
   }
   if (rand === 11) {
     const primes = [2, 5, 13, 29, 43];
     for (let i = 0; i < 5; i++) {
       const randIndex = Math.floor(Math.random() * 15);
-      arr[randIndex] = primes[i];
+      if (arr[randIndex] === undefined) {
+        arr[randIndex] = primes[i];
+      } else {
+        i--;
+      }
     }
   }
 
@@ -317,6 +331,17 @@ const reset = () => {
   player.life = 3;
 };
 
+const resetScoreWin = () => {
+  if (rand === 0 || rand === 1 || rand === 4) {
+    player.score = previousScore + 30;
+  } else if (rand >= 9 && rand <= 11) {
+    player.score = previousScore + 100;
+  } else {
+    player.score = previousScore + 60;
+  }
+  previousScore = player.score;
+}
+
 
 module.exports = {
   player,
@@ -334,5 +359,6 @@ module.exports = {
   task,
   isGood,
   isFinish,
-  reset
+  reset,
+  resetScoreWin
 };

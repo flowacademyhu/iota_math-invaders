@@ -1,33 +1,50 @@
-
 const readline = require('readline-sync');
 let terminalKit = require('terminal-kit').terminal;
-const { player, exercises } = require('./map');
-
-
-let playersDatabase = [
-    { name: 'Darth Vader', score: 12 },
-    { name: 'Eukleidész', score: 18 },
-    { name: 'Erdős', score: 13 },
-    { name: 'Stormtrooper', score: 0 }
-];
-
+const { player } = require('./map');
+const rankJson = require('./ranking.json');
+const fs = require('fs');
 const getName = () => {
     player.name = readline.question('\x1b[93m\x1b[1mÜdv a játékban! Kérjük add meg a neved: \x1b[92m\x1b[1m ');
-    playersDatabase.push(player);
-    console.log('');
+    let nameDoesntExist = true;
+    for (let i = 0; i < rankJson.length; i++) {
+        if (rankJson[i].name === player.name) {
+            rankJson.splice(i, 1);
+            rankJson.push(player);
+            fs.writeFileSync('./ranking.json', JSON.stringify(rankJson, null, 2), (err) => {
+            });
+            nameDoesntExist = false;
+            break;
+        };
+    };
+    if (nameDoesntExist) {
+        rankJson.push(player);
+        fs.writeFileSync('./ranking.json', JSON.stringify(rankJson, null, 2), (err) => {
+        });
+    };
 };
-
 const printScoreboard = () => {
+    for (let i = 0; i < rankJson.length; i++) {     // ez lehet mar nem kell
+        if (rankJson[i].name === player.name) {
+            rankJson[i].score = player.score;
+            break;
+        };
+    };
+    for (let i = 0; i < rankJson.length; i++) {
+        if (rankJson[i].name === player.name) {
+            rankJson.splice(i, 1);
+            rankJson.push(player);
+            fs.writeFileSync('./ranking.json', JSON.stringify(rankJson, null, 2), (err) => {
+            });
+            break;
+        };
+    };
     let scoreboard = [['#', 'Játékos neve', 'Játékos pontszáma']];
-
-    playersDatabase.sort((a, b) => {
+    rankJson.sort((a, b) => {
         return b.score - a.score;
     });
-
-    for (let i = 0, k = 1; i < playersDatabase.length; i++, k++) {
-        scoreboard.push([k + '.', playersDatabase[i].name, playersDatabase[i].score]);
+    for (let i = 0, k = 1; i < rankJson.length; i++, k++) {
+        scoreboard.push([k + '.', rankJson[i].name, rankJson[i].score]);
     };
-
     terminalKit.table(scoreboard, {
         hasBorder: true,
         contentHasMarkup: true,
@@ -43,13 +60,8 @@ const printScoreboard = () => {
         fit: true
     }
     );
+    console.log('\n');
 };
-
-// terminalKit.gridMenu(exercises, (error, response) => {
-//     response.selectedIndex;
-//     process.exit();
-// });
-
 module.exports = {
     getName,
     printScoreboard
