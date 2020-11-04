@@ -1,6 +1,8 @@
 const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, task, isGood, isFinish, player, reset, resetScoreWin, exercises, appearTask } = require('./map');
 const { getName, printScoreboard } = require('./scoreboard');
 const readline = require('readline-sync');
+const chalk = require("chalk");
+const figlet = require('figlet');
 //let term = require('terminal-kit').terminal;
 let inter;
 
@@ -30,7 +32,7 @@ const menu = () => {
         clearInterval(inter);
 
         appearTask();
-        console.log('Press any key to continue')
+        console.log(chalk.bold.greenBright('Press any key to continue'))
 
         const stdin = process.stdin;
         stdin.setRawMode(true); // Ne várjon enterre
@@ -104,12 +106,33 @@ const printSB = () => {
     clearInterval(inter);
     console.clear();
     if (player.life > 0) {
-        console.log('Gratulálok, nyertél!');
+        console.log('\n\n\n\n');
+        console.log(chalk.bold.greenBright(figlet.textSync('You win!', {
+            font: 'ANSI Shadow',
+            horizontalLayout: 'full',
+            verticalLayout: 'full',
+            width: 200,
+            whitespaceBreak: true
+        })));
+        console.log('\n\n');
+        player.score = Math.ceil(player.score / 100) * 100;
+        printScoreboard();
+        console.log('\n\n\n\n');
+       
     } else {
-        console.log('Vesztettél!');
+        console.log('\n\n\n\n');
+        console.log(chalk.bold.red(figlet.textSync('game over', {
+            font: 'ANSI Shadow',
+            horizontalLayout: 'full',
+            verticalLayout: 'full',
+            width: 200,
+            whitespaceBreak: true
+        })));
+        console.log('\n\n');
+        printScoreboard();
+        console.log('\n\n\n\n');
     }
-    printScoreboard();
-    console.log('Press Enter to continue');
+    console.log(chalk.bold.greenBright('Press Enter to continue'));
     const stdin = process.stdin;
     stdin.setRawMode(true); // Ne várjon enterre
     stdin.resume(); // Csak process.exit-el lehet kilépni

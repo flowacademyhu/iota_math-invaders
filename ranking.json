@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Eukleidész",
+    "score": 4908
+  },
+  {
+    "name": "Erdős",
+    "score": 2013
+  },
+  {
+    "name": "Darth Vader",
+    "score": 1200
+  },
+  {
+    "name": "Sanyi",
+    "x": 19,
+    "y": 8,
+    "score": 209,
+    "life": 0
+  },
+  {
+    "name": "tibi",
+    "x": 19,
+    "y": 7,
+    "score": 100,
+    "life": 3
+  },
+  {
+    "name": "jksd",
+    "x": 19,
+    "y": 8,
+    "score": 100,
+    "life": 3
+  },
+  {
+    "name": "tibi2",
+    "x": 19,
+    "y": 7,
+    "score": 100,
+    "life": 3
+  },
+  {
+    "name": "tibi",
+    "x": 19,
+    "y": 7,
+    "score": 100,
+    "life": 3
+  },
+  {
+    "name": "Melani",
+    "x": 19,
+    "y": 14,
+    "score": 100,
+    "life": 3
+  },
+  {
+    "name": "Stormtrooper",
+    "score": 0
+  },
+  {
+    "name": "Feri",
+    "x": 19,
+    "y": 2,
+    "score": 100,
+    "life": 2
+  },
+  {
+    "name": "fds",
+    "x": 19,
+    "y": 7,
+    "score": 0,
+    "life": 0
+  }
+]

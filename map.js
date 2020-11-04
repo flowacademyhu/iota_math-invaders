@@ -135,13 +135,20 @@ const fillMap = () => {
 
 const appearTask = () => {
   console.clear();
+  console.log();
+  console.log();
+  console.log();
+  console.log();
+  console.log();
   lolcatjs.fromString(figlet.textSync(actualExercise, {
     font: 'ANSI Shadow',
     horizontalLayout: 'full',
     verticalLayout: 'full',
     width: 100,
     whitespaceBreak: true
-}));
+  }));
+  console.log();
+  console.log();
 }
 
 
@@ -174,7 +181,7 @@ const printMap = () => {
 
 
   console.clear();
-
+  console.log();
   console.log(chalk.bold.greenBright(actualExercise));
   console.log();
   process.stdout.write(chalk.bold.greenBright('  name: ' + player.name + '                                  ' + '🐟: ' + player.score + '                                   ' + 'Life: ' + cat));
