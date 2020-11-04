@@ -3,6 +3,7 @@ const term = require('terminal-kit').terminal;
 const chalk = require("chalk");
 const figlet = require('figlet');
 const lolcatjs = require('lolcatjs');
+const readline = require('readline-sync');
 
 const generateMap = (height, width) => {
   const arr = new Array(height);
@@ -15,7 +16,7 @@ const map = generateMap(15, 15);
 const bullets = []; // x, y
 const numbers = []; // x, y, num
 const extra = [];
-const player = { name: '', x: map.length - 1, y: Math.floor(map[0].length / 2), score: 0, life: 3 };
+const player = { name: '', x: map.length - 1, y: Math.floor(map[0].length / 2), score: 0, life: 3, symb: '' };
 let previousScore = 0;
 let actualExercise = '';
 
@@ -166,7 +167,7 @@ const printMap = () => {
   for (let i = 0; i < map.length; i++) {
     for (let j = 0; j < map[i].length; j++) {
       if (map[i][j] === 'P') {
-        mymap[i][j] = '🐱';
+        mymap[i][j] = player.symb;
       }
       else if (map[i][j] === 'B') {
         mymap[i][j] = '🧶';
@@ -401,6 +402,18 @@ const collection = () => {
   }
 };
 
+const getPlayerSymb = () => {
+  const playerSymbols = ['😺', '😻', '😽', '😼', '😹', '😾', '🦁', '🐯'];
+  index = readline.keyInSelect(playerSymbols, chalk.bold.greenBright('Choose a player'));
+  if (index === -1) {
+      process.exit();
+  } else {
+      player.symb = playerSymbols[index];
+  };
+}
+
+
+
 
 module.exports = {
   player,
@@ -422,5 +435,6 @@ module.exports = {
   resetScoreWin,
   fillExtra,
   extraMove,
-  collection
+  collection,
+  getPlayerSymb
 };

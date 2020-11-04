@@ -54,14 +54,21 @@
     "life": 3
   },
   {
-    "name": "d",
+    "name": "sdf",
+    "x": 14,
+    "y": 5,
+    "score": 3,
+    "life": 3
+  },
+  {
+    "name": "dsa",
     "x": 14,
     "y": 8,
     "score": 1,
     "life": 0
   },
   {
-    "name": "dsa",
+    "name": "d",
     "x": 14,
     "y": 8,
     "score": 1,
@@ -93,13 +100,6 @@
     "x": 14,
     "y": 8,
     "score": 1,
-    "life": 0
-  },
-  {
-    "name": "ANIKÓ",
-    "x": 14,
-    "y": 7,
-    "score": 0,
     "life": 0
   },
   {
@@ -143,41 +143,6 @@
   },
   {
     "name": "s",
-    "x": 14,
-    "y": 7,
-    "score": 0,
-    "life": 0
-  },
-  {
-    "name": "sad",
-    "x": 14,
-    "y": 7,
-    "score": 0,
-    "life": 0
-  },
-  {
-    "name": "asd",
-    "x": 14,
-    "y": 7,
-    "score": 0,
-    "life": 3
-  },
-  {
-    "name": "",
-    "x": 14,
-    "y": 7,
-    "score": 0,
-    "life": 3
-  },
-  {
-    "name": "a",
-    "x": 14,
-    "y": 7,
-    "score": 0,
-    "life": 0
-  },
-  {
-    "name": "fds",
     "x": 14,
     "y": 7,
     "score": 0,
@@ -261,13 +226,6 @@
     "life": 3
   },
   {
-    "name": "Ani",
-    "x": 14,
-    "y": 7,
-    "score": 0,
-    "life": 0
-  },
-  {
     "name": "Meli",
     "x": 14,
     "y": 7,
@@ -282,10 +240,94 @@
     "life": 2
   },
   {
-    "name": "sdf",
+    "name": "ANIKÓ",
     "x": 14,
-    "y": 5,
-    "score": 3,
+    "y": 7,
+    "score": 0,
+    "life": 0
+  },
+  {
+    "name": "Ancsi",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3,
+    "symb": "😻"
+  },
+  {
+    "name": "sdfg",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3,
+    "symb": ""
+  },
+  {
+    "name": "asdf",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3,
+    "symb": ""
+  },
+  {
+    "name": "sad",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 0
+  },
+  {
+    "name": "",
+    "x": 14,
+    "y": 7,
+    "score": 0,
     "life": 3
+  },
+  {
+    "name": "a",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 0
+  },
+  {
+    "name": "fds",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 0
+  },
+  {
+    "name": "Ani",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3,
+    "symb": "😺"
+  },
+  {
+    "name": "asd",
+    "x": 14,
+    "y": 14,
+    "score": 100,
+    "life": 1,
+    "symb": "🐯"
+  },
+  {
+    "name": "asdfg",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 0,
+    "symb": "😹"
+  },
+  {
+    "name": "sdfgh",
+    "x": 14,
+    "y": 6,
+    "score": 2,
+    "life": 0,
+    "symb": "😹"
   }
 ]

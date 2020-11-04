@@ -1,4 +1,4 @@
-const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, task, isGood, isFinish, player, reset, resetScoreWin, exercises, appearTask, fillExtra, extraMove, collection } = require('./map');
+const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, task, isGood, isFinish, player, reset, resetScoreWin, exercises, appearTask, fillExtra, extraMove, collection, getPlayerSymb } = require('./map');
 const { getName, printScoreboard } = require('./scoreboard');
 const readline = require('readline-sync');
 const chalk = require("chalk");
@@ -18,6 +18,7 @@ const menu = () => {
     clearInterval(inter);
     if (player.name === '') {
         getName();
+        getPlayerSymb();
     }
     const excercisesInput = exercises.map(input => input.join(' '));
     index = readline.keyInSelect(excercisesInput, chalk.bold.greenBright('Choose an exercise'));
@@ -100,7 +101,7 @@ const main = () => {
         if (key === "\033[D") {
             playerMove(false);
         }
-        if (key === "\033[A") {
+        if (key === "\033[A" || key === " ") {
             shoot();
         }
     });
