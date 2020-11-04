@@ -1,4 +1,3 @@
-const { table, getBorderCharacters } = require('table');
 const term = require('terminal-kit').terminal;
 const chalk = require("chalk");
 const figlet = require('figlet');
@@ -19,6 +18,9 @@ const extra = [];
 const player = { name: '', x: map.length - 1, y: Math.floor(map[0].length / 2), score: 0, life: 3, symb: '' };
 let previousScore = 0;
 
+const getMap = () => {
+  return map;
+}
 
 const exercises =
   [['Shoot all the odd numbers', '(30 scores)'],
@@ -115,7 +117,7 @@ const isFinish = () => {
   }
   return false;
 }
-const fillMap = () => {
+const fillMap = (map) => {
   for (let i = 0; i < map.length; i++) {
     for (let j = 0; j < map[i].length; j++) {
       map[i][j] = ' ';
@@ -145,89 +147,6 @@ const fillMap = () => {
   }
 };
 
-
-const countLife = (life) => {
-  let cat;
-
-  if (life === 5) {
-    cat = '😻 😻 😻 🎀 🎀';
-  } else if (life === 4) {
-    cat = '😻 😻 😻 🎀';
-  } else if (life === 3) {
-    cat = '😻 😻 😻';
-  } else if (life === 2) {
-    cat = '😸 😸';
-  } else if (life === 1) {
-    cat = '🙀';
-  }
-
-  return cat;
-}
-
-const printMap = (exercise) => {
-  const mymap = generateMap(15, 15);
-  for (let i = 0; i < map.length; i++) {
-    for (let j = 0; j < map[i].length; j++) {
-      if (map[i][j] === 'P') {
-        mymap[i][j] = player.symb;
-      }
-      else if (map[i][j] === 'B') {
-        mymap[i][j] = '🧶';
-      } else if (map[i][j] === 'L') {
-        mymap[i][j] = '🐭';
-      } else if (map[i][j] === 'D') {
-        mymap[i][j] = '🐶';
-      } else mymap[i][j] = map[i][j];
-    }
-  }
-
-  console.clear();
-
-let cat = countLife(player.life);
-
-
-  console.clear();
-  console.log();
-  console.log(chalk.bold.greenBright(exercise));
-  console.log();
-  process.stdout.write(chalk.bold.greenBright('  name: ' + player.name + '                                  ' + '🐟: ' + player.score + '                                   ' + 'Life: ' + cat));
-  console.log();
-
-
-
-  let config, output;
-  config = {
-    border: {
-      topBody: `─`,
-      topJoin: `─`,
-      topLeft: `┌`,
-      topRight: `┐`,
-
-      bottomBody: `─`,
-      bottomJoin: `─`,
-      bottomLeft: `└`,
-      bottomRight: `┘`,
-
-      bodyLeft: `│`,
-      bodyRight: `│`,
-      bodyJoin: ` `,
-
-      joinBody: ` `,
-      joinLeft: `│`,
-      joinRight: `│`,
-      joinJoin: ` `
-    },
-    columnDefault: {
-      width: 4
-    }
-  };
-
-  output = table(mymap, config);
-  console.log(chalk.bold.greenBright(output));
-};
-
-
-
 const playerMove = (isRight) => {
   if (isRight && player.y < map[0].length - 1) {
     player.y++;
@@ -239,7 +158,7 @@ const playerMove = (isRight) => {
 const hit = () => {
   for (let i = 0; i < numbers.length; i++) {
     for (let j = 0; j < bullets.length; j++) {
-      if (bullets[j].x === numbers[i].x && bullets[j].y === numbers[i].y) {
+      if (bullets[j].x <= numbers[i].x && bullets[j].y === numbers[i].y) {
         bullets.splice(j, 1);
         if (isGood(numbers[i].num)) {
           player.score++;
@@ -409,7 +328,6 @@ module.exports = {
   exercises,
   generateMap,
   fillMap,
-  printMap,
   playerMove,
   hit,
   gamerator,
@@ -424,5 +342,6 @@ module.exports = {
   fillExtra,
   extraMove,
   collection,
-  getPlayerSymb
+  getPlayerSymb,
+  getMap,
 };

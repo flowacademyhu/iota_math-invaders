@@ -1,9 +1,9 @@
-const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, getActualExercise, isGood, isFinish, player, reset, resetScoreWin, exercises, fillExtra, extraMove, collection, getPlayerSymb } = require('./map');
+const { generateMap, fillMap, playerMove, hit, getMap, gamerator, numbersMove, bulletsMove, shoot, getActualExercise, isGood, isFinish, player, reset, resetScoreWin, exercises, fillExtra, extraMove, collection, getPlayerSymb } = require('./map');
 const { getName, printScoreboard } = require('./scoreboard');
 const readline = require('readline-sync');
 const chalk = require("chalk");
 const figlet = require('figlet');
-const { appearTask, endOfGame } = require('./gui');
+const { appearTask, endOfGame, printMap } = require('./gui');
 //let term = require('terminal-kit').terminal;
 let inter;
 
@@ -68,9 +68,10 @@ const main = () => {
         if (i % 3 === 0) {
             extraMove();
         }
-        fillMap();
+        const map = getMap();
+        fillMap(map);
         const actualExercise = getActualExercise();
-        printMap(actualExercise);
+        printMap(map, actualExercise, player);
         bulletsMove();
         hit();
         collection();
