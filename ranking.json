@@ -19,13 +19,6 @@
     "life": 0
   },
   {
-    "name": "ancsikaaa",
-    "x": 14,
-    "y": 11,
-    "score": 180,
-    "life": 3
-  },
-  {
     "name": "jksd",
     "x": 19,
     "y": 8,
@@ -40,9 +33,15 @@
     "life": 3
   },
   {
+<<<<<<< HEAD
     "name": "Melani",
     "x": 19,
     "y": 14,
+=======
+    "name": "tibi",
+    "x": 19,
+    "y": 7,
+>>>>>>> meli
     "score": 100,
     "life": 3
   },
@@ -61,13 +60,84 @@
     "life": 3
   },
   {
-    "name": "tibi",
-    "x": 19,
+    "name": "fsd",
+    "x": 14,
+    "y": 8,
+    "score": 1,
+    "life": 0
+  },
+  {
+    "name": "[Afds",
+    "x": 14,
+    "y": 8,
+    "score": 1,
+    "life": 0
+  },
+  {
+    "name": "d",
+    "x": 14,
+    "y": 8,
+    "score": 1,
+    "life": 0
+  },
+  {
+    "name": "dsa",
+    "x": 14,
+    "y": 8,
+    "score": 1,
+    "life": 0
+  },
+  {
+    "name": "fgd",
+    "x": 14,
+    "y": 8,
+    "score": 1,
+    "life": 0
+  },
+  {
+    "name": "gfd",
+    "x": 14,
+    "y": 8,
+    "score": 1,
+    "life": 0
+  },
+  {
+    "name": "Ani",
+    "x": 14,
     "y": 7,
-    "score": 100,
+    "score": 0,
+    "life": 0
+  },
+  {
+    "name": "ANIKÓ",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 0
+  },
+  {
+    "name": "f",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 0
+  },
+  {
+    "name": "jk",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 0
+  },
+  {
+    "name": "q",
+    "x": 14,
+    "y": 7,
+    "score": 0,
     "life": 3
   },
   {
+<<<<<<< HEAD
     "name": "aslkfdgh",
     "x": 14,
     "y": 13,
@@ -97,6 +167,16 @@
   },
   {
     "name": "mxkvmdlfgb",
+=======
+    "name": "efs",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3
+  },
+  {
+    "name": "dea",
+>>>>>>> meli
     "x": 14,
     "y": 7,
     "score": 0,
@@ -110,20 +190,29 @@
     "life": 3
   },
   {
+<<<<<<< HEAD
     "name": "dlmfdl;f",
+=======
+    "name": "Meli",
+>>>>>>> meli
     "x": 14,
     "y": 7,
     "score": 0,
     "life": 3
   },
   {
+<<<<<<< HEAD
     "name": "dmlgmfd;gh",
+=======
+    "name": "123",
+>>>>>>> meli
     "x": 14,
     "y": 7,
     "score": 0,
     "life": 3
   },
   {
+<<<<<<< HEAD
     "name": "md,fmdl",
     "x": 14,
     "y": 7,
@@ -132,40 +221,67 @@
   },
   {
     "name": "g,;dlfg,ed",
+=======
+    "name": "s",
     "x": 14,
     "y": 7,
     "score": 0,
     "life": 0
   },
   {
+    "name": "sad",
+>>>>>>> meli
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 0
+  },
+  {
+<<<<<<< HEAD
     "name": "sfk;ldg,",
+=======
+    "name": "asd",
+>>>>>>> meli
     "x": 14,
     "y": 7,
     "score": 0,
     "life": 3
   },
   {
+<<<<<<< HEAD
     "name": "kdf;lgmfh",
+=======
+    "name": "",
+>>>>>>> meli
     "x": 14,
     "y": 7,
     "score": 0,
     "life": 3
   },
   {
+<<<<<<< HEAD
     "name": "nklnl;",
     "x": 14,
     "y": 0,
     "score": 0,
     "life": 3
+=======
+    "name": "a",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 0
+>>>>>>> meli
   },
   {
     "name": "fds",
-    "x": 19,
+    "x": 14,
     "y": 7,
     "score": 0,
     "life": 0
   },
   {
+<<<<<<< HEAD
     "name": "ANi",
     "x": 14,
     "y": 7,
@@ -174,6 +290,16 @@
   },
   {
     "name": "dkfmdl",
+=======
+    "name": "55",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 0
+  },
+  {
+    "name": "fa",
+>>>>>>> meli
     "x": 14,
     "y": 7,
     "score": 0,
@@ -201,38 +327,55 @@
     "life": 0
   },
   {
+<<<<<<< HEAD
     "name": "Stormtrooper",
     "score": 0
   },
   {
     "name": "mslkfmdl",
+=======
+    "name": "[A",
+>>>>>>> meli
     "x": 14,
     "y": 7,
     "score": 0,
     "life": 3
   },
   {
+<<<<<<< HEAD
     "name": "slkafmdl",
+=======
+    "name": "aaa",
+>>>>>>> meli
     "x": 14,
     "y": 7,
     "score": 0,
     "life": 3
   },
   {
+<<<<<<< HEAD
     "name": "jdkfd",
+=======
+    "name": "Feri",
+>>>>>>> meli
     "x": 14,
     "y": 7,
     "score": 0,
     "life": 3
   },
   {
+<<<<<<< HEAD
     "name": ";ls,dgh",
+=======
+    "name": "meli",
+>>>>>>> meli
     "x": 14,
     "y": 7,
     "score": 0,
     "life": 3
   },
   {
+<<<<<<< HEAD
     "name": "slafmdgh",
     "x": 14,
     "y": 0,
@@ -243,38 +386,66 @@
     "name": "mlml",
     "x": 14,
     "y": 11,
+=======
+    "name": "b",
+    "x": 14,
+    "y": 7,
+>>>>>>> meli
     "score": 0,
     "life": 3
   },
   {
+<<<<<<< HEAD
     "name": "kl;k,p';bf",
+=======
+    "name": "da",
+>>>>>>> meli
     "x": 14,
     "y": 7,
     "score": 0,
     "life": 3
   },
   {
+<<<<<<< HEAD
     "name": "mdklmgfd;l",
     "x": 14,
     "y": 5,
+=======
+    "name": "melani",
+    "x": 14,
+    "y": 7,
+>>>>>>> meli
     "score": 0,
     "life": 3
   },
   {
+<<<<<<< HEAD
     "name": "dmlgbmflj",
     "x": 14,
     "y": 9,
+=======
+    "name": "j",
+    "x": 14,
+    "y": 7,
+>>>>>>> meli
     "score": 0,
     "life": 3
   },
   {
+<<<<<<< HEAD
     "name": "ds,mfdl;hgj",
     "x": 14,
     "y": 13,
+=======
+    "name": "ds",
+    "x": 14,
+    "y": 7,
+>>>>>>> meli
     "score": 0,
     "life": 3
   },
   {
+<<<<<<< HEAD
     "name": "ASDFG",
     "x": 14,
     "y": 13,
@@ -287,5 +458,12 @@
     "y": 14,
     "score": 30,
     "life": 4
+=======
+    "name": "Melani",
+    "x": 14,
+    "y": 7,
+    "score": 30,
+    "life": 3
+>>>>>>> meli
   }
 ]
