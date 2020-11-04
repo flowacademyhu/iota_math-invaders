@@ -52,7 +52,7 @@ const printScoreboard = () => {
         hasBorder: true,
         contentHasMarkup: true,
         borderChars: 'heavy',
-        borderAttr: { color: 'white' },
+        borderAttr: { color: 'green' },
         textAttr: { bgColor: 'default', bold: true },
         firstCellTextAttr: { bgColor: 'blue', bold: true },
         firstRowTextAttr: { bgColor: 'red', bold: true },
