@@ -19,6 +19,13 @@
     "life": 0
   },
   {
+    "name": "jksd",
+    "x": 19,
+    "y": 8,
+    "score": 100,
+    "life": 3
+  },
+  {
     "name": "tibi",
     "x": 19,
     "y": 7,
@@ -26,9 +33,9 @@
     "life": 3
   },
   {
-    "name": "jksd",
+    "name": "tibi",
     "x": 19,
-    "y": 8,
+    "y": 7,
     "score": 100,
     "life": 3
   },
@@ -40,42 +47,38 @@
     "life": 3
   },
   {
-    "name": "tibi",
-    "x": 19,
-    "y": 7,
-    "score": 100,
-    "life": 3
-  },
-  {
-    "name": "Melani",
-    "x": 19,
-    "y": 14,
-    "score": 100,
-    "life": 3
-  },
-  {
-    "name": "Stormtrooper",
-    "score": 0
-  },
-  {
-    "name": "Feri",
-    "x": 19,
-    "y": 2,
-    "score": 100,
-    "life": 2
-  },
-  {
-    "name": "fds",
-    "x": 19,
-    "y": 7,
-    "score": 0,
+    "name": "d",
+    "x": 14,
+    "y": 8,
+    "score": 1,
     "life": 0
   },
   {
-    "name": "Ani",
+    "name": "Melani",
     "x": 14,
     "y": 7,
     "score": 0,
+    "life": 3
+  },
+  {
+    "name": "hfg",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3
+  },
+  {
+    "name": "gds",
+    "x": 14,
+    "y": 7,
+    "score": 30,
+    "life": 0
+  },
+  {
+    "name": "dshghsk",
+    "x": 14,
+    "y": 11,
+    "score": 4,
     "life": 0
   }
 ]

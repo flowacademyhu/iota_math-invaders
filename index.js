@@ -1,12 +1,14 @@
-const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, task, isGood, isFinish, player, reset, resetScoreWin, exercises, appearTask } = require('./map');
+const { generateMap, fillMap, printMap, playerMove, hit, gamerator, numbersMove, bulletsMove, shoot, getActualExercise, isGood, isFinish, player, reset, resetScoreWin, exercises, fillExtra, extraMove, collection } = require('./map');
 const { getName, printScoreboard } = require('./scoreboard');
 const readline = require('readline-sync');
 const chalk = require("chalk");
 const figlet = require('figlet');
 const mpg = require('mpg123');
 const sound = new mpg.MpgPlayer();
+const { appearTask, endOfGame } = require('./gui');
 //let term = require('terminal-kit').terminal;
 let inter;
+
 
 const menu = () => {
     console.clear();
@@ -20,12 +22,12 @@ const menu = () => {
         getName();
     }
     const excercisesInput = exercises.map(input => input.join(' '));
-    index = readline.keyInSelect(excercisesInput, 'Choose an exercise');
+    index = readline.keyInSelect(excercisesInput, chalk.bold.greenBright('Choose an exercise'));
     if (index === -1) {
         process.exit();
     } else {
         gamerator(index);
-        task();
+        
         process.stdin.removeAllListeners('data');
         process.stdin.removeAllListeners('keypress');
         process.stdin.setRawMode(false);
@@ -33,7 +35,8 @@ const menu = () => {
         process.stdin.end();
         clearInterval(inter);
 
-        appearTask();
+        const actualExercise = getActualExercise();
+        appearTask(actualExercise);
         console.log(chalk.bold.greenBright('Press any key to continue'))
 
         const stdin = process.stdin;
@@ -46,8 +49,6 @@ const menu = () => {
     };
 }
 
-
-
 const main = () => {
     console.clear();
     process.stdin.removeAllListeners('data');
@@ -59,18 +60,30 @@ const main = () => {
     let i = 0;
     inter = setInterval(() => {
         i++;
-        if (i % 46 === 0) {
+        if (i % 55 === 0) {
             numbersMove();
         }
+        if (i % 70 === 0) {
+            fillExtra();
+        }
+        if (i % 3 === 0) {
+            extraMove();
+        }
         fillMap();
-        printMap();
+        const actualExercise = getActualExercise();
+        printMap(actualExercise);
         bulletsMove();
         hit();
+        collection();
         if (isFinish()) {
-            if (player.life > 0) {
+            const isWin = player.life > 0
+            if (isWin) {
                 resetScoreWin();
             }
-            printSB();
+            
+            endOfGame(inter, isWin);
+            reset();
+            menu();
         }
     }, 65);
 
@@ -99,54 +112,5 @@ const main = () => {
     });
 };
 
-const printSB = () => {
-    process.stdin.removeAllListeners('data');
-    process.stdin.removeAllListeners('keypress');
-    process.stdin.setRawMode(false);
-    process.stdin.resume();
-    process.stdin.end();
-    clearInterval(inter);
-    console.clear();
-    if (player.life > 0) {
-        console.log('\n\n\n\n');
-        console.log(chalk.bold.greenBright(figlet.textSync('You win!', {
-            font: 'ANSI Shadow',
-            horizontalLayout: 'full',
-            verticalLayout: 'full',
-            width: 200,
-            whitespaceBreak: true
-        })));
-        console.log('\n\n');
-        player.score = Math.ceil(player.score / 100) * 100;
-        printScoreboard();
-        console.log('\n\n\n\n');
-        sound.play("sound/win.mp3");
-    } else {
-        console.log('\n\n\n\n');
-        console.log(chalk.bold.red(figlet.textSync('game over', {
-            font: 'ANSI Shadow',
-            horizontalLayout: 'full',
-            verticalLayout: 'full',
-            width: 200,
-            whitespaceBreak: true
-        })));
-        console.log('\n\n');
-        printScoreboard();
-        console.log('\n\n\n\n');
-    }
-    console.log(chalk.bold.greenBright('Press Enter to continue'));
-    const stdin = process.stdin;
-    stdin.setRawMode(true); // Ne várjon enterre
-    stdin.resume(); // Csak process.exit-el lehet kilépni
-    stdin.setEncoding('utf8'); // Karaktereket kapjunk vissza
-    stdin.on('data', (key) => { // Callback függvény
-        if (key === '\x0D') {
-            reset();
-            menu();
-        } else {
-            printSB();
-        }
-    });
-}
 menu();
 
