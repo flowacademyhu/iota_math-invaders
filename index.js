@@ -3,8 +3,10 @@ const { getName, printScoreboard } = require('./scoreboard');
 const readline = require('readline-sync');
 const chalk = require("chalk");
 const figlet = require('figlet');
+const {printSB, endOfGame} = require('./gui');
 //let term = require('terminal-kit').terminal;
 let inter;
+
 
 const menu = () => {
     console.clear();
@@ -18,7 +20,7 @@ const menu = () => {
         getName();
     }
     const excercisesInput = exercises.map(input => input.join(' '));
-    index = readline.keyInSelect(excercisesInput, 'Choose an exercise');
+    index = readline.keyInSelect(excercisesInput, chalk.bold.greenBright('Choose an exercise'));
     if (index === -1) {
         process.exit();
     } else {
@@ -44,8 +46,6 @@ const menu = () => {
     };
 }
 
-
-
 const main = () => {
     console.clear();
     process.stdin.removeAllListeners('data');
@@ -68,7 +68,9 @@ const main = () => {
             if (player.life > 0) {
                 resetScoreWin();
             }
-            printSB();
+            endOfGame(inter);
+            reset();
+            menu();
         }
     }, 65);
 
@@ -97,54 +99,6 @@ const main = () => {
     });
 };
 
-const printSB = () => {
-    process.stdin.removeAllListeners('data');
-    process.stdin.removeAllListeners('keypress');
-    process.stdin.setRawMode(false);
-    process.stdin.resume();
-    process.stdin.end();
-    clearInterval(inter);
-    console.clear();
-    if (player.life > 0) {
-        console.log('\n\n\n\n');
-        console.log(chalk.bold.greenBright(figlet.textSync('You win!', {
-            font: 'ANSI Shadow',
-            horizontalLayout: 'full',
-            verticalLayout: 'full',
-            width: 200,
-            whitespaceBreak: true
-        })));
-        console.log('\n\n');
-        player.score = Math.ceil(player.score / 100) * 100;
-        printScoreboard();
-        console.log('\n\n\n\n');
-       
-    } else {
-        console.log('\n\n\n\n');
-        console.log(chalk.bold.red(figlet.textSync('game over', {
-            font: 'ANSI Shadow',
-            horizontalLayout: 'full',
-            verticalLayout: 'full',
-            width: 200,
-            whitespaceBreak: true
-        })));
-        console.log('\n\n');
-        printScoreboard();
-        console.log('\n\n\n\n');
-    }
-    console.log(chalk.bold.greenBright('Press Enter to continue'));
-    const stdin = process.stdin;
-    stdin.setRawMode(true); // Ne várjon enterre
-    stdin.resume(); // Csak process.exit-el lehet kilépni
-    stdin.setEncoding('utf8'); // Karaktereket kapjunk vissza
-    stdin.on('data', (key) => { // Callback függvény
-        if (key === '\x0D') {
-            reset();
-            menu();
-        } else {
-            printSB();
-        }
-    });
-}
+
 menu();
 

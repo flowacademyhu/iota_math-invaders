@@ -144,7 +144,7 @@ const appearTask = () => {
     font: 'ANSI Shadow',
     horizontalLayout: 'full',
     verticalLayout: 'full',
-    width: 100,
+    width: 200,
     whitespaceBreak: true
   }));
   console.log();
