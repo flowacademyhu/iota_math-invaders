@@ -20,7 +20,7 @@ const appearTask = (task) => {
         font: 'ANSI Shadow',
         horizontalLayout: 'full',
         verticalLayout: 'full',
-        width: 200,
+        width: 125,
         whitespaceBreak: true
     }));
     console.log();
@@ -147,9 +147,8 @@ const endOfGame = (inter, isWin) => {
             whitespaceBreak: true
         })));
     }
-    
-    console.log(chalk.bold.greenBright('Press any key to continue'));
-    let key = readlineSync.keyIn();
+   
+    let key = readlineSync.question(chalk.bold.greenBright('Press Enter to continue'));
     printSB();
     sound.stop("sound/win.mp3");
     sound.stop("sound/gameover.mp3");
@@ -170,9 +169,8 @@ const endOfGame = (inter, isWin) => {
 const printSB = () => {
     console.clear();
     printScoreboard();
-    //console.log(chalk.bold.greenBright('Press any key continue'));
-    let key = readlineSync.keyIn(chalk.bold.greenBright('Press any key continue'));
-
+    let key = readlineSync.question(chalk.bold.greenBright('Press Enter to continue'));
+    
 }
 
 

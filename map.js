@@ -24,6 +24,7 @@ const getMap = () => {
   return map;
 }
 
+
 const exercises =
   [['Shoot all the odd numbers', '(30 scores)'],
   ['Shoot all the even numbers', ' (30 scores)'],
@@ -323,9 +324,16 @@ const getPlayerSymb = () => {
   } else {
     player.symb = playerSymbols[index];
   };
-}
+  // term.singleColumnMenu( items , func = ( error , response ) => {
+  //   term( '\n' ).eraseLineAfter.green(
+  //     setPlayerSymb(response.selectedIndex)	) ;
+  // } ) ;
+};
 
 
+const setPlayerSymb = (index) => {
+  player.symb = playerSymbols[index];
+ };
 
 
 module.exports = {
