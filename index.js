@@ -4,8 +4,7 @@ const readline = require('readline-sync');
 const chalk = require("chalk");
 const figlet = require('figlet');
 const sound = require('./sound');
-const { appearTask, endOfGame, printMap } = require('./gui');
-//let term = require('terminal-kit').terminal;
+const { appearTask, endOfGame, printMap, printSB } = require('./gui');
 let inter;
 
 
@@ -44,15 +43,6 @@ const menu = () => {
         appearTask(actualExercise);
         let key = readline.question(chalk.bold.greenBright('Press Enter to continue'));
         main();
-        // console.log(chalk.bold.greenBright('Press any key to continue'))
-
-        // const stdin = process.stdin;
-        // stdin.setRawMode(true); // Ne várjon enterre
-        // stdin.resume(); // Csak process.exit-el lehet kilépni
-        // stdin.setEncoding('utf8'); // Karaktereket kapjunk vissza
-        // stdin.on('data', (key) => { // Callback függvény
-        //     main();
-        // });
     };
 }
 
@@ -84,14 +74,17 @@ const main = () => {
         hit();
         collection();
         if (isFinish()) {
+            clearInterval(inter);
             const isWin = player.life > 0
             if (isWin) {
                 resetScoreWin();
             }
 
-            endOfGame(inter, isWin);
-            reset();
-            menu();
+            endOfGame(inter, isWin, () => {
+                printSB();
+                reset();
+                menu();
+            });
         }
     }, 65);
 
@@ -120,6 +113,10 @@ const main = () => {
         }
     });
 };
+
+function ize() {
+    console.log('from main');
+}
 
 menu();
 

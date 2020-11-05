@@ -145,7 +145,7 @@ const fillMap = (map) => {
       }
       for (let k = 0; k < numbers.length; k++) {
         if (i === numbers[k].x && j === numbers[k].y) {
-        map[i][j] = numbers[k].num;
+          map[i][j] = numbers[k].num;
         }
       }
     }
@@ -327,6 +327,9 @@ const getPlayerSymb = () => {
     player.symb = playerSymbols[index];
   };
 };
+
+
+
 
 
 
