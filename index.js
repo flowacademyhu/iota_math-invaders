@@ -89,7 +89,6 @@ const main = () => {
         }
     }, 65);
 
-
     const stdin = process.stdin;
     stdin.setRawMode(true); // Ne várjon enterre
     stdin.resume(); // Csak process.exit-el lehet kilépni

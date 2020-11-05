@@ -249,7 +249,6 @@ const bulletsMove = () => {
   }
 };
 
-
 const shoot = () => {
   bullets.push({ x: player.x - 1, y: player.y });
 };
