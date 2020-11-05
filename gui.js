@@ -20,7 +20,7 @@ const appearTask = (task) => {
         font: 'ANSI Shadow',
         horizontalLayout: 'fitted',
         verticalLayout: 'full',
-        width: 200,
+        width: 125,
         whitespaceBreak: true
     }));
     console.log();
