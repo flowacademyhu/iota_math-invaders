@@ -19,13 +19,6 @@
     "life": 0
   },
   {
-    "name": "jksd",
-    "x": 19,
-    "y": 8,
-    "score": 100,
-    "life": 3
-  },
-  {
     "name": "tibi",
     "x": 19,
     "y": 7,
@@ -47,25 +40,91 @@
     "life": 3
   },
   {
-    "name": "d",
+    "name": "fghghghgf",
     "x": 14,
+    "y": 11,
+    "score": 100,
+    "life": 2,
+    "symb": "😽"
+  },
+  {
+    "name": "jksd",
+    "x": 19,
     "y": 8,
-    "score": 1,
-    "life": 0
-  },
-  {
-    "name": "Melani",
-    "x": 14,
-    "y": 7,
-    "score": 0,
+    "score": 100,
     "life": 3
   },
   {
-    "name": "hfg",
+    "name": "hbjhggch",
     "x": 14,
-    "y": 7,
-    "score": 0,
-    "life": 3
+    "y": 14,
+    "score": 60,
+    "life": 2,
+    "symb": "😹"
+  },
+  {
+    "name": "jbhhjjc",
+    "x": 14,
+    "y": 2,
+    "score": 60,
+    "life": 3,
+    "symb": "😽"
+  },
+  {
+    "name": "bhjhg",
+    "x": 14,
+    "y": 13,
+    "score": 60,
+    "life": 2,
+    "symb": "😼"
+  },
+  {
+    "name": "bddff",
+    "x": 14,
+    "y": 4,
+    "score": 39,
+    "life": 0,
+    "symb": "😽"
+  },
+  {
+    "name": "sfgffd",
+    "x": 14,
+    "y": 13,
+    "score": 30,
+    "life": 3,
+    "symb": "😽"
+  },
+  {
+    "name": "gsdsdf",
+    "x": 14,
+    "y": 12,
+    "score": 30,
+    "life": 5,
+    "symb": "😽"
+  },
+  {
+    "name": "jjdhd",
+    "x": 14,
+    "y": 0,
+    "score": 30,
+    "life": 4,
+    "symb": "😼"
+  },
+  {
+    "name": "hgfdfj",
+    "x": 14,
+    "y": 6,
+    "score": 30,
+    "life": 2,
+    "symb": "😽"
+  },
+  {
+    "name": "dvsfvf",
+    "x": 14,
+    "y": 12,
+    "score": 30,
+    "life": 5,
+    "symb": "😻"
   },
   {
     "name": "gds",
@@ -75,10 +134,103 @@
     "life": 0
   },
   {
+    "name": "dsffdfd",
+    "x": 14,
+    "y": 14,
+    "score": 30,
+    "life": 1,
+    "symb": "😻"
+  },
+  {
+    "name": "dsfdsffg",
+    "x": 14,
+    "y": 13,
+    "score": 30,
+    "life": 3,
+    "symb": "😼"
+  },
+  {
+    "name": "gffggf",
+    "x": 14,
+    "y": 13,
+    "score": 6,
+    "life": 0,
+    "symb": "😼"
+  },
+  {
+    "name": "gfdj",
+    "x": 14,
+    "y": 1,
+    "score": 6,
+    "life": 0,
+    "symb": "😾"
+  },
+  {
     "name": "dshghsk",
     "x": 14,
     "y": 11,
     "score": 4,
     "life": 0
+  },
+  {
+    "name": "d",
+    "x": 14,
+    "y": 8,
+    "score": 1,
+    "life": 0
+  },
+  {
+    "name": "dssffd",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3,
+    "symb": ""
+  },
+  {
+    "name": "dds",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3,
+    "symb": ""
+  },
+  {
+    "name": "dfdff",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3,
+    "symb": ""
+  },
+  {
+    "name": "hfg",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3
+  },
+  {
+    "name": "Melani",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3
+  },
+  {
+    "name": "fdsgrfd",
+    "x": 14,
+    "y": 7,
+    "score": 30,
+    "life": 3,
+    "symb": "😻"
+  },
+  {
+    "name": "sdfsfvf",
+    "x": 14,
+    "y": 10,
+    "score": 60,
+    "life": 3,
+    "symb": "😻"
   }
 ]

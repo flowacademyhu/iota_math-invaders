@@ -3,7 +3,8 @@ const term = require('terminal-kit').terminal;
 const chalk = require("chalk");
 const figlet = require('figlet');
 const lolcatjs = require('lolcatjs');
-let mpg = require('mpg123');
+const readline = require('readline-sync');
+const mpg = require('mpg123');
 const sound = new mpg.MpgPlayer();
 
 const generateMap = (height, width) => {
@@ -17,7 +18,7 @@ const map = generateMap(15, 15);
 const bullets = []; // x, y
 const numbers = []; // x, y, num
 const extra = [];
-const player = { name: '', x: map.length - 1, y: Math.floor(map[0].length / 2), score: 0, life: 3 };
+const player = { name: '', x: map.length - 1, y: Math.floor(map[0].length / 2), score: 0, life: 3, symb: '' };
 let previousScore = 0;
 
 
@@ -170,7 +171,7 @@ const printMap = (exercise) => {
   for (let i = 0; i < map.length; i++) {
     for (let j = 0; j < map[i].length; j++) {
       if (map[i][j] === 'P') {
-        mymap[i][j] = '🐱';
+        mymap[i][j] = player.symb;
       }
       else if (map[i][j] === 'B') {
         mymap[i][j] = '🧶';
@@ -240,9 +241,11 @@ const hit = () => {
       if (bullets[j].x === numbers[i].x && bullets[j].y === numbers[i].y) {
         bullets.splice(j, 1);
         if (isGood(numbers[i].num)) {
+//          sound.play("sound/correct.mp3");
           player.score++;
           numbers.splice(i, 1);
         } else {
+//          sound.play("sound/incorrect.mp3");
           player.life--;
         }
       }
@@ -285,8 +288,6 @@ const gamerator = (choose) => {
         i--;
       }
     }
-    sound.play("sound/prím.mp3");
-    sound.stop("sound/prím.mp3");
   }
 
   for (let i = 0; i < 15; i++) {
@@ -378,10 +379,12 @@ const collection = () => {
     if (extra[i].x === player.x && extra[i].y === player.y) {
       if (extra[i].function === 0) {
         if (player.life < 5) {
+          sound.play("sound/mouse.mp3");
           player.life++;
         }
       } else {
         if (player.life > 0) {
+          sound.play("sound/dog.mp3");
           player.life--;
         }
       }
@@ -389,6 +392,18 @@ const collection = () => {
     }
   }
 };
+
+const getPlayerSymb = () => {
+  const playerSymbols = ['😺', '😻', '😽', '😼', '😹', '😾', '🦁', '🐯'];
+  index = readline.keyInSelect(playerSymbols, chalk.bold.greenBright('Choose a player'));
+  if (index === -1) {
+    process.exit();
+  } else {
+    player.symb = playerSymbols[index];
+  };
+}
+
+
 
 
 module.exports = {
@@ -410,5 +425,6 @@ module.exports = {
   resetScoreWin,
   fillExtra,
   extraMove,
-  collection
+  collection,
+  getPlayerSymb
 };
