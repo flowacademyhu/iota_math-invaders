@@ -3,8 +3,8 @@ const chalk = require("chalk");
 const figlet = require('figlet');
 const lolcatjs = require('lolcatjs');
 const readline = require('readline-sync');
-const mpg = require('mpg123');
-const sound = new mpg.MpgPlayer();
+let mpg = require('mpg123');
+let sound = new mpg.MpgPlayer();
 
 const generateMap = (height, width) => {
   const arr = new Array(height);
@@ -19,6 +19,7 @@ const numbers = []; // x, y, num
 const extra = [];
 const player = { name: '', x: map.length - 1, y: Math.floor(map[0].length / 2), score: 0, life: 3, symb: '' };
 let previousScore = 0;
+
 
 
 const getMap = () => {
@@ -144,7 +145,7 @@ const fillMap = (map) => {
       }
       for (let k = 0; k < numbers.length; k++) {
         if (i === numbers[k].x && j === numbers[k].y) {
-          map[i][j] = numbers[k].num;
+        map[i][j] = numbers[k].num;
         }
       }
     }
@@ -169,7 +170,6 @@ const hit = () => {
           numbers.splice(i, 1);
         } else {
           player.life--;
-          
         }
       }
     }

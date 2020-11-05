@@ -1,30 +1,16 @@
 const { printScoreboard } = require("./scoreboard");
 const chalk = require("chalk");
 const figlet = require('figlet');
-//let terminalKit = require('terminal-kit').terminal;
+let term = require('terminal-kit').terminal;
 var readlineSync = require('readline-sync');
 const lolcatjs = require('lolcatjs');
-const mpg = require('mpg123');
-const sound = new mpg.MpgPlayer();
-const { generateMap, isGood } = require('./map');
+let mpg = require('mpg123');
+let sound = new mpg.MpgPlayer();
+const { generateMap } = require('./map');
 const { table, getBorderCharacters } = require('table');
+//const { fallingCats } = require('./fallingCats');
 
-// const hit = () => {
-//     for (let i = 0; i < numbers.length; i++) {
-//       for (let j = 0; j < bullets.length; j++) {
-//         if (bullets[j].x <= numbers[i].x && bullets[j].y === numbers[i].y) {
-//           bullets.splice(j, 1);
-//           if (isGood(numbers[i].num)) {
-//             player.score++;
-//             numbers.splice(i, 1);
-//           } else {
-//             player.life--;
-//             printMapRed();
-//           }
-//         }
-//       }
-//     }
-//   };
+
 
 const appearTask = (task) => {
     console.clear();
@@ -159,17 +145,7 @@ const printMap = (map, task, cica) => {
     printStats(cica);
     drawMap(map, cica.symb);
 };
-
-// const printMapRed = (map, task, cica) => {
-//     console.clear();
-//     console.clear();
-//     console.log();
-//     console.log(chalk.bold.redBright(task));
-//     console.log();
-//     printStats(cica);
-//     drawMap(map, cica.symb);
-//   };
-
+//fallingCats();
 
 const endOfGame = (inter, isWin) => {
     process.stdin.removeAllListeners('data');
@@ -181,8 +157,11 @@ const endOfGame = (inter, isWin) => {
     console.clear();
 
     if (isWin) {
-        sound.play("sound/win.mp3");
-        console.log('\n\n\n\n\n\n\n\n\n\n');
+       // sound.play("sound/win.mp3");
+        //console.log('\n\n\n\n\n\n\n\n\n\n');
+        // clearInterval(inter);
+        // fallingCats();
+        // let key = readlineSync.question(chalk.bold.greenBright('Press Enter to continue'));
         console.log(chalk.bold.greenBright(figlet.textSync('you win', {
             font: 'ANSI Shadow',
             horizontalLayout: 'full',
@@ -203,19 +182,8 @@ const endOfGame = (inter, isWin) => {
         })));
     }
 
-    let key = readlineSync.question(chalk.bold.greenBright('Press Enter to continue'));
+    // let key = readlineSync.question(chalk.bold.greenBright('Press Enter to continue'));
     printSB();
-
-    // const stdin = process.stdin;
-    // stdin.setRawMode(true); // Ne várjon enterre
-    // stdin.resume(); // Csak process.exit-el lehet kilépni
-    // stdin.setEncoding('utf8'); // Karaktereket kapjunk vissza
-    // stdin.on('data', (key) => { // Callback függvény
-    //     if (key === '\x0D')
-    //         printSB();
-    //     else endOfGame();
-
-    // });
 }
 
 
