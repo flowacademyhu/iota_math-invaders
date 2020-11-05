@@ -6,6 +6,8 @@ var readlineSync = require('readline-sync');
 const lolcatjs = require('lolcatjs');
 const mpg = require('mpg123');
 const sound = new mpg.MpgPlayer();
+const { generateMap} = require('./map');
+const { table } = require('table');
 
 const appearTask = (task) => {
     console.clear();
@@ -25,6 +27,94 @@ const appearTask = (task) => {
     console.log();
 }
 
+const countLife = (life) => {
+    let cat;
+
+    if (life === 5) {
+        cat = '😻 😻 😻 🎀 🎀';
+    } else if (life === 4) {
+        cat = '😻 😻 😻 🎀';
+    } else if (life === 3) {
+        cat = '😻 😻 😻';
+    } else if (life === 2) {
+        cat = '😸 😸';
+    } else if (life === 1) {
+        cat = '🙀';
+    }
+
+    return cat;
+}
+
+const printBorder = (mymap) => {
+    let config, output;
+    config = {
+        border: {
+            topBody: `─`,
+            topJoin: `─`,
+            topLeft: `┌`,
+            topRight: `┐`,
+
+            bottomBody: `─`,
+            bottomJoin: `─`,
+            bottomLeft: `└`,
+            bottomRight: `┘`,
+
+            bodyLeft: `│`,
+            bodyRight: `│`,
+            bodyJoin: ` `,
+
+            joinBody: ` `,
+            joinLeft: `│`,
+            joinRight: `│`,
+            joinJoin: ` `
+        },
+        columnDefault: {
+            width: 4
+        }
+    };
+
+    output = table(mymap, config);
+    console.log(chalk.bold.greenBright(output));
+}
+
+const printTask = (task) => {
+    console.clear();
+    console.log();
+    console.log(chalk.bold.greenBright(task));
+    console.log();
+}
+
+const drawMap = (map, symb) => {
+    const mymap = generateMap(15, 15);
+    for (let i = 0; i < map.length; i++) {
+        for (let j = 0; j < map[i].length; j++) {
+            if (map[i][j] === 'P') {
+                mymap[i][j] = symb;
+            }
+            else if (map[i][j] === 'B') {
+                mymap[i][j] = '🧶';
+            } else if (map[i][j] === 'L') {
+                mymap[i][j] = '🐭';
+            } else if (map[i][j] === 'D') {
+                mymap[i][j] = '🐶';
+            } else mymap[i][j] = map[i][j];
+        }
+    }
+    printBorder(mymap);
+}
+
+const printStats = (cica) => {
+    let cat = countLife(cica.life);
+    process.stdout.write(chalk.bold.greenBright('  name: ' + cica.name + '                                  ' + '🐟: ' + cica.score + '                                   ' + 'Life: ' + cat));
+    console.log();
+}
+
+const printMap = (map, task, cica) => {
+    console.clear();
+    printTask(task); 
+    printStats(cica);
+    drawMap(map, cica.symb);    
+};
 
 const endOfGame = (inter, isWin) => {
     process.stdin.removeAllListeners('data');
@@ -90,4 +180,6 @@ const printSB = () => {
 module.exports = {
     endOfGame,
     appearTask,
+    printBorder,
+    printMap,
 }

@@ -19,6 +19,16 @@
     "life": 0
   },
   {
+<<<<<<< HEAD
+=======
+    "name": "jksd",
+    "x": 19,
+    "y": 8,
+    "score": 100,
+    "life": 3
+  },
+  {
+>>>>>>> meli
     "name": "tibi",
     "x": 19,
     "y": 7,
@@ -40,6 +50,7 @@
     "life": 3
   },
   {
+<<<<<<< HEAD
     "name": "fghghghgf",
     "x": 14,
     "y": 11,
@@ -205,19 +216,179 @@
   },
   {
     "name": "hfg",
-    "x": 14,
-    "y": 7,
-    "score": 0,
-    "life": 3
-  },
-  {
+=======
     "name": "Melani",
     "x": 14,
     "y": 7,
+    "score": 30,
+    "life": 3
+  },
+  {
+    "name": "fas",
+    "x": 14,
+    "y": 8,
+    "score": 2,
+    "life": 0,
+    "symb": "😹"
+  },
+  {
+    "name": "fgd",
+    "x": 14,
+    "y": 8,
+    "score": 1,
+    "life": 0
+  },
+  {
+    "name": "gfd",
+    "x": 14,
+    "y": 8,
+    "score": 1,
+    "life": 0
+  },
+  {
+    "name": "[Afds",
+    "x": 14,
+    "y": 8,
+    "score": 1,
+    "life": 0
+  },
+  {
+    "name": "fsd",
+    "x": 14,
+    "y": 8,
+    "score": 1,
+    "life": 0
+  },
+  {
+    "name": "d",
+    "x": 14,
+    "y": 8,
+    "score": 1,
+    "life": 0
+  },
+  {
+    "name": "aaa",
+    "x": 14,
+    "y": 7,
     "score": 0,
     "life": 3
   },
   {
+    "name": "q",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3
+  },
+  {
+    "name": "dea",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3
+  },
+  {
+    "name": "Stormtrooper",
+    "score": 0
+  },
+  {
+    "name": "123",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3
+  },
+  {
+    "name": "s",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 0
+  },
+  {
+    "name": "jk",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 0
+  },
+  {
+    "name": "asd",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3
+  },
+  {
+    "name": "",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3
+  },
+  {
+    "name": "a",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 0
+  },
+  {
+    "name": "fds",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 0
+  },
+  {
+    "name": "55",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 0
+  },
+  {
+    "name": "fa",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 0
+  },
+  {
+    "name": "[A",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3
+  },
+  {
+    "name": "efs",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3
+  },
+  {
+    "name": "Feri",
+>>>>>>> meli
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3
+  },
+  {
+<<<<<<< HEAD
+    "name": "Melani",
+=======
+    "name": "meli",
+>>>>>>> meli
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3
+  },
+  {
+<<<<<<< HEAD
     "name": "fdsgrfd",
     "x": 14,
     "y": 7,
@@ -232,5 +403,92 @@
     "score": 60,
     "life": 3,
     "symb": "😻"
+=======
+    "name": "b",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3
+  },
+  {
+    "name": "da",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3
+  },
+  {
+    "name": "j",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3
+  },
+  {
+    "name": "ds",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3
+  },
+  {
+    "name": "Ani",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 0
+  },
+  {
+    "name": "Meli",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3
+  },
+  {
+    "name": "f",
+    "x": 14,
+    "y": 6,
+    "score": 0,
+    "life": 2
+  },
+  {
+    "name": "melani",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3,
+    "symb": ""
+  },
+  {
+    "name": "sheuf",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3,
+    "symb": ""
+  },
+  {
+    "name": "ANIKÓ",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 0
+  },
+  {
+    "name": "sad",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 0
+  },
+  {
+    "name": "dsa",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3,
+    "symb": "😼"
+>>>>>>> meli
   }
 ]
