@@ -163,11 +163,9 @@ const hit = () => {
       if (bullets[j].x <= numbers[i].x && bullets[j].y === numbers[i].y) {
         bullets.splice(j, 1);
         if (isGood(numbers[i].num)) {
-//          sound.play("sound/correct.mp3");
           player.score++;
           numbers.splice(i, 1);
         } else {
-//          sound.play("sound/incorrect.mp3");
           player.life--;
         }
       }
@@ -315,6 +313,7 @@ const collection = () => {
   }
 };
 
+
 const getPlayerSymb = () => {
   const playerSymbols = ['😺', '😻', '😽', '😼', '😹', '😾', '🦁', '🐯'];
   index = readline.keyInSelect(playerSymbols, chalk.bold.greenBright('Choose a player'));
@@ -324,8 +323,6 @@ const getPlayerSymb = () => {
     player.symb = playerSymbols[index];
   };
 }
-
-
 
 
 module.exports = {
