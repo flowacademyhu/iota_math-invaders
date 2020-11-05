@@ -4,9 +4,9 @@ const figlet = require('figlet');
 let term = require('terminal-kit').terminal;
 var readlineSync = require('readline-sync');
 const lolcatjs = require('lolcatjs');
-let mpg = require('mpg123');
-let sound = new mpg.MpgPlayer();
-const { generateMap } = require('./map');
+
+const sound = require('./sound');
+const { generateMap, isGood } = require('./map');
 const { table, getBorderCharacters } = require('table');
 //const { fallingCats } = require('./fallingCats');
 
@@ -157,11 +157,7 @@ const endOfGame = (inter, isWin) => {
     console.clear();
 
     if (isWin) {
-       // sound.play("sound/win.mp3");
-        //console.log('\n\n\n\n\n\n\n\n\n\n');
-        // clearInterval(inter);
-        // fallingCats();
-        // let key = readlineSync.question(chalk.bold.greenBright('Press Enter to continue'));
+        console.log('\n\n\n\n\n\n\n\n\n\n');
         console.log(chalk.bold.greenBright(figlet.textSync('you win', {
             font: 'ANSI Shadow',
             horizontalLayout: 'full',
@@ -169,9 +165,9 @@ const endOfGame = (inter, isWin) => {
             width: 200,
             whitespaceBreak: true
         })));
+        sound.play("sound/win.mp3");
     }
     else {
-     //   sound.play("sound/gameover.mp3");
         console.log('\n\n\n\n\n\n\n\n\n\n');
         console.log(chalk.bold.redBright(figlet.textSync('game over', {
             font: 'ANSI Shadow',
@@ -180,6 +176,7 @@ const endOfGame = (inter, isWin) => {
             width: 125,
             whitespaceBreak: true
         })));
+        sound.play("sound/gameover.mp3");
     }
 
     // let key = readlineSync.question(chalk.bold.greenBright('Press Enter to continue'));
