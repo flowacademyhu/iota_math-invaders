@@ -192,7 +192,7 @@ const endOfGame = (inter, isWin) => {
         })));
     }
     else {
-        sound.play("sound/gameover.mp3");
+     //   sound.play("sound/gameover.mp3");
         console.log('\n\n\n\n\n\n\n\n\n\n');
         console.log(chalk.bold.redBright(figlet.textSync('game over', {
             font: 'ANSI Shadow',
