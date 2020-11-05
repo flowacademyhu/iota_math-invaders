@@ -11,6 +11,7 @@ const getName = () => {
     if (player.name === '') {
         player.name = 'Anonymus';
     };
+    
     let nameDoesntExist = true;
     for (let i = 0; i < rankJson.length; i++) {
         if (rankJson[i].name === player.name) {
@@ -53,7 +54,7 @@ const printScoreboard = () => {
     rankJson.sort((a, b) => {
         return b.score - a.score;
     });
-    for (let i = 0, k = 1; i < 10; i++, k++) {
+    for (let i = 0, k = 1; i < rankJson.length && i < 10; i++, k++) {
         scoreboard.push([k + '.', rankJson[i].name, rankJson[i].score]);
     };
     
@@ -73,7 +74,7 @@ const printScoreboard = () => {
     }
     );
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < rankJson.length && i < 10; i++) {
         if (rankJson[i].name === player.name)
             return false;
         else
