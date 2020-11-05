@@ -20,6 +20,11 @@ const menu = () => {
     clearInterval(inter);
     if (player.name === '') {
         getName();
+        process.stdin.removeAllListeners('data');
+        process.stdin.removeAllListeners('keypress');
+        process.stdin.setRawMode(false);
+        process.stdin.resume();
+        process.stdin.end();
         getPlayerSymb();
     }
     const excercisesInput = exercises.map(input => input.join(' '));
@@ -38,15 +43,17 @@ const menu = () => {
 
         const actualExercise = getActualExercise();
         appearTask(actualExercise);
-        console.log(chalk.bold.greenBright('Press any key to continue'))
+        let key = readline.question(chalk.bold.greenBright('Press Enter to continue'));
+        main();
+        // console.log(chalk.bold.greenBright('Press any key to continue'))
 
-        const stdin = process.stdin;
-        stdin.setRawMode(true); // Ne várjon enterre
-        stdin.resume(); // Csak process.exit-el lehet kilépni
-        stdin.setEncoding('utf8'); // Karaktereket kapjunk vissza
-        stdin.on('data', (key) => { // Callback függvény
-            main();
-        });
+        // const stdin = process.stdin;
+        // stdin.setRawMode(true); // Ne várjon enterre
+        // stdin.resume(); // Csak process.exit-el lehet kilépni
+        // stdin.setEncoding('utf8'); // Karaktereket kapjunk vissza
+        // stdin.on('data', (key) => { // Callback függvény
+        //     main();
+        // });
     };
 }
 

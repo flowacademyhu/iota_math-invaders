@@ -20,9 +20,11 @@ const extra = [];
 const player = { name: '', x: map.length - 1, y: Math.floor(map[0].length / 2), score: 0, life: 3, symb: '' };
 let previousScore = 0;
 
+
 const getMap = () => {
   return map;
 }
+
 
 const exercises =
   [['Shoot all the odd numbers', '(30 scores)'],
@@ -167,11 +169,13 @@ const hit = () => {
           numbers.splice(i, 1);
         } else {
           player.life--;
+          
         }
       }
     }
   }
 };
+
 
 
 const gamerator = (choose) => {
@@ -322,7 +326,8 @@ const getPlayerSymb = () => {
   } else {
     player.symb = playerSymbols[index];
   };
-}
+};
+
 
 
 module.exports = {
@@ -345,5 +350,5 @@ module.exports = {
   extraMove,
   collection,
   getPlayerSymb,
-  getMap,
+  getMap
 };
