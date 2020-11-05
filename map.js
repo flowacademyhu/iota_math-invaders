@@ -3,8 +3,8 @@ const chalk = require("chalk");
 const figlet = require('figlet');
 const lolcatjs = require('lolcatjs');
 const readline = require('readline-sync');
-const mpg = require('mpg123');
-const sound = new mpg.MpgPlayer();
+
+const sound = require('./sound');
 
 const generateMap = (height, width) => {
   const arr = new Array(height);
