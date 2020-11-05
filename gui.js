@@ -35,7 +35,7 @@ const appearTask = (task) => {
     console.log();
     lolcatjs.fromString(figlet.textSync(task, {
         font: 'ANSI Shadow',
-        horizontalLayout: 'full',
+        horizontalLayout: 'fitted',
         verticalLayout: 'full',
         width: 125,
         whitespaceBreak: true
@@ -198,15 +198,13 @@ const endOfGame = (inter, isWin) => {
             font: 'ANSI Shadow',
             horizontalLayout: 'full',
             verticalLayout: 'full',
-            width: 200,
+            width: 125,
             whitespaceBreak: true
         })));
     }
 
     let key = readlineSync.question(chalk.bold.greenBright('Press Enter to continue'));
     printSB();
-    sound.stop("sound/win.mp3");
-    sound.stop("sound/gameover.mp3");
 
     // const stdin = process.stdin;
     // stdin.setRawMode(true); // Ne várjon enterre

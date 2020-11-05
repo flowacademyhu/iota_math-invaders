@@ -317,6 +317,7 @@ const collection = () => {
   }
 };
 
+
 const getPlayerSymb = () => {
   const playerSymbols = ['😺', '😻', '😽', '😼', '😹', '😾', '🦁', '🐯'];
   index = readline.keyInSelect(playerSymbols, chalk.bold.greenBright('Choose a player'));
@@ -326,8 +327,6 @@ const getPlayerSymb = () => {
     player.symb = playerSymbols[index];
   };
 };
-
-
 
 
 
