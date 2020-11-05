@@ -1,9 +1,9 @@
-ranking.json
 index2.js
 testing.js
 .vscode
 package-lock.json
 package.json
+ranking.json
 # Logs
 logs
 *.log
@@ -13,6 +13,7 @@ yarn-error.log*
 lerna-debug.log*
 proba.js
 fireworks.js
+firework.js
 ranking.json
 
 # Diagnostic reports (https://nodejs.org/api/report.html)

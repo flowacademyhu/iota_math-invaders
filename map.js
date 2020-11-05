@@ -1,9 +1,10 @@
-const { table, getBorderCharacters } = require('table');
 const term = require('terminal-kit').terminal;
 const chalk = require("chalk");
 const figlet = require('figlet');
 const lolcatjs = require('lolcatjs');
 const readline = require('readline-sync');
+const mpg = require('mpg123');
+const sound = new mpg.MpgPlayer();
 
 const generateMap = (height, width) => {
   const arr = new Array(height);
@@ -18,6 +19,11 @@ const numbers = []; // x, y, num
 const extra = [];
 const player = { name: '', x: map.length - 1, y: Math.floor(map[0].length / 2), score: 0, life: 3, symb: '' };
 let previousScore = 0;
+
+const getMap = () => {
+  return map;
+}
+
 
 const exercises =
   [['Shoot all the odd numbers', '(30 scores)'],
@@ -114,8 +120,7 @@ const isFinish = () => {
   }
   return false;
 }
-
-const fillMap = () => {
+const fillMap = (map) => {
   for (let i = 0; i < map.length; i++) {
     for (let j = 0; j < map[i].length; j++) {
       map[i][j] = ' ';
@@ -145,87 +150,6 @@ const fillMap = () => {
   }
 };
 
-
-const countLife = (life) => {
-  let cat;
-
-  if (life === 5) {
-    cat = '😻 😻 😻 🎀 🎀';
-  } else if (life === 4) {
-    cat = '😻 😻 😻 🎀';
-  } else if (life === 3) {
-    cat = '😻 😻 😻';
-  } else if (life === 2) {
-    cat = '😸 😸';
-  } else if (life === 1) {
-    cat = '🙀';
-  }
-
-  return cat;
-}
-
-const printMap = (exercise) => {
-  const mymap = generateMap(15, 15);
-  for (let i = 0; i < map.length; i++) {
-    for (let j = 0; j < map[i].length; j++) {
-      if (map[i][j] === 'P') {
-        mymap[i][j] = player.symb;
-      }
-      else if (map[i][j] === 'B') {
-        mymap[i][j] = '🧶';
-      } else if (map[i][j] === 'L') {
-        mymap[i][j] = '🐭';
-      } else if (map[i][j] === 'D') {
-        mymap[i][j] = '🐶';
-      } else mymap[i][j] = map[i][j];
-    }
-  }
-
-  console.clear();
-
-let cat = countLife(player.life);
-
-
-  console.clear();
-  console.log();
-  console.log(chalk.bold.greenBright(exercise));
-  console.log();
-  process.stdout.write(chalk.bold.greenBright('  name: ' + player.name + '                                  ' + '🐟: ' + player.score + '                                   ' + 'Life: ' + cat));
-  console.log();
-
-
-
-  let config, output;
-  config = {
-    border: {
-      topBody: `─`,
-      topJoin: `─`,
-      topLeft: `┌`,
-      topRight: `┐`,
-
-      bottomBody: `─`,
-      bottomJoin: `─`,
-      bottomLeft: `└`,
-      bottomRight: `┘`,
-
-      bodyLeft: `│`,
-      bodyRight: `│`,
-      bodyJoin: ` `,
-
-      joinBody: ` `,
-      joinLeft: `│`,
-      joinRight: `│`,
-      joinJoin: ` `
-    },
-    columnDefault: {
-      width: 4
-    }
-  };
-
-  output = table(mymap, config);
-  console.log(chalk.bold.greenBright(output));
-};
-
 const playerMove = (isRight) => {
   if (isRight && player.y < map[0].length - 1) {
     player.y++;
@@ -237,12 +161,14 @@ const playerMove = (isRight) => {
 const hit = () => {
   for (let i = 0; i < numbers.length; i++) {
     for (let j = 0; j < bullets.length; j++) {
-      if (bullets[j].x === numbers[i].x && bullets[j].y === numbers[i].y) {
+      if (bullets[j].x <= numbers[i].x && bullets[j].y === numbers[i].y) {
         bullets.splice(j, 1);
         if (isGood(numbers[i].num)) {
+//          sound.play("sound/correct.mp3");
           player.score++;
           numbers.splice(i, 1);
         } else {
+//          sound.play("sound/incorrect.mp3");
           player.life--;
         }
       }
@@ -295,7 +221,6 @@ const gamerator = (choose) => {
       } else i--;
     }
   }
-
   for (let i = 0; i < 15; i++) {
     const object = { x: 0, y: 0, num: 0 };
     object.num = arr[i];
@@ -376,10 +301,12 @@ const collection = () => {
     if (extra[i].x === player.x && extra[i].y === player.y) {
       if (extra[i].function === 0) {
         if (player.life < 5) {
+          sound.play("sound/mouse.mp3");
           player.life++;
         }
       } else {
         if (player.life > 0) {
+          sound.play("sound/dog.mp3");
           player.life--;
         }
       }
@@ -392,13 +319,20 @@ const getPlayerSymb = () => {
   const playerSymbols = ['😺', '😻', '😽', '😼', '😹', '😾', '🦁', '🐯'];
   index = readline.keyInSelect(playerSymbols, chalk.bold.greenBright('Choose a player'));
   if (index === -1) {
-      process.exit();
+    process.exit();
   } else {
-      player.symb = playerSymbols[index];
+    player.symb = playerSymbols[index];
   };
-}
+  // term.singleColumnMenu( items , func = ( error , response ) => {
+  //   term( '\n' ).eraseLineAfter.green(
+  //     setPlayerSymb(response.selectedIndex)	) ;
+  // } ) ;
+};
 
 
+const setPlayerSymb = (index) => {
+  player.symb = playerSymbols[index];
+ };
 
 
 module.exports = {
@@ -406,7 +340,6 @@ module.exports = {
   exercises,
   generateMap,
   fillMap,
-  printMap,
   playerMove,
   hit,
   gamerator,
@@ -421,5 +354,6 @@ module.exports = {
   fillExtra,
   extraMove,
   collection,
-  getPlayerSymb
+  getPlayerSymb,
+  getMap,
 };
