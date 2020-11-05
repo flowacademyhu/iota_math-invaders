@@ -20,6 +20,7 @@ const extra = [];
 const player = { name: '', x: map.length - 1, y: Math.floor(map[0].length / 2), score: 0, life: 3, symb: '' };
 let previousScore = 0;
 
+
 const getMap = () => {
   return map;
 }
@@ -164,17 +165,17 @@ const hit = () => {
       if (bullets[j].x <= numbers[i].x && bullets[j].y === numbers[i].y) {
         bullets.splice(j, 1);
         if (isGood(numbers[i].num)) {
-//          sound.play("sound/correct.mp3");
           player.score++;
           numbers.splice(i, 1);
         } else {
-//          sound.play("sound/incorrect.mp3");
           player.life--;
+          
         }
       }
     }
   }
 };
+
 
 
 const gamerator = (choose) => {
@@ -324,16 +325,10 @@ const getPlayerSymb = () => {
   } else {
     player.symb = playerSymbols[index];
   };
-  // term.singleColumnMenu( items , func = ( error , response ) => {
-  //   term( '\n' ).eraseLineAfter.green(
-  //     setPlayerSymb(response.selectedIndex)	) ;
-  // } ) ;
 };
 
 
-const setPlayerSymb = (index) => {
-  player.symb = playerSymbols[index];
- };
+
 
 
 module.exports = {
@@ -356,5 +351,5 @@ module.exports = {
   extraMove,
   collection,
   getPlayerSymb,
-  getMap,
+  getMap
 };

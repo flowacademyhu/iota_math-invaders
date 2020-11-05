@@ -6,8 +6,25 @@ var readlineSync = require('readline-sync');
 const lolcatjs = require('lolcatjs');
 const mpg = require('mpg123');
 const sound = new mpg.MpgPlayer();
-const { generateMap} = require('./map');
-const { table } = require('table');
+const { generateMap, isGood } = require('./map');
+const { table, getBorderCharacters } = require('table');
+
+// const hit = () => {
+//     for (let i = 0; i < numbers.length; i++) {
+//       for (let j = 0; j < bullets.length; j++) {
+//         if (bullets[j].x <= numbers[i].x && bullets[j].y === numbers[i].y) {
+//           bullets.splice(j, 1);
+//           if (isGood(numbers[i].num)) {
+//             player.score++;
+//             numbers.splice(i, 1);
+//           } else {
+//             player.life--;
+//             printMapRed();
+//           }
+//         }
+//       }
+//     }
+//   };
 
 const appearTask = (task) => {
     console.clear();
@@ -104,17 +121,55 @@ const drawMap = (map, symb) => {
 }
 
 const printStats = (cica) => {
-    let cat = countLife(cica.life);
-    process.stdout.write(chalk.bold.greenBright('  name: ' + cica.name + '                                  ' + '🐟: ' + cica.score + '                                   ' + 'Life: ' + cat));
-    console.log();
+    const status = generateMap(1, 3);
+    const cat = countLife(cica.life);
+    status[0][0] = chalk.bold.greenBright(' Name: ' + cica.name);
+    status[0][1] = '🐟: ' + chalk.bold.greenBright(cica.score);
+    status[0][2] = chalk.bold.greenBright('Life: ') + cat;
+    let output;
+    output = table(status, {
+        border: getBorderCharacters(`void`),
+        columnDefault: {
+            paddingLeft: 0,
+            paddingRight: 1
+        },
+        drawHorizontalLine: () => {
+            return false
+        },
+        columns: {
+            0: {
+                width: 34
+              },
+            1: {
+              width: 34,
+              alignment: 'center',
+            },
+            2: {
+                width: 34,
+                alignment: 'right'
+              }
+          }
+    });
+    console.log(output);
 }
 
 const printMap = (map, task, cica) => {
     console.clear();
-    printTask(task); 
+    printTask(task);
     printStats(cica);
-    drawMap(map, cica.symb);    
+    drawMap(map, cica.symb);
 };
+
+// const printMapRed = (map, task, cica) => {
+//     console.clear();
+//     console.clear();
+//     console.log();
+//     console.log(chalk.bold.redBright(task));
+//     console.log();
+//     printStats(cica);
+//     drawMap(map, cica.symb);
+//   };
+
 
 const endOfGame = (inter, isWin) => {
     process.stdin.removeAllListeners('data');
@@ -147,7 +202,7 @@ const endOfGame = (inter, isWin) => {
             whitespaceBreak: true
         })));
     }
-   
+
     let key = readlineSync.question(chalk.bold.greenBright('Press Enter to continue'));
     printSB();
     sound.stop("sound/win.mp3");
@@ -170,7 +225,7 @@ const printSB = () => {
     console.clear();
     printScoreboard();
     let key = readlineSync.question(chalk.bold.greenBright('Press Enter to continue'));
-    
+
 }
 
 
@@ -179,5 +234,5 @@ module.exports = {
     endOfGame,
     appearTask,
     printBorder,
-    printMap,
+    printMap
 }
