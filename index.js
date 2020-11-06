@@ -5,7 +5,7 @@ const sound = require('./sound');
 const map = require('./map');
 const { getName, printScoreboard } = require('./scoreboard');
 
-const { appearTask, endOfGame, printMap, printSB } = require('./gui');
+const { appearTask, endOfGame, printMap, printSB, appearGame } = require('./gui');
 let inter;
 
 let player = map.getPlayer();
@@ -117,5 +117,6 @@ const main = () => {
     });
 };
 
+appearGame();
 menu();
 

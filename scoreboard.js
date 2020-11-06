@@ -60,7 +60,7 @@ const printScoreboard = () => {
   );
 
  
-  console.log(chalk.bold.greenBright('Your scoore: ', player.score));
+  console.log(chalk.bold.greenBright(player.name + ', your score:', player.score));
   console.log('\n\n');
 };
 

@@ -174,11 +174,27 @@ const printSB = () => {
   let key = readlineSync.question(chalk.bold.greenBright('Press Enter to continue'));
 };
 
+const appearGame = () => {
+  console.clear();
+  const gameName = '   Math invaders';
+  console.log('\n\n\n\n\n\n\n\n');
+  lolcatjs.fromString(figlet.textSync(gameName, {
+      font: 'ANSI Shadow',
+      horizontalLayout: 'fitted',
+      verticalLayout: 'full',
+      width: 200,
+      whitespaceBreak: true
+  }));
+  console.log('\n\n');
+  let key = readlineSync.question(chalk.bold.greenBright('Press Enter to continue'));
+}
+
 
 module.exports = {
   endOfGame,
   appearTask,
   printBorder,
   printMap,
-  printSB
+  printSB,
+  appearGame
 }
