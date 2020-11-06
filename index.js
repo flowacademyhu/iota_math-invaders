@@ -1,11 +1,14 @@
 const readline = require('readline-sync');
 const chalk = require("chalk");
 const sound = require('./sound');
-const { fillMap, playerMove, hit, getMap, gamerator, numbersMove, bulletsMove, shoot, getActualExercise, isFinish, player, previousScore, reset, resetScoreWin, exercises, fillExtra, extraMove, collection, getPlayerSymb } = require('./map');
+
+const map = require('./map');
 const { getName, printScoreboard } = require('./scoreboard');
+
 const { appearTask, endOfGame, printMap, printSB } = require('./gui');
 let inter;
 
+let player = map.getPlayer();
 
 const menu = () => {
     console.clear();
@@ -22,21 +25,23 @@ const menu = () => {
         process.stdin.setRawMode(false);
         process.stdin.resume();
         process.stdin.end();
-        getPlayerSymb();
+        map.getPlayerSymb();
     }
-    const excercisesInput = exercises.map(input => input.join(' '));
+    const excercisesInput = map.exercises.map(input => input.join(' '));
     index = readline.keyInSelect(excercisesInput, chalk.bold.greenBright('Choose an exercise'));
     if (index === -1) {
         process.exit();
     } else {
-        gamerator(index);
+        map.gamerator(index);
+
         process.stdin.removeAllListeners('data');
         process.stdin.removeAllListeners('keypress');
         process.stdin.setRawMode(false);
         process.stdin.resume();
         process.stdin.end();
         clearInterval(inter);
-        const actualExercise = getActualExercise();
+
+        const actualExercise = map.getActualExercise();
         appearTask(actualExercise);
         let key = readline.question(chalk.bold.greenBright('Press Enter to continue'));
         main();
@@ -55,31 +60,31 @@ const main = () => {
     inter = setInterval(() => {
         i++;
         if (i % 55 === 0) {
-            numbersMove();
+            map.numbersMove();
         }
         if (i % 70 === 0) {
-            fillExtra();
+            map.fillExtra();
         }
         if (i % 3 === 0) {
-            extraMove();
+            map.extraMove();
         }
-        const map = getMap();
-        fillMap(map);
-        const actualExercise = getActualExercise();
-        printMap(map, actualExercise, player);
-        bulletsMove();
-        hit();
-        collection();
-        if (isFinish()) {
+        const field = map.getMap();
+        map.fillMap(field);
+        const actualExercise = map.getActualExercise();
+        printMap(field, actualExercise, player);
+        map.bulletsMove();
+        map.hit();
+        map.collection();
+        if (map.isFinish()) {
             clearInterval(inter);
             const isWin = player.life > 0
             if (isWin) {
-                resetScoreWin();
+                map.resetScoreWin();
             }
 
             endOfGame(inter, isWin, () => {
                 printSB();
-                reset();
+                map.reset();
                 menu();
             });
         }
@@ -96,18 +101,19 @@ const main = () => {
             printScoreboard();
             player.score = 0;
             previousScore = 0;
-            reset();
+            player.life = 0;
+            map.reset();
             menu();
         }
         if (key === "\033[C") {
-            playerMove(true);
+            map.playerMove(true);
         }
         if (key === "\033[D") {
-            playerMove(false);
+            map.playerMove(false);
         }
         if (key === "\033[A" || key === " ") {
             sound.play("sound/shoot.mp3");
-            shoot();
+            map.shoot();
         }
     });
 };
