@@ -1,10 +1,6 @@
-const term = require('terminal-kit').terminal;
 const chalk = require("chalk");
-const figlet = require('figlet');
-const lolcatjs = require('lolcatjs');
 const readline = require('readline-sync');
-const mpg = require('mpg123');
-const sound = new mpg.MpgPlayer();
+const sound = require('./sound');
 
 const generateMap = (height, width) => {
   const arr = new Array(height);
@@ -13,6 +9,7 @@ const generateMap = (height, width) => {
   }
   return arr;
 };
+
 const map = generateMap(15, 15);
 const bullets = []; // x, y
 const numbers = []; // x, y, num
@@ -22,6 +19,10 @@ let previousScore = 0;
 
 const getMap = () => {
   return map;
+};
+
+const getPlayer = () => {
+  return player;
 }
 
 
@@ -63,12 +64,12 @@ const isGood = (n) => {
       if (n % 2 !== 0) {
         return true;
       }
-      else return false;
+      return false;
     case 1:
       if (n % 2 === 0) {
         return true;
       }
-      else return false;
+      return false;
     case 2:
     case 3:
     case 4:
@@ -79,25 +80,28 @@ const isGood = (n) => {
       if (n % (rand + 1) === 0) {
         return true;
       }
-      else return false;
+      return false;
     case 9:
       for (let i = 0; i < numbers.length; i++) {
         helpArray.push(numbers[i].num);
-      }
+      };
       if (n === Math.min(...helpArray)) {
         return true;
-      } else return false;
+      }
+      return false;
     case 10:
       for (let i = 0; i < numbers.length; i++) {
         helpArray.push(numbers[i].num);
       }
       if (n === Math.max(...helpArray)) {
         return true;
-      } else return false;
+      }
+      return false;
     case 11:
       if (isPrime(n)) {
         return true;
-      } else return false;
+      }
+      return false;
   }
 };
 
@@ -107,47 +111,48 @@ const calculateCounter = () => {
     if (isGood(numbers[i].num)) counter++;
   }
   return counter;
-}
+};
 
 const getActualExercise = () => {
   return exercises[rand][0];
-}
+};
 
 const isFinish = () => {
-  let c = calculateCounter();
+  const c = calculateCounter();
   if (c === 0 || player.life === 0) {
     return true;
   }
   return false;
-}
+};
+
 const fillMap = (map) => {
   for (let i = 0; i < map.length; i++) {
     for (let j = 0; j < map[i].length; j++) {
       map[i][j] = ' ';
       if (player.x === i && player.y === j) {
         map[i][j] = 'P';
-      }
+      };
       for (let k = 0; k < bullets.length; k++) {
         if (i === bullets[k].x && j === bullets[k].y) {
           map[i][j] = 'B';
-        }
-      }
+        };
+      };
       for (let k = 0; k < extra.length; k++) {
         if (i === extra[k].x && j === extra[k].y) {
           if (extra[k].function === 0) {
             map[i][j] = 'L';
           } else {
             map[i][j] = 'D';
-          }
-        }
-      }
+          };
+        };
+      };
       for (let k = 0; k < numbers.length; k++) {
         if (i === numbers[k].x && j === numbers[k].y) {
           map[i][j] = numbers[k].num;
-        }
-      }
-    }
-  }
+        };
+      };
+    };
+  };
 };
 
 const playerMove = (isRight) => {
@@ -164,17 +169,16 @@ const hit = () => {
       if (bullets[j].x <= numbers[i].x && bullets[j].y === numbers[i].y) {
         bullets.splice(j, 1);
         if (isGood(numbers[i].num)) {
-//          sound.play("sound/correct.mp3");
           player.score++;
           numbers.splice(i, 1);
         } else {
-//          sound.play("sound/incorrect.mp3");
           player.life--;
-        }
-      }
-    }
-  }
+        };
+      };
+    };
+  };
 };
+
 
 
 const gamerator = (choose) => {
@@ -182,7 +186,7 @@ const gamerator = (choose) => {
     rand = Math.floor(Math.random() * (exercises.length - 1));
   } else {
     rand = choose;
-  }
+  };
   const arr = [];
   if (rand >= 2 && rand <= 8) {
     const mult = [];
@@ -191,16 +195,16 @@ const gamerator = (choose) => {
       if (mult.includes(randMult) === false) {
         mult[i] = randMult;
       } else i--;
-    }
+    };
     for (let i = 0; i < 5; i++) {
       const randIndex = Math.floor(Math.random() * 15);
       if (arr[randIndex] === undefined) {
         arr[randIndex] = mult[i] * (rand + 1);
       } else {
         i--;
-      }
-    }
-  }
+      };
+    };
+  };
   if (rand === 11) {
     const primes = [2, 5, 13, 29, 43];
     for (let i = 0; i < 5; i++) {
@@ -230,6 +234,8 @@ const gamerator = (choose) => {
     numbers.push(object);
   }
 };
+
+
 const numbersMove = () => {
   for (let i = 0; i < numbers.length; i++) {
     if (numbers[i].x < map.length - 2) {
@@ -239,14 +245,16 @@ const numbersMove = () => {
     }
   }
 };
+
+
 const bulletsMove = () => {
   for (let i = 0; i < bullets.length; i++) {
     if (bullets[i].x === 0) {
       bullets.splice(i, 1);
     } else {
       bullets[i].x--;
-    }
-  }
+    };
+  };
 };
 
 const shoot = () => {
@@ -256,6 +264,7 @@ const shoot = () => {
 const reset = () => {
   if (player.life === 0) {
     player.score = 0;
+    previousScore = 0;
   }
   for (let i = 0; i < map.length; i++) {
     for (let j = 0; j < map[i].length; j++) {
@@ -278,7 +287,7 @@ const resetScoreWin = () => {
     player.score = previousScore + 60;
   }
   previousScore = player.score;
-}
+};
 
 const fillExtra = () => {
   const rand = Math.floor(Math.random() * 2);   // 0 vagy 1
@@ -312,8 +321,9 @@ const collection = () => {
       }
       extra.splice(i, 1);
     }
-  }
+  };
 };
+
 
 const getPlayerSymb = () => {
   const playerSymbols = ['😺', '😻', '😽', '😼', '😹', '😾', '🦁', '🐯'];
@@ -323,16 +333,11 @@ const getPlayerSymb = () => {
   } else {
     player.symb = playerSymbols[index];
   };
-  // term.singleColumnMenu( items , func = ( error , response ) => {
-  //   term( '\n' ).eraseLineAfter.green(
-  //     setPlayerSymb(response.selectedIndex)	) ;
-  // } ) ;
 };
 
 
-const setPlayerSymb = (index) => {
-  player.symb = playerSymbols[index];
- };
+
+
 
 
 module.exports = {
@@ -356,4 +361,6 @@ module.exports = {
   collection,
   getPlayerSymb,
   getMap,
+  previousScore,
+  getPlayer,
 };

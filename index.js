@@ -1,14 +1,14 @@
-const { generateMap, fillMap, playerMove, hit, getMap, gamerator, numbersMove, bulletsMove, shoot, getActualExercise, isGood, isFinish, player, reset, resetScoreWin, exercises, fillExtra, extraMove, collection, getPlayerSymb } = require('./map');
-const { getName, printScoreboard } = require('./scoreboard');
 const readline = require('readline-sync');
 const chalk = require("chalk");
-const figlet = require('figlet');
-const mpg = require('mpg123');
-const sound = new mpg.MpgPlayer();
-const { appearTask, endOfGame, printMap } = require('./gui');
-//let term = require('terminal-kit').terminal;
+const sound = require('./sound');
+
+const map = require('./map');
+const { getName, printScoreboard } = require('./scoreboard');
+
+const { appearTask, endOfGame, printMap, printSB } = require('./gui');
 let inter;
 
+let player = map.getPlayer();
 
 const menu = () => {
     console.clear();
@@ -20,14 +20,19 @@ const menu = () => {
     clearInterval(inter);
     if (player.name === '') {
         getName();
-        getPlayerSymb();
+        process.stdin.removeAllListeners('data');
+        process.stdin.removeAllListeners('keypress');
+        process.stdin.setRawMode(false);
+        process.stdin.resume();
+        process.stdin.end();
+        map.getPlayerSymb();
     }
-    const excercisesInput = exercises.map(input => input.join(' '));
+    const excercisesInput = map.exercises.map(input => input.join(' '));
     index = readline.keyInSelect(excercisesInput, chalk.bold.greenBright('Choose an exercise'));
     if (index === -1) {
         process.exit();
     } else {
-        gamerator(index);
+        map.gamerator(index);
 
         process.stdin.removeAllListeners('data');
         process.stdin.removeAllListeners('keypress');
@@ -36,17 +41,10 @@ const menu = () => {
         process.stdin.end();
         clearInterval(inter);
 
-        const actualExercise = getActualExercise();
+        const actualExercise = map.getActualExercise();
         appearTask(actualExercise);
-        console.log(chalk.bold.greenBright('Press any key to continue'))
-
-        const stdin = process.stdin;
-        stdin.setRawMode(true); // Ne várjon enterre
-        stdin.resume(); // Csak process.exit-el lehet kilépni
-        stdin.setEncoding('utf8'); // Karaktereket kapjunk vissza
-        stdin.on('data', (key) => { // Callback függvény
-            main();
-        });
+        let key = readline.question(chalk.bold.greenBright('Press Enter to continue'));
+        main();
     };
 }
 
@@ -62,54 +60,59 @@ const main = () => {
     inter = setInterval(() => {
         i++;
         if (i % 55 === 0) {
-            numbersMove();
+            map.numbersMove();
         }
         if (i % 70 === 0) {
-            fillExtra();
+            map.fillExtra();
         }
         if (i % 3 === 0) {
-            extraMove();
+            map.extraMove();
         }
-        const map = getMap();
-        fillMap(map);
-        const actualExercise = getActualExercise();
-        printMap(map, actualExercise, player);
-        bulletsMove();
-        hit();
-        collection();
-        if (isFinish()) {
+        const field = map.getMap();
+        map.fillMap(field);
+        const actualExercise = map.getActualExercise();
+        printMap(field, actualExercise, player);
+        map.bulletsMove();
+        map.hit();
+        map.collection();
+        if (map.isFinish()) {
+            clearInterval(inter);
             const isWin = player.life > 0
             if (isWin) {
-                resetScoreWin();
+                map.resetScoreWin();
             }
 
-            endOfGame(inter, isWin);
-            reset();
-            menu();
+            endOfGame(inter, isWin, () => {
+                printSB();
+                map.reset();
+                menu();
+            });
         }
     }, 65);
 
     const stdin = process.stdin;
-    stdin.setRawMode(true); // Ne várjon enterre
-    stdin.resume(); // Csak process.exit-el lehet kilépni
-    stdin.setEncoding('utf8'); // Karaktereket kapjunk vissza
-    stdin.on('data', (key) => { // Callback függvény
+    stdin.setRawMode(true); 
+    stdin.resume(); 
+    stdin.setEncoding('utf8'); 
+    stdin.on('data', (key) => {
         if (key === 'q') {
             console.clear();
             printScoreboard();
             player.score = 0;
-            reset();
+            previousScore = 0;
+            player.life = 0;
+            map.reset();
             menu();
         }
         if (key === "\033[C") {
-            playerMove(true);
+            map.playerMove(true);
         }
         if (key === "\033[D") {
-            playerMove(false);
+            map.playerMove(false);
         }
         if (key === "\033[A" || key === " ") {
             sound.play("sound/shoot.mp3");
-            shoot();
+            map.shoot();
         }
     });
 };

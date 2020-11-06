@@ -1,183 +1,184 @@
-const { printScoreboard } = require("./scoreboard");
 const chalk = require("chalk");
 const figlet = require('figlet');
-//let terminalKit = require('terminal-kit').terminal;
-var readlineSync = require('readline-sync');
+const readlineSync = require('readline-sync');
 const lolcatjs = require('lolcatjs');
-const mpg = require('mpg123');
-const sound = new mpg.MpgPlayer();
-const { generateMap} = require('./map');
-const { table } = require('table');
+const { table, getBorderCharacters } = require('table');
+const sound = require('./sound');
+
+const { printScoreboard } = require("./scoreboard");
+const { generateMap } = require('./map');
+const { fallingCats } = require('./fallingCats');
+
 
 const appearTask = (task) => {
     console.clear();
-    console.log();
-    console.log();
-    console.log();
-    console.log();
-    console.log();
+    console.log('\n\n\n\n\n');
     lolcatjs.fromString(figlet.textSync(task, {
         font: 'ANSI Shadow',
-        horizontalLayout: 'full',
+        horizontalLayout: 'fitted',
         verticalLayout: 'full',
         width: 125,
         whitespaceBreak: true
     }));
-    console.log();
-    console.log();
+    console.log('\n\n');
 }
 
 const countLife = (life) => {
-    let cat;
+  let cat;
 
-    if (life === 5) {
-        cat = '😻 😻 😻 🎀 🎀';
-    } else if (life === 4) {
-        cat = '😻 😻 😻 🎀';
-    } else if (life === 3) {
-        cat = '😻 😻 😻';
-    } else if (life === 2) {
-        cat = '😸 😸';
-    } else if (life === 1) {
-        cat = '🙀';
-    }
+  if (life === 5) {
+    cat = '😻 😻 😻 🎀 🎀';
+  } else if (life === 4) {
+    cat = '😻 😻 😻 🎀';
+  } else if (life === 3) {
+    cat = '😻 😻 😻';
+  } else if (life === 2) {
+    cat = '😸 😸';
+  } else if (life === 1) {
+    cat = '🙀';
+  }
 
-    return cat;
-}
-
-const printBorder = (mymap) => {
-    let config, output;
-    config = {
-        border: {
-            topBody: `─`,
-            topJoin: `─`,
-            topLeft: `┌`,
-            topRight: `┐`,
-
-            bottomBody: `─`,
-            bottomJoin: `─`,
-            bottomLeft: `└`,
-            bottomRight: `┘`,
-
-            bodyLeft: `│`,
-            bodyRight: `│`,
-            bodyJoin: ` `,
-
-            joinBody: ` `,
-            joinLeft: `│`,
-            joinRight: `│`,
-            joinJoin: ` `
-        },
-        columnDefault: {
-            width: 4
-        }
-    };
-
-    output = table(mymap, config);
-    console.log(chalk.bold.greenBright(output));
-}
-
-const printTask = (task) => {
-    console.clear();
-    console.log();
-    console.log(chalk.bold.greenBright(task));
-    console.log();
-}
-
-const drawMap = (map, symb) => {
-    const mymap = generateMap(15, 15);
-    for (let i = 0; i < map.length; i++) {
-        for (let j = 0; j < map[i].length; j++) {
-            if (map[i][j] === 'P') {
-                mymap[i][j] = symb;
-            }
-            else if (map[i][j] === 'B') {
-                mymap[i][j] = '🧶';
-            } else if (map[i][j] === 'L') {
-                mymap[i][j] = '🐭';
-            } else if (map[i][j] === 'D') {
-                mymap[i][j] = '🐶';
-            } else mymap[i][j] = map[i][j];
-        }
-    }
-    printBorder(mymap);
-}
-
-const printStats = (cica) => {
-    let cat = countLife(cica.life);
-    process.stdout.write(chalk.bold.greenBright('  name: ' + cica.name + '                                  ' + '🐟: ' + cica.score + '                                   ' + 'Life: ' + cat));
-    console.log();
-}
-
-const printMap = (map, task, cica) => {
-    console.clear();
-    printTask(task); 
-    printStats(cica);
-    drawMap(map, cica.symb);    
+  return cat;
 };
 
-const endOfGame = (inter, isWin) => {
-    process.stdin.removeAllListeners('data');
-    process.stdin.removeAllListeners('keypress');
-    process.stdin.setRawMode(false);
-    process.stdin.resume();
-    process.stdin.end();
-    clearInterval(inter);
-    console.clear();
+const printBorder = (mymap) => {
+  let config, output;
+  config = {
+    border: {
+      topBody: `─`,
+      topJoin: `─`,
+      topLeft: `┌`,
+      topRight: `┐`,
 
-    if (isWin) {
-        sound.play("sound/win.mp3");
-        console.log('\n\n\n\n\n\n\n\n\n\n');
-        console.log(chalk.bold.greenBright(figlet.textSync('you win', {
-            font: 'ANSI Shadow',
-            horizontalLayout: 'full',
-            verticalLayout: 'full',
-            width: 200,
-            whitespaceBreak: true
-        })));
+      bottomBody: `─`,
+      bottomJoin: `─`,
+      bottomLeft: `└`,
+      bottomRight: `┘`,
+
+      bodyLeft: `│`,
+      bodyRight: `│`,
+      bodyJoin: ` `,
+
+      joinBody: ` `,
+      joinLeft: `│`,
+      joinRight: `│`,
+      joinJoin: ` `
+    },
+    columnDefault: {
+      width: 4
     }
-    else {
-        sound.play("sound/gameover.mp3");
-        console.log('\n\n\n\n\n\n\n\n\n\n');
-        console.log(chalk.bold.redBright(figlet.textSync('game over', {
-            font: 'ANSI Shadow',
-            horizontalLayout: 'full',
-            verticalLayout: 'full',
-            width: 200,
-            whitespaceBreak: true
-        })));
+  };
+
+  output = table(mymap, config);
+  console.log(chalk.bold.greenBright(output));
+};
+
+const printTask = (task) => {
+  console.clear();
+  console.log();
+  console.log(chalk.bold.greenBright(task));
+  console.log();
+};
+
+const drawMap = (map, symb) => {
+  const mymap = generateMap(15, 15);
+  for (let i = 0; i < map.length; i++) {
+    for (let j = 0; j < map[i].length; j++) {
+      if (map[i][j] === 'P') {
+        mymap[i][j] = symb;
+      } else if (map[i][j] === 'B') {
+        mymap[i][j] = '🧶';
+      } else if (map[i][j] === 'L') {
+        mymap[i][j] = '🐭';
+      } else if (map[i][j] === 'D') {
+        mymap[i][j] = '🐶';
+      } else mymap[i][j] = map[i][j];
     }
-   
+  }
+  printBorder(mymap);
+};
+
+const printStats = (thePlayer) => {
+  const status = generateMap(1, 3);
+  const cat = countLife(thePlayer.life);
+  status[0][0] = chalk.bold.greenBright(' Name: ' + thePlayer.name);
+  status[0][1] = '🐟: ' + chalk.bold.greenBright(thePlayer.score);
+  status[0][2] = chalk.bold.greenBright('Life: ') + cat;
+  let output;
+  output = table(status, {
+    border: getBorderCharacters(`void`),
+    columnDefault: {
+      paddingLeft: 0,
+      paddingRight: 1
+    },
+    drawHorizontalLine: () => {
+      return false;
+    },
+    columns: {
+      0: {
+        width: 34
+      },
+      1: {
+        width: 34,
+        alignment: 'center',
+      },
+      2: {
+        width: 34,
+        alignment: 'right'
+      }
+    }
+  });
+  console.log(output);
+};
+
+const printMap = (map, task, thePlayer) => {
+  console.clear();
+  printTask(task);
+  printStats(thePlayer);
+  drawMap(map, thePlayer.symb);
+};
+
+const endOfGame = (inter, isWin, screenExit) => {
+  process.stdin.removeAllListeners('data');
+  process.stdin.removeAllListeners('keypress');
+  process.stdin.setRawMode(false);
+  process.stdin.resume();
+  process.stdin.end();
+  clearInterval(inter);
+  console.clear();
+
+  if (isWin) {
+    console.log('\n\n\n\n\n\n\n\n\n\n');
+    fallingCats(screenExit);
+    sound.play("sound/win.mp3");
+  }
+  else {
+    console.log('\n\n\n\n\n\n\n\n\n\n');
+    console.log(chalk.bold.redBright(figlet.textSync('game over', {
+      font: 'ANSI Shadow',
+      horizontalLayout: 'full',
+      verticalLayout: 'full',
+      width: 300,
+      whitespaceBreak: true
+    })));
+    sound.play("sound/gameover.mp3");
     let key = readlineSync.question(chalk.bold.greenBright('Press Enter to continue'));
-    printSB();
-    sound.stop("sound/win.mp3");
-    sound.stop("sound/gameover.mp3");
-
-    // const stdin = process.stdin;
-    // stdin.setRawMode(true); // Ne várjon enterre
-    // stdin.resume(); // Csak process.exit-el lehet kilépni
-    // stdin.setEncoding('utf8'); // Karaktereket kapjunk vissza
-    // stdin.on('data', (key) => { // Callback függvény
-    //     if (key === '\x0D')
-    //         printSB();
-    //     else endOfGame();
-
-    // });
-}
+    screenExit();
+  }
+};
 
 
 const printSB = () => {
-    console.clear();
-    printScoreboard();
-    let key = readlineSync.question(chalk.bold.greenBright('Press Enter to continue'));
-    
-}
-
+  console.clear();
+  printScoreboard();
+  let key = readlineSync.question(chalk.bold.greenBright('Press Enter to continue'));
+};
 
 
 module.exports = {
-    endOfGame,
-    appearTask,
-    printBorder,
-    printMap,
+  endOfGame,
+  appearTask,
+  printBorder,
+  printMap,
+  printSB
 }
