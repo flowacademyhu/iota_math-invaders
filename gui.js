@@ -11,22 +11,17 @@ const { fallingCats } = require('./fallingCats');
 
 
 const appearTask = (task) => {
-  console.clear();
-  console.log();
-  console.log();
-  console.log();
-  console.log();
-  console.log();
-  lolcatjs.fromString(figlet.textSync(task, {
-    font: 'ANSI Shadow',
-    horizontalLayout: 'fitted',
-    verticalLayout: 'full',
-    width: 125,
-    whitespaceBreak: true
-  }));
-  console.log();
-  console.log();
-};
+    console.clear();
+    console.log('\n\n\n\n\n');
+    lolcatjs.fromString(figlet.textSync(task, {
+        font: 'ANSI Shadow',
+        horizontalLayout: 'fitted',
+        verticalLayout: 'full',
+        width: 125,
+        whitespaceBreak: true
+    }));
+    console.log('\n\n');
+}
 
 const countLife = (life) => {
   let cat;
@@ -103,11 +98,11 @@ const drawMap = (map, symb) => {
   printBorder(mymap);
 };
 
-const printStats = (cica) => {
+const printStats = (thePlayer) => {
   const status = generateMap(1, 3);
-  const cat = countLife(cica.life);
-  status[0][0] = chalk.bold.greenBright(' Name: ' + cica.name);
-  status[0][1] = '🐟: ' + chalk.bold.greenBright(cica.score);
+  const cat = countLife(thePlayer.life);
+  status[0][0] = chalk.bold.greenBright(' Name: ' + thePlayer.name);
+  status[0][1] = '🐟: ' + chalk.bold.greenBright(thePlayer.score);
   status[0][2] = chalk.bold.greenBright('Life: ') + cat;
   let output;
   output = table(status, {
@@ -136,11 +131,11 @@ const printStats = (cica) => {
   console.log(output);
 };
 
-const printMap = (map, task, cica) => {
+const printMap = (map, task, thePlayer) => {
   console.clear();
   printTask(task);
-  printStats(cica);
-  drawMap(map, cica.symb);
+  printStats(thePlayer);
+  drawMap(map, thePlayer.symb);
 };
 
 const endOfGame = (inter, isWin, screenExit) => {

@@ -1,4 +1,5 @@
 const { table } = require('table');
+const chalk = require("chalk");
 const { generateMap } = require('./map');
 
 let gattoMap = [];
@@ -65,7 +66,7 @@ const printMap2 = () => {
       };
       for (let k = 0; k < youwinStars.length; k++) {
         if (i === youwinStars[k].x && j === youwinStars[k].y) {
-          gattoMap[i][j] = '⬜';
+          gattoMap[i][j] = '🟩';
         };
       };
     };
@@ -98,8 +99,8 @@ const printMap2 = () => {
     }
   };
   output = table(gattoMap, config);
-  console.log(output);
-  console.log('Press c to continue');
+  console.log(chalk.bold.greenBright(output));
+  console.log(chalk.bold.greenBright('Press C to continue'));
 };
 
 const movingCats = () => {

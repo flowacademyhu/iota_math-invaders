@@ -25,7 +25,6 @@ const getName = () => {
   };
 };
 
-
 const printScoreboard = () => {
   console.clear();
   for (let i = 0; i < rankJson.length; i++) {
