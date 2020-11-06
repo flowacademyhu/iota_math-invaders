@@ -96,6 +96,7 @@ const main = () => {
             printScoreboard();
             player.score = 0;
             previousScore = 0;
+            player.life = 0;
             reset();
             menu();
         }

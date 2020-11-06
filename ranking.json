@@ -19,11 +19,12 @@
     "life": 0
   },
   {
-    "name": "tibi2",
-    "x": 19,
-    "y": 7,
-    "score": 100,
-    "life": 3
+    "name": "asdfghj",
+    "x": 14,
+    "y": 8,
+    "score": 120,
+    "life": 3,
+    "symb": "😻"
   },
   {
     "name": "tibi",
@@ -47,11 +48,138 @@
     "life": 3
   },
   {
+    "name": "tibi2",
+    "x": 19,
+    "y": 7,
+    "score": 100,
+    "life": 3
+  },
+  {
+    "name": "Ani",
+    "x": 14,
+    "y": 14,
+    "score": 60,
+    "life": 3,
+    "symb": "😻"
+  },
+  {
+    "name": "fsa",
+    "x": 14,
+    "y": 12,
+    "score": 60,
+    "life": 3,
+    "symb": "😼"
+  },
+  {
+    "name": "ssdfgh",
+    "x": 14,
+    "y": 12,
+    "score": 30,
+    "life": 2,
+    "symb": "😻"
+  },
+  {
+    "name": "1",
+    "x": 14,
+    "y": 10,
+    "score": 30,
+    "life": 3,
+    "symb": "😺"
+  },
+  {
+    "name": "sdf",
+    "x": 14,
+    "y": 14,
+    "score": 30,
+    "life": 3,
+    "symb": "😺"
+  },
+  {
+    "name": "dfghjkl",
+    "x": 14,
+    "y": 9,
+    "score": 30,
+    "life": 4,
+    "symb": "😻"
+  },
+  {
+    "name": "fgh",
+    "x": 14,
+    "y": 12,
+    "score": 30,
+    "life": 3,
+    "symb": "😻"
+  },
+  {
+    "name": "dfgbn",
+    "x": 14,
+    "y": 14,
+    "score": 30,
+    "life": 3,
+    "symb": "😻"
+  },
+  {
+    "name": "cvbn",
+    "x": 14,
+    "y": 13,
+    "score": 30,
+    "life": 3,
+    "symb": "😻"
+  },
+  {
+    "name": "sdfg",
+    "x": 14,
+    "y": 13,
+    "score": 30,
+    "life": 2,
+    "symb": "🐯"
+  },
+  {
     "name": "Melani",
     "x": 14,
     "y": 7,
     "score": 30,
     "life": 3
+  },
+  {
+    "name": "asdfg",
+    "x": 14,
+    "y": 11,
+    "score": 30,
+    "life": 3,
+    "symb": "😻"
+  },
+  {
+    "name": "dg",
+    "x": 14,
+    "y": 13,
+    "score": 30,
+    "life": 1,
+    "symb": "😽"
+  },
+  {
+    "name": "sdfghj",
+    "x": 14,
+    "y": 7,
+    "score": 30,
+    "life": 0,
+    "symb": "😺"
+  },
+  {
+    "name": "rfghjk",
+    "x": 14,
+    "y": 13,
+    "score": 30,
+    "life": 3,
+    "symb": "😹"
+  },
+  {
+    "name": "sdfgh",
+    "x": 14,
+    "y": 6,
+    "score": 30,
+    "life": 3,
+    "symb": "😺"
   },
   {
     "name": "PetTheRat",
@@ -70,21 +198,7 @@
     "symb": "😹"
   },
   {
-    "name": "d",
-    "x": 14,
-    "y": 8,
-    "score": 1,
-    "life": 0
-  },
-  {
     "name": "gfd",
-    "x": 14,
-    "y": 8,
-    "score": 1,
-    "life": 0
-  },
-  {
-    "name": "fgd",
     "x": 14,
     "y": 8,
     "score": 1,
@@ -105,11 +219,11 @@
     "life": 0
   },
   {
-    "name": "123",
+    "name": "fgd",
     "x": 14,
-    "y": 7,
-    "score": 0,
-    "life": 3
+    "y": 8,
+    "score": 1,
+    "life": 0
   },
   {
     "name": "s",
@@ -119,21 +233,22 @@
     "life": 0
   },
   {
-    "name": "jk",
+    "name": "fds",
     "x": 14,
     "y": 7,
     "score": 0,
     "life": 0
   },
   {
-    "name": "asd",
+    "name": "melani",
     "x": 14,
     "y": 7,
     "score": 0,
-    "life": 3
+    "life": 3,
+    "symb": ""
   },
   {
-    "name": "",
+    "name": "q",
     "x": 14,
     "y": 7,
     "score": 0,
@@ -154,69 +269,19 @@
     "life": 0
   },
   {
-    "name": "j",
+    "name": "meli",
     "x": 14,
     "y": 7,
     "score": 0,
     "life": 3
   },
   {
-    "name": "ds",
-    "x": 14,
-    "y": 7,
-    "score": 0,
-    "life": 3
-  },
-  {
-    "name": "Ani",
-    "x": 14,
-    "y": 7,
-    "score": 0,
-    "life": 0
-  },
-  {
-    "name": "Meli",
-    "x": 14,
-    "y": 7,
-    "score": 0,
-    "life": 3
-  },
-  {
-    "name": "f",
-    "x": 14,
-    "y": 6,
-    "score": 0,
-    "life": 2
-  },
-  {
-    "name": "melani",
+    "name": "fdg",
     "x": 14,
     "y": 7,
     "score": 0,
     "life": 3,
     "symb": ""
-  },
-  {
-    "name": "sheuf",
-    "x": 14,
-    "y": 7,
-    "score": 0,
-    "life": 3,
-    "symb": ""
-  },
-  {
-    "name": "ANIKÓ",
-    "x": 14,
-    "y": 7,
-    "score": 0,
-    "life": 0
-  },
-  {
-    "name": "sad",
-    "x": 14,
-    "y": 7,
-    "score": 0,
-    "life": 0
   },
   {
     "name": "fa",
@@ -233,22 +298,36 @@
     "life": 3
   },
   {
-    "name": "aaa",
+    "name": "3242",
     "x": 14,
     "y": 7,
     "score": 0,
-    "life": 3
+    "life": 3,
+    "symb": ""
   },
   {
-    "name": "fds",
+    "name": "d",
     "x": 14,
     "y": 7,
     "score": 0,
-    "life": 0
+    "life": 3,
+    "symb": ""
   },
   {
-    "name": "Stormtrooper",
-    "score": 0
+    "name": "dfd",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3,
+    "symb": ""
+  },
+  {
+    "name": "asd",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3,
+    "symb": ""
   },
   {
     "name": "dea",
@@ -258,11 +337,74 @@
     "life": 3
   },
   {
-    "name": "q",
+    "name": "sheuf",
     "x": 14,
     "y": 7,
     "score": 0,
-    "life": 3
+    "life": 3,
+    "symb": ""
+  },
+  {
+    "name": "dsa",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 0,
+    "symb": "😼"
+  },
+  {
+    "name": "dfgh",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3,
+    "symb": ""
+  },
+  {
+    "name": "f",
+    "x": 14,
+    "y": 6,
+    "score": 0,
+    "life": 2
+  },
+  {
+    "name": "sfd",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3,
+    "symb": ""
+  },
+  {
+    "name": "df",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3,
+    "symb": ""
+  },
+  {
+    "name": "11",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3,
+    "symb": ""
+  },
+  {
+    "name": "jk",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 0
+  },
+  {
+    "name": "dfghj",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3,
+    "symb": ""
   },
   {
     "name": "as",
@@ -287,21 +429,7 @@
     "life": 3
   },
   {
-    "name": "meli",
-    "x": 14,
-    "y": 7,
-    "score": 0,
-    "life": 3
-  },
-  {
-    "name": "b",
-    "x": 14,
-    "y": 7,
-    "score": 0,
-    "life": 3
-  },
-  {
-    "name": "da",
+    "name": "aaa",
     "x": 14,
     "y": 7,
     "score": 0,
@@ -316,19 +444,87 @@
     "symb": "😼"
   },
   {
-    "name": "fsa",
-    "x": 14,
-    "y": 12,
-    "score": 60,
-    "life": 3,
-    "symb": "😼"
-  },
-  {
-    "name": "dsa",
+    "name": "j",
     "x": 14,
     "y": 7,
     "score": 0,
-    "life": 0,
-    "symb": "😼"
+    "life": 3
+  },
+  {
+    "name": "g",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3,
+    "symb": ""
+  },
+  {
+    "name": "Stormtrooper",
+    "score": 0
+  },
+  {
+    "name": "ds",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3
+  },
+  {
+    "name": "ANIKÓ",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 0
+  },
+  {
+    "name": "da",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3
+  },
+  {
+    "name": "123",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3
+  },
+  {
+    "name": "asdfgh",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3,
+    "symb": ""
+  },
+  {
+    "name": "b",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3
+  },
+  {
+    "name": "sad",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 0
+  },
+  {
+    "name": "Meli",
+    "x": 14,
+    "y": 7,
+    "score": 0,
+    "life": 3
+  },
+  {
+    "name": "mnbvc",
+    "x": 14,
+    "y": 14,
+    "score": 30,
+    "life": 2,
+    "symb": "😻"
   }
 ]
