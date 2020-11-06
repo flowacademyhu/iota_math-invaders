@@ -1,13 +1,12 @@
-const { printScoreboard, getName } = require("./scoreboard");
 const chalk = require("chalk");
 const figlet = require('figlet');
-let term = require('terminal-kit').terminal;
-var readlineSync = require('readline-sync');
+const readlineSync = require('readline-sync');
 const lolcatjs = require('lolcatjs');
-
-const sound = require('./sound');
-const { generateMap, isGood, player, getPlayerSymb, exercises, gamerator, getActualExercise } = require('./map');
 const { table, getBorderCharacters } = require('table');
+const sound = require('./sound');
+
+const { printScoreboard } = require("./scoreboard");
+const { generateMap } = require('./map');
 const { fallingCats } = require('./fallingCats');
 
 
@@ -27,7 +26,7 @@ const appearTask = (task) => {
   }));
   console.log();
   console.log();
-}
+};
 
 const countLife = (life) => {
   let cat;
@@ -45,7 +44,7 @@ const countLife = (life) => {
   }
 
   return cat;
-}
+};
 
 const printBorder = (mymap) => {
   let config, output;
@@ -77,14 +76,14 @@ const printBorder = (mymap) => {
 
   output = table(mymap, config);
   console.log(chalk.bold.greenBright(output));
-}
+};
 
 const printTask = (task) => {
   console.clear();
   console.log();
   console.log(chalk.bold.greenBright(task));
   console.log();
-}
+};
 
 const drawMap = (map, symb) => {
   const mymap = generateMap(15, 15);
@@ -92,8 +91,7 @@ const drawMap = (map, symb) => {
     for (let j = 0; j < map[i].length; j++) {
       if (map[i][j] === 'P') {
         mymap[i][j] = symb;
-      }
-      else if (map[i][j] === 'B') {
+      } else if (map[i][j] === 'B') {
         mymap[i][j] = '🧶';
       } else if (map[i][j] === 'L') {
         mymap[i][j] = '🐭';
@@ -103,7 +101,7 @@ const drawMap = (map, symb) => {
     }
   }
   printBorder(mymap);
-}
+};
 
 const printStats = (cica) => {
   const status = generateMap(1, 3);
@@ -136,7 +134,7 @@ const printStats = (cica) => {
     }
   });
   console.log(output);
-}
+};
 
 const printMap = (map, task, cica) => {
   console.clear();
@@ -172,14 +170,14 @@ const endOfGame = (inter, isWin, screenExit) => {
     let key = readlineSync.question(chalk.bold.greenBright('Press Enter to continue'));
     screenExit();
   }
-}
+};
 
 
 const printSB = () => {
   console.clear();
   printScoreboard();
   let key = readlineSync.question(chalk.bold.greenBright('Press Enter to continue'));
-}
+};
 
 
 module.exports = {

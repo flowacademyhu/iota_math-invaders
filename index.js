@@ -1,9 +1,8 @@
-const { generateMap, fillMap, playerMove, hit, getMap, gamerator, numbersMove, bulletsMove, shoot, getActualExercise, isGood, isFinish, player, reset, resetScoreWin, exercises, fillExtra, extraMove, collection, getPlayerSymb } = require('./map');
-const { getName, printScoreboard } = require('./scoreboard');
 const readline = require('readline-sync');
 const chalk = require("chalk");
-const figlet = require('figlet');
 const sound = require('./sound');
+const { fillMap, playerMove, hit, getMap, gamerator, numbersMove, bulletsMove, shoot, getActualExercise, isFinish, player, previousScore, reset, resetScoreWin, exercises, fillExtra, extraMove, collection, getPlayerSymb } = require('./map');
+const { getName, printScoreboard } = require('./scoreboard');
 const { appearTask, endOfGame, printMap, printSB } = require('./gui');
 let inter;
 
@@ -31,14 +30,12 @@ const menu = () => {
         process.exit();
     } else {
         gamerator(index);
-
         process.stdin.removeAllListeners('data');
         process.stdin.removeAllListeners('keypress');
         process.stdin.setRawMode(false);
         process.stdin.resume();
         process.stdin.end();
         clearInterval(inter);
-
         const actualExercise = getActualExercise();
         appearTask(actualExercise);
         let key = readline.question(chalk.bold.greenBright('Press Enter to continue'));
@@ -90,14 +87,15 @@ const main = () => {
 
 
     const stdin = process.stdin;
-    stdin.setRawMode(true); // Ne várjon enterre
-    stdin.resume(); // Csak process.exit-el lehet kilépni
-    stdin.setEncoding('utf8'); // Karaktereket kapjunk vissza
-    stdin.on('data', (key) => { // Callback függvény
+    stdin.setRawMode(true); 
+    stdin.resume(); 
+    stdin.setEncoding('utf8'); 
+    stdin.on('data', (key) => {
         if (key === 'q') {
             console.clear();
             printScoreboard();
             player.score = 0;
+            previousScore = 0;
             reset();
             menu();
         }
@@ -113,10 +111,6 @@ const main = () => {
         }
     });
 };
-
-function ize() {
-    console.log('from main');
-}
 
 menu();
 

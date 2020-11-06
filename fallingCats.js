@@ -1,9 +1,5 @@
 const { table } = require('table');
-var readlineSync = require('readline-sync');
 const { generateMap } = require('./map');
-const chalk = require("chalk");
-const { printScoreboard } = require('./scoreboard');
-
 
 let gattoMap = [];
 let kittens = [];
@@ -131,21 +127,14 @@ const fallingCats = (onExit) => {
   }, 200);
 
   const stdin = process.stdin;
-  stdin.setRawMode(true); // Ne várjon enterre
-  stdin.setEncoding('utf8'); // Karaktereket kapjunk vissza
-  stdin.on('data', (key) => { // Callback függvény
+  stdin.setRawMode(true);
+  stdin.setEncoding('utf8');
+  stdin.on('data', (key) => {
     if (key === 'c' || key === 'C') {
       exit = true;
     }
   });
 };
-
-const fgv = () => {
-  console.clear();
-  printScoreboard();
-  let key = readlineSync.question(chalk.bold.greenBright('Press c to continue'));
-};
-
 
 module.exports = {
   fallingCats
